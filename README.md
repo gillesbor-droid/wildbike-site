@@ -52,17 +52,7 @@ wildbike-site/
 
 A chaque `git push`, Cloudflare rebuild et deploie automatiquement.
 
-### Option B — GitHub Action (CI/CD)
-
-Le workflow `.github/workflows/deploy.yml` est deja configure.
-Il necessite deux secrets dans le repo GitHub :
-
-| Secret | Ou le trouver |
-|--------|---------------|
-| `CLOUDFLARE_API_TOKEN` | Cloudflare Dashboard > My Profile > API Tokens > Create Token > "Edit Cloudflare Workers" template |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Dashboard > n'importe quel domaine > sidebar droite |
-
-Une fois les secrets ajoutes, chaque push sur `main` declenche le deploiement.
+Le deploiement automatique est gere directement par Cloudflare Pages via la connexion GitHub.
 
 ## Technologies
 
