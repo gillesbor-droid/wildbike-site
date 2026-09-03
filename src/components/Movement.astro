@@ -1,0 +1,56 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'RÉSERVEZ UN COURS D\u2019ESSAI GRATUIT',
+    text: "Votre enfant vient découvrir le groupe, rencontrer les moniteurs et tester l'activité. Nous observons son niveau pour l'orienter correctement.",
+  },
+  {
+    num: '02',
+    title: 'NOUS RECOMMANDONS LE BON GROUPE',
+    text: "Pas de groupe choisi au hasard. On tient compte de son âge, de son niveau, de son matériel, de son tempérament et de la discipline qui lui correspond le mieux : BMX ou VTT.",
+  },
+  {
+    num: '03',
+    title: 'IL ROULE CHAQUE SEMAINE PENDANT L\u2019ANNÉE SCOLAIRE',
+    text: "Les cours durent 1 heure et ont lieu chaque semaine, hors vacances scolaires. Les groupes sont construits pour permettre une vraie progression dans une ambiance motivante.",
+  },
+  {
+    num: '04',
+    title: 'IL VIT AUSSI DES MOMENTS FORTS DANS L\u2019ANNÉE',
+    text: "Selon le calendrier, Wild Bike ajoute des sorties, challenges, événements, goodies, t-shirt du club, moments de cohésion et expériences mémorables.",
+  },
+];
+---
+
+<section class="relative py-32 md:py-48 text-white text-center overflow-hidden" id="movement">
+  <div class="absolute inset-0 w-full h-full">
+    <img
+      src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?q=80&w=2000&auto=format&fit=crop&grayscale=true"
+      alt="Groupe de jeunes riders en BMX"
+      class="w-full h-full object-cover filter grayscale contrast-150"
+    />
+    <div class="absolute inset-0 bg-edit-teal/90 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-black/60"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 fade-up">
+    <span class="font-display text-white/80 text-xs tracking-widest mb-6 block">
+      LE PARCOURS WILD BIKE
+    </span>
+    <h2 class="font-display text-5xl md:text-7xl tracking-tighter mb-14 leading-none">
+      COMMENT ÇA MARCHE
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+      {
+        steps.map((step) => (
+          <div class="bg-black/50 border border-white/20 p-8">
+            <span class="font-display text-edit-teal text-3xl">{step.num}</span>
+            <h3 class="font-display text-2xl tracking-tight mt-6 mb-4">{step.title}</h3>
+            <p class="text-white/75 text-sm leading-relaxed font-medium">{step.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

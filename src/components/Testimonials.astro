@@ -1,0 +1,37 @@
+---
+const testimonials = [
+  {
+    quote: "« NOTRE FILS A ÉNORMÉMENT GAGNÉ EN CONFIANCE. IL N'OSAIT PAS SE LANCER AU DÉBUT, MAINTENANT IL TENTE, IL PERSÉVÈRE ET IL EST FIER DE SES PROGRÈS. »",
+  },
+  {
+    quote: "« L'AMBIANCE EST TOP. LES ENFANTS PROGRESSENT MAIS TOUJOURS DANS UN CADRE RASSURANT. ON SENT QUE LES MONITEURS SAVENT GÉRER LES NIVEAUX ET LES PERSONNALITÉS. »",
+  },
+  {
+    quote: "« CE N'EST PAS JUSTE UN COURS DE VÉLO. NOTRE ENFANT ATTEND SON ENTRAÎNEMENT TOUTE LA SEMAINE, IL S'EST FAIT DES COPAINS ET IL REVIENT TOUJOURS AVEC LE SOURIRE. »",
+  },
+];
+---
+
+<section class="bg-white text-black py-32">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    <span class="text-edit-teal font-display text-xs tracking-widest">
+      TÉMOIGNAGES
+    </span>
+    <h2 class="font-display text-5xl md:text-7xl tracking-tighter leading-none mt-6 mb-14">
+      CE QUE DISENT LES PARENTS
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {
+        testimonials.map((t) => (
+          <blockquote class="border-t-4 border-edit-teal bg-zinc-100 p-8">
+            <iconify-icon
+              icon="solar:quote-right-linear"
+              class="text-edit-teal text-3xl mb-6"
+            />
+            <p class="font-display text-xl leading-snug">{t.quote}</p>
+          </blockquote>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — auto-génère les utilitaires Tailwind
+   ex: --color-edit-teal → bg-edit-teal, text-edit-teal, border-edit-teal
+   ============================================================ */
+@theme {
+  --color-edit-teal: #007C7A;
+  --color-edit-teal-dark: #004d4b;
+  --color-edit-red: #C1232E;
+  --color-edit-dark-red: #721212;
+  --color-edit-black: #000000;
+  --color-edit-white: #FFFFFF;
+  --color-edit-gray: #1E1E1E;
+  --color-edit-dark: #121212;
+
+  --font-body: "Helvetica Custom", sans-serif;
+}
+
+/* ============================================================
+   FONT FACE — body
+   ============================================================ */
+@font-face {
+  font-family: 'Helvetica Custom';
+  src: local('Helvetica Neue'), local('Helvetica'), local('Arial'), sans-serif;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-edit-white);
+  color: var(--color-edit-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   CUSTOM UTILITIES
+   ============================================================ */
+
+/* Headings — Oswald, uppercase, semibold */
+@utility font-display {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Letter spacing */
+@utility tracking-custom {
+  letter-spacing: 0.075rem;
+}
+
+/* Nav blend mode */
+@utility mix-blend-nav {
+  mix-blend-mode: difference;
+  color: white;
+}
+
+/* Solid dark overlay for hero images */
+@utility solid-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Radial vignette */
+@utility vignette {
+  background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.8) 150%);
+}
+
+/* ============================================================
+   SCROLL ANIMATIONS (driven by IntersectionObserver)
+   ============================================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}

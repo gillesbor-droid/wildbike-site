@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Wild Bike | Le club qui fait progresser les enfants grâce au vélo',
+  description =
+    "BMX ou VTT Freestyle, des cours adaptés à son âge et à son niveau pour progresser, s'amuser et prendre confiance.",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Iconify web component -->
+    <script
+      is:inline
+      src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
+    ></script>
+
+    <!-- Google Fonts: Oswald (display) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="overflow-x-hidden bg-black selection:bg-edit-teal selection:text-white">
+    <slot />
+
+    <!-- Scroll reveal animations -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .fade-in').forEach((elem) => {
+          observer.observe(elem);
+        });
+      });
+    </script>
+  </body>
+</html>
