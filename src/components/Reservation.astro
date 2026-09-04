@@ -1,39 +1,54 @@
 ---
+const actions = [
+  {
+    title: 'Cours à l’année',
+    href: 'https://wildbike.fr/club/',
+    label: 'Voir la page Club',
+  },
+  {
+    title: 'Stages vacances',
+    href: 'https://wildbike.fr/stages/',
+    label: 'Voir les stages',
+  },
+  {
+    title: 'Apprendre à rouler',
+    href: 'https://wildbike.fr/veloecole/',
+    label: 'Voir la vélo-école',
+  },
+];
 ---
 
 <section id="reservation" class="bg-edit-teal text-white py-32">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <span class="font-display text-xs tracking-widest text-white/70">
-      COURS D'ESSAI GRATUIT
+      PROCHAINE ÉTAPE
     </span>
     <h2 class="font-display text-5xl md:text-7xl tracking-tighter leading-none mt-6 mb-8">
-      PRÊT À FAIRE DÉCOUVRIR WILD BIKE À VOTRE ENFANT ?
+      CHOISISSEZ LE BON PARCOURS WILD BIKE
     </h2>
     <p class="text-white/90 text-base md:text-lg leading-relaxed font-medium mb-8">
-      Réservez son cours d'essai gratuit et laissez-le découvrir le BMX ou
-      le VTT Freestyle dans un cadre sécurisé, motivant et adapté à son
-      niveau. Les places sont limitées par groupe pour garder une vraie
-      qualité d'encadrement.
+      Vous pouvez partir vers la page la plus adaptée, ou réserver directement
+      un cours d'essai BMX/VTT si votre enfant veut découvrir le club.
     </p>
-    <div class="bg-black text-white p-6 md:p-8 mb-10 text-left">
-      <p class="font-display text-xl tracking-tight mb-2">
-        TARIF CLUB ANNUEL
-      </p>
-      <p class="text-sm md:text-base text-white/75 leading-relaxed font-medium">
-        1 cours par semaine : 298 euros. 2 cours par semaine : 465 euros.
-        Frais d'inscription : 30 euros. Option location BMX annuelle : 125 euros.
-        Offre Superstar : 75 euros par mois pour les riders très motivés.
-      </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 text-left">
+      {
+        actions.map((action) => (
+          <a href={action.href} class="group bg-black text-white p-6 hover:bg-white hover:text-black transition-colors">
+            <span class="font-display text-xl tracking-tight block mb-3">{action.title}</span>
+            <span class="font-display text-xs tracking-widest text-white/60 group-hover:text-black/60">{action.label}</span>
+          </a>
+        ))
+      }
     </div>
     <a
       href="https://docs.google.com/forms/d/e/1FAIpQLSd3iMWrb7wpacYt7c5cc9xX0y1GVrfiwts5CNG1ru8F5ZE09g/viewform?usp=dialog"
       class="inline-flex items-center justify-center gap-3 bg-white text-black hover:bg-black hover:text-white transition-colors duration-300 font-display text-xs tracking-widest px-10 py-5"
     >
-      RÉSERVER UN COURS D'ESSAI GRATUIT
+      RÉSERVER UN COURS D'ESSAI BMX/VTT
       <iconify-icon icon="solar:arrow-right-linear" width="16" stroke-width="2"></iconify-icon>
     </a>
     <p class="text-white/80 text-sm font-medium mt-6">
-      Une question sur le niveau, le matériel ou le bon groupe ? Contactez
+      Une question sur le niveau, le matériel ou la bonne activité ? Contactez
       Wild Bike au
       <a href="tel:0750903677" class="underline hover:text-black">
         07 50 90 36 77
