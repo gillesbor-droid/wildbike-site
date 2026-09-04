@@ -1,0 +1,62 @@
+---
+const photos = [
+  {
+    src: '/images/bmx-toulon-skatepark.jpg',
+    alt: 'Moniteur Wild Bike qui encadre une séance BMX au skatepark',
+    label: 'Encadrement',
+  },
+  {
+    src: '/images/vtt-freestyle-stage.jpg',
+    alt: 'Enfant en VTT freestyle pendant un stage Wild Bike',
+    label: 'VTT freestyle',
+  },
+  {
+    src: '/images/airbag-stage.jpg',
+    alt: 'Session airbag Wild Bike à La Seyne-sur-Mer',
+    label: 'Airbag & événements',
+  },
+  {
+    src: '/images/association-groupe.jpg',
+    alt: 'Grand groupe Wild Bike en fin d’année',
+    label: 'Esprit club',
+  },
+];
+---
+
+<section class="bg-black text-white py-24 md:py-32 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
+      <div class="max-w-3xl fade-up">
+        <span class="text-edit-teal font-display text-xs tracking-widest">
+          SUR LE TERRAIN
+        </span>
+        <h2 class="font-display text-5xl md:text-7xl tracking-tighter leading-none mt-6">
+          DES VRAIS RIDERS, DES VRAIS SPOTS, UNE VRAIE ÉNERGIE
+        </h2>
+      </div>
+      <p class="text-white/60 text-sm md:text-base leading-relaxed font-medium max-w-sm fade-up">
+        BMX en skatepark, VTT à Janas, stages vacances, airbag et moments de
+        club : Wild Bike se vit dehors, en mouvement, avec les enfants.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {
+        photos.map((photo) => (
+          <figure class="relative h-72 md:h-96 overflow-hidden bg-white/5 fade-up group">
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              class="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+            />
+            <figcaption class="absolute left-0 right-0 bottom-0 p-5 bg-gradient-to-t from-black/80 to-transparent">
+              <span class="font-display text-xs tracking-widest text-white">
+                {photo.label}
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

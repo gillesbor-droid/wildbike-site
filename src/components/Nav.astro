@@ -1,8 +1,8 @@
 ---
 const navLinks = [
-  { href: '#prologue', label: 'CLUB' },
-  { href: '#ethos', label: 'STAGES' },
-  { href: '#movement', label: 'VÉLO ÉCOLE' },
+  { href: '#story', label: 'POURQUOI' },
+  { href: '#movement', label: 'PARCOURS' },
+  { href: '#reservation', label: 'ESSAI' },
 ];
 ---
 
@@ -11,7 +11,7 @@ const navLinks = [
 >
   <a href="#" class="flex items-center gap-1 group">
     <span class="font-display text-2xl md:text-3xl tracking-tighter">
-      Wildbike
+      Wild Bike
     </span>
     <div class="flex gap-[0.1rem] mt-1">
       <div class="w-1.5 h-1.5 bg-edit-teal"></div>
@@ -35,7 +35,10 @@ const navLinks = [
     }
   </div>
 
-  <button class="md:hidden">
-    <iconify-icon icon="solar:hamburger-menu-linear" width="24" stroke-width="1.5"></iconify-icon>
-  </button>
+  <a
+    href="#reservation"
+    class="md:hidden font-display text-xs tracking-widest border border-white/40 px-4 py-3"
+  >
+    ESSAI
+  </a>
 </nav>

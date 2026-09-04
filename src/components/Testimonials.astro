@@ -1,13 +1,16 @@
 ---
 const testimonials = [
   {
-    quote: "« NOTRE FILS A ÉNORMÉMENT GAGNÉ EN CONFIANCE. IL N'OSAIT PAS SE LANCER AU DÉBUT, MAINTENANT IL TENTE, IL PERSÉVÈRE ET IL EST FIER DE SES PROGRÈS. »",
+    quote: "« 2 ans que notre fils fait du BMX avec Gilles et quelques stages également ! Encadrement au top, activités proposées diversifiées, bel accompagnement des enfants. »",
+    author: 'Maelle BH',
   },
   {
-    quote: "« L'AMBIANCE EST TOP. LES ENFANTS PROGRESSENT MAIS TOUJOURS DANS UN CADRE RASSURANT. ON SENT QUE LES MONITEURS SAVENT GÉRER LES NIVEAUX ET LES PERSONNALITÉS. »",
+    quote: "« Une super structure ! Encadrement au top, à l’écoute et très pro. Une première saison pour mon fils en BMX avec Gilles, il n’y a pas mieux. »",
+    author: 'Hervé Riché',
   },
   {
-    quote: "« CE N'EST PAS JUSTE UN COURS DE VÉLO. NOTRE ENFANT ATTEND SON ENTRAÎNEMENT TOUTE LA SEMAINE, IL S'EST FAIT DES COPAINS ET IL REVIENT TOUJOURS AVEC LE SOURIRE. »",
+    quote: "« Mon fils suit les cours et a participé à un stage. Il progresse rapidement en prenant du plaisir. Accompagnement sérieux et ludique. »",
+    author: 'Chloé Colin',
   },
 ];
 ---
@@ -29,6 +32,7 @@ const testimonials = [
               class="text-edit-teal text-3xl mb-6"
             />
             <p class="font-display text-xl leading-snug">{t.quote}</p>
+            <footer class="text-sm font-medium text-black/50 mt-8">{t.author}</footer>
           </blockquote>
         ))
       }
