@@ -9,26 +9,45 @@ const formats = [
     title: 'BMX NIVEAU 1',
     text: 'Pour découvrir le skatepark, les courbes, l\'équilibre et les premiers jumps en confiance.',
     detail: 'Débutants dès 5 ans',
+    href: '#bmx-niveau-1',
+    image: '/images/bmx-stage-enfant.jpg',
+    alt: 'Jeune rider Wild Bike qui découvre le BMX au skatepark',
   },
   {
     num: '02',
     title: 'VTT FREESTYLE',
     text: 'Pour rouler en terrain naturel, explorer Janas et apprendre à piloter sur les bosses.',
     detail: 'Découverte & pilotage',
+    href: '#vtt-freestyle',
+    image: '/images/vtt-freestyle-stage.jpg',
+    alt: 'Groupe Wild Bike pendant un stage VTT freestyle',
   },
   {
     num: '03',
     title: 'BMX NIVEAU 2',
     text: 'Pour les riders qui ont déjà les bases et veulent gagner en fluidité, technique et confiance.',
     detail: 'Bases BMX requises',
+    href: '#bmx-niveau-2',
+    image: '/images/bmx-toulon-skatepark.jpg',
+    alt: 'Rider Wild Bike au skatepark de Toulon',
   },
   {
     num: '04',
     title: 'AVENTURE & BOOTCAMP',
     text: 'Pour vivre une journée ou une semaine forte : nouveaux spots, défis, minibus et esprit d\'équipe.',
     detail: 'Journée ou semaine',
+    href: '#aventure-bootcamp',
+    image: '/images/airbag-stage.jpg',
+    alt: 'Rider Wild Bike pendant une session airbag',
   },
 ];
+
+const formatAnchorByStage: Record<string, string> = {
+  'BMX NIVEAU 1': 'bmx-niveau-1',
+  'STAGE VTT': 'vtt-freestyle',
+  'BMX NIVEAU 2': 'bmx-niveau-2',
+  "L'ODYSSÉE DES RIDERS": 'aventure-bootcamp',
+};
 
 const periods = [
   {
@@ -228,7 +247,7 @@ const periods = [
       <img
         src="/images/stage-famille-roue.jpg"
         alt="Riders Wild Bike réunis dans un skatepark face à la mer"
-        class="absolute inset-0 h-full w-full object-cover object-[58%_center] grayscale contrast-125"
+        class="absolute inset-0 h-full w-full object-cover object-[58%_center] saturate-125 contrast-110"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/25"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/35"></div>
@@ -240,7 +259,7 @@ const periods = [
             <span class="h-px w-12 bg-edit-teal"></span>
           </div>
           <h1 class="font-display max-w-3xl text-6xl leading-[0.88] tracking-tighter md:text-8xl lg:text-9xl fade-up" style="animation-delay: 100ms;">
-            DES VACANCES QUI LES FONT GRANDIR
+            LES VACANCES, ÇA SE ROULE.
           </h1>
           <p class="mt-8 max-w-xl text-base font-medium leading-relaxed text-white/75 md:text-lg fade-up" style="animation-delay: 200ms;">
             BMX, VTT freestyle, journées aventure et road trips : des stages pour bouger, oser, progresser et revenir fier de ce qu'on a réussi.
@@ -300,12 +319,25 @@ const periods = [
         <div class="mt-16 grid grid-cols-1 gap-px overflow-hidden border border-white/15 bg-white/15 md:grid-cols-2 lg:grid-cols-4 fade-up">
           {
             formats.map((format) => (
-              <article class="min-h-72 bg-edit-dark p-7 transition-colors hover:bg-edit-teal">
+              <a
+                href={format.href}
+                aria-label={`Voir les dates ${format.title}`}
+                class="group relative isolate flex min-h-80 flex-col justify-end overflow-hidden bg-black p-7 transition-transform duration-500 hover:-translate-y-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-edit-teal"
+              >
+                <img
+                  src={format.image}
+                  alt={format.alt}
+                  class="absolute inset-0 -z-20 h-full w-full object-cover saturate-125 transition-transform duration-700 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/75 to-black/20 transition-colors duration-500 group-hover:via-black/55"></div>
                 <span class="font-display text-3xl text-edit-teal">{format.num}</span>
                 <h3 class="mt-12 font-display text-2xl tracking-tight">{format.title}</h3>
-                <p class="mt-4 text-sm font-medium leading-relaxed text-white/65">{format.text}</p>
-                <p class="mt-7 font-display text-xs tracking-widest text-white">{format.detail}</p>
-              </article>
+                <p class="mt-4 text-sm font-medium leading-relaxed text-white/80">{format.text}</p>
+                <span class="mt-7 inline-flex items-center gap-2 font-display text-xs tracking-widest text-white">
+                  {format.detail}
+                  <iconify-icon icon="solar:arrow-down-linear" class="transition-transform duration-300 group-hover:translate-y-1" width="15"></iconify-icon>
+                </span>
+              </a>
             ))
           }
         </div>
@@ -343,7 +375,10 @@ const periods = [
                   <div class="grid gap-4 md:grid-cols-2">
                     {
                       period.stages.map((stage) => (
-                        <article class="flex min-h-80 flex-col border border-black/15 bg-zinc-100 p-6 transition-colors hover:border-edit-teal hover:bg-white fade-up">
+                        <article
+                          id={periodIndex === 0 ? formatAnchorByStage[stage.title] : undefined}
+                          class="scroll-mt-36 flex min-h-80 flex-col border border-black/15 bg-zinc-100 p-6 transition-colors hover:border-edit-teal hover:bg-white fade-up"
+                        >
                           <div class="flex items-start justify-between gap-4">
                             <span class="font-display text-[10px] tracking-widest text-edit-teal">{stage.type}</span>
                             <span class="font-display text-sm tracking-wide text-black/45">{stage.price}</span>
@@ -406,7 +441,7 @@ const periods = [
       <img
         src="/images/vtt-freestyle-stage.jpg"
         alt="Groupe Wild Bike pendant une sortie VTT sur les hauteurs de La Seyne-sur-Mer"
-        class="absolute inset-0 h-full w-full object-cover grayscale contrast-125"
+        class="absolute inset-0 h-full w-full object-cover saturate-125 contrast-110"
       />
       <div class="absolute inset-0 bg-black/70"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
@@ -453,7 +488,7 @@ const periods = [
 
     <section class="bg-edit-teal py-24 text-white md:py-32">
       <div class="mx-auto max-w-4xl px-6 text-center">
-        <span class="font-display text-xs tracking-widest text-white/70">UNE QUESTION AVANT L'OUVERTURE ?</span>
+        <span class="font-display text-xs tracking-widest text-white/70">UN DOUTE SUR LE BON STAGE ?</span>
         <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">ON TROUVE LE BON STAGE ENSEMBLE</h2>
         <p class="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/85 md:text-lg">
           Dites-nous l'âge, le niveau et les envies de votre enfant. Nous vous orienterons vers le format le plus adapté.
@@ -467,13 +502,13 @@ const periods = [
             <iconify-icon icon="solar:phone-linear" width="16"></iconify-icon>
           </a>
           <a
-            href="https://www.instagram.com/wildbike83/?hl=fr"
+            href="https://wa.me/33750903677?text=Bonjour%20Wild%20Bike%2C%20j%27aimerais%20des%20informations%20sur%20un%20stage."
             target="_blank"
             rel="noreferrer"
             class="inline-flex items-center justify-center gap-3 border border-white/40 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:bg-black hover:border-black"
           >
-            SUIVRE LES OUVERTURES
-            <iconify-icon icon="solar:camera-linear" width="16"></iconify-icon>
+            ÉCRIRE SUR WHATSAPP
+            <iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon>
           </a>
         </div>
       </div>

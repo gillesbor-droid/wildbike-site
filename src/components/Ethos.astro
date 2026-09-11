@@ -5,24 +5,32 @@ const offers = [
     text: "Votre enfant veut rouler chaque semaine, progresser dans un groupe et s'engager sur l'année scolaire.",
     href: 'https://wildbike.fr/club/',
     label: 'Découvrir le club',
+    image: '/images/association-groupe.jpg',
+    alt: 'Groupe de riders Wild Bike au skatepark',
   },
   {
     title: 'Stages vacances',
     text: 'Vous cherchez une activité forte pendant les vacances : BMX, VTT, forêt, pumptrack, airbag, road trip et progression.',
     href: '/stages/',
     label: 'Voir les stages',
+    image: '/images/bmx-stage-enfant.jpg',
+    alt: 'Jeune rider Wild Bike pendant un stage BMX',
   },
   {
     title: 'Vélo école',
     text: 'Vous ou votre enfant voulez apprendre à faire du vélo, reprendre confiance ou être accompagné sur la mobilité douce.',
     href: 'https://wildbike.fr/veloecole/',
     label: 'Découvrir la vélo-école',
+    image: '/images/vtt-foret-enfant.jpg',
+    alt: 'Enfant à vélo dans la forêt avec Wild Bike',
   },
   {
     title: 'Boutique',
     text: 'Vous voulez retrouver les textiles, accessoires, vélos, équipements et produits aux couleurs de Wild Bike.',
     href: 'https://www.helloasso.com/associations/wild-bike/boutiques/catalogue-wb-2025',
     label: 'Voir la boutique',
+    image: '/images/rider-wild-bike.jpg',
+    alt: 'Rider Wild Bike prêt à rouler',
   },
 ];
 ---
@@ -56,16 +64,24 @@ const offers = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-16">
       {
         offers.map((offer) => (
-          <article class="border border-white/15 bg-white/5 p-6 fade-up">
-            <h3 class="font-display text-2xl tracking-tight mb-4">{offer.title}</h3>
-            <p class="text-white/65 text-sm leading-relaxed font-medium mb-6">{offer.text}</p>
-            <a
-              href={offer.href}
-              class="font-display text-xs tracking-widest text-edit-teal hover:text-white transition-colors"
-            >
+          <a
+            href={offer.href}
+            aria-label={offer.label}
+            class="group relative isolate flex min-h-80 flex-col justify-end overflow-hidden border border-white/15 bg-black p-6 transition-all duration-500 hover:-translate-y-2 hover:border-edit-teal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-edit-teal fade-up"
+          >
+            <img
+              src={offer.image}
+              alt={offer.alt}
+              class="absolute inset-0 -z-20 h-full w-full object-cover saturate-125 transition-transform duration-700 group-hover:scale-110"
+            />
+            <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/75 to-black/20 transition-colors duration-500 group-hover:via-black/55"></div>
+            <h3 class="font-display text-2xl tracking-tight">{offer.title}</h3>
+            <p class="mt-4 text-sm font-medium leading-relaxed text-white/80">{offer.text}</p>
+            <span class="mt-7 inline-flex items-center gap-2 font-display text-xs tracking-widest text-edit-teal transition-colors group-hover:text-white">
               {offer.label}
-            </a>
-          </article>
+              <iconify-icon icon="solar:arrow-right-linear" class="transition-transform duration-300 group-hover:translate-x-1" width="15"></iconify-icon>
+            </span>
+          </a>
         ))
       }
     </div>
