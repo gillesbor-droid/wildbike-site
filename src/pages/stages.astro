@@ -75,6 +75,7 @@ const formatAnchorByStage: Record<string, string> = {
   "L'ODYSSÉE DES RIDERS": 'aventure-bootcamp',
 };
 
+// Les inscriptions HelloAsso sont ouvertes manuellement deux mois avant le premier jour du stage.
 const periods = [
   {
     label: 'VACANCES DE LA TOUSSAINT',
@@ -94,7 +95,8 @@ const periods = [
         alt: 'Jeune rider Wild Bike souriant sur son BMX',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-19-et-20-octobre-2026',
-        registrationOpen: false,
+        registrationOpen: true,
+        registrationOpensOn: '19 AOÛT 2026',
       },
       {
         title: 'STAGE VTT',
@@ -109,7 +111,8 @@ const periods = [
         alt: 'Rider Wild Bike en VTT sur un terrain naturel',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-vtt-19-et-20-octobre-2026',
-        registrationOpen: false,
+        registrationOpen: true,
+        registrationOpensOn: '19 AOÛT 2026',
       },
       {
         title: 'BMX NIVEAU 2',
@@ -124,7 +127,8 @@ const periods = [
         alt: 'Deux riders Wild Bike en plein saut au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-2-22-et-23-octobre-2026',
-        registrationOpen: false,
+        registrationOpen: true,
+        registrationOpensOn: '22 AOÛT 2026',
       },
       {
         title: "L'ODYSSÉE DES RIDERS",
@@ -139,7 +143,8 @@ const periods = [
         alt: 'Rider Wild Bike en action pendant un road trip BMX',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bootcamp-wild-bike-26-au-30-octobre-2026',
-        registrationOpen: false,
+        registrationOpen: true,
+        registrationOpensOn: '26 AOÛT 2026',
       },
     ],
   },
@@ -162,6 +167,7 @@ const periods = [
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-lundi-21-decembre-2026',
         registrationOpen: false,
+        registrationOpensOn: '21 OCT. 2026',
       },
       {
         title: 'VTT ADVENTURE',
@@ -177,6 +183,7 @@ const periods = [
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-22-decembre-2026',
         registrationOpen: false,
+        registrationOpensOn: '22 OCT. 2026',
       },
     ],
   },
@@ -199,6 +206,7 @@ const periods = [
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-23-fevrier-2027',
         registrationOpen: false,
+        registrationOpensOn: '23 DÉC. 2026',
       },
       {
         title: 'BIKE ADVENTURE',
@@ -214,6 +222,7 @@ const periods = [
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-jeudi-25-fevrier-2027',
         registrationOpen: false,
+        registrationOpensOn: '25 DÉC. 2026',
       },
     ],
   },
@@ -236,6 +245,7 @@ const periods = [
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-19-et-20-avril-2027',
         registrationOpen: false,
+        registrationOpensOn: '19 FÉV. 2027',
       },
       {
         title: 'STAGE VTT',
@@ -251,6 +261,7 @@ const periods = [
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-vtt-19-et-20-avril-2027',
         registrationOpen: false,
+        registrationOpensOn: '19 FÉV. 2027',
       },
       {
         title: 'BMX NIVEAU 2',
@@ -266,6 +277,7 @@ const periods = [
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-2-22-et-23-avril-2027',
         registrationOpen: false,
+        registrationOpensOn: '22 FÉV. 2027',
       },
       {
         title: 'TRAINING GLADIATORS',
@@ -281,6 +293,7 @@ const periods = [
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/training-gladiators-bootcamp-26-au-30-avril-2027',
         registrationOpen: false,
+        registrationOpensOn: '26 FÉV. 2027',
       },
     ],
   },
@@ -483,7 +496,7 @@ const periods = [
                                 ) : (
                                   <span class="inline-flex items-center gap-2 font-display text-[10px] tracking-widest text-white/65">
                                     <span class="h-2 w-2 bg-edit-teal"></span>
-                                    INSCRIPTIONS BIENTÔT OUVERTES
+                                    OUVERTURE LE {stage.registrationOpensOn}
                                   </span>
                                 )
                               }
