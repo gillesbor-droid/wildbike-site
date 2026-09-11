@@ -1,0 +1,483 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const formats = [
+  {
+    num: '01',
+    title: 'BMX NIVEAU 1',
+    text: 'Pour découvrir le skatepark, les courbes, l\'équilibre et les premiers jumps en confiance.',
+    detail: 'Débutants dès 5 ans',
+  },
+  {
+    num: '02',
+    title: 'VTT FREESTYLE',
+    text: 'Pour rouler en terrain naturel, explorer Janas et apprendre à piloter sur les bosses.',
+    detail: 'Découverte & pilotage',
+  },
+  {
+    num: '03',
+    title: 'BMX NIVEAU 2',
+    text: 'Pour les riders qui ont déjà les bases et veulent gagner en fluidité, technique et confiance.',
+    detail: 'Bases BMX requises',
+  },
+  {
+    num: '04',
+    title: 'AVENTURE & BOOTCAMP',
+    text: 'Pour vivre une journée ou une semaine forte : nouveaux spots, défis, minibus et esprit d\'équipe.',
+    detail: 'Journée ou semaine',
+  },
+];
+
+const periods = [
+  {
+    label: 'VACANCES DE LA TOUSSAINT',
+    dates: '19 > 30 OCT. 2026',
+    intro: 'Quatre façons de rouler, du premier virage au road trip de cinq jours.',
+    stages: [
+      {
+        title: 'BMX NIVEAU 1',
+        type: 'BMX',
+        dates: '19 & 20 OCT.',
+        hours: '10h - 12h',
+        price: '49 €',
+        location: 'Toulon',
+        audience: 'Débutants dès 5 ans',
+        text: 'Deux demi-journées pour découvrir le skatepark, apprendre les bases et prendre confiance.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-19-et-20-octobre-2026',
+        registrationOpen: false,
+      },
+      {
+        title: 'STAGE VTT',
+        type: 'VTT',
+        dates: '19 & 20 OCT.',
+        hours: '14h - 16h',
+        price: '49 €',
+        location: 'Janas, La Seyne',
+        audience: 'Découverte & pilotage',
+        text: 'Deux après-midis pour rouler en forêt, découvrir les bosses et développer son pilotage.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/stage-vtt-19-et-20-octobre-2026',
+        registrationOpen: false,
+      },
+      {
+        title: 'BMX NIVEAU 2',
+        type: 'BMX',
+        dates: '22 & 23 OCT.',
+        hours: '9h - 11h',
+        price: '49 €',
+        location: 'Toulon & Six-Fours',
+        audience: 'Bases BMX requises',
+        text: 'Pour gagner en fluidité, explorer de nouveaux modules et passer un cap dans sa progression.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-2-22-et-23-octobre-2026',
+        registrationOpen: false,
+      },
+      {
+        title: "L'ODYSSÉE DES RIDERS",
+        type: 'ROAD TRIP',
+        dates: '26 > 30 OCT.',
+        hours: '8h30 - 16h30',
+        price: '279 €',
+        location: 'Départ Toulon',
+        audience: 'Dès 5 ans',
+        text: 'Cinq jours de BMX, de nouveaux spots, de défis et de souvenirs qui restent.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/bootcamp-wild-bike-26-au-30-octobre-2026',
+        registrationOpen: false,
+      },
+    ],
+  },
+  {
+    label: 'VACANCES DE NOËL',
+    dates: '21 & 22 DÉC. 2026',
+    intro: 'Deux journées pour sortir du quotidien et vivre une aventure à vélo.',
+    stages: [
+      {
+        title: 'BIKE ADVENTURE',
+        type: 'BMX',
+        dates: '21 DÉC.',
+        hours: '8h - 16h30',
+        price: '72,80 €',
+        location: 'Départ Ollioules',
+        audience: 'Dès 8 ans, bases BMX',
+        text: 'Une journée entre skatepark, défis et esprit d\'équipe pour les riders déjà à l\'aise.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-lundi-21-decembre-2026',
+        registrationOpen: false,
+      },
+      {
+        title: 'VTT ADVENTURE',
+        type: 'VTT',
+        dates: '22 DÉC.',
+        hours: '8h - 16h30',
+        price: '72,80 €',
+        location: 'Départ Ollioules',
+        audience: 'Journée aventure',
+        text: 'Une journée VTT pour rouler, explorer et partager une vraie expérience de groupe.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-22-decembre-2026',
+        registrationOpen: false,
+      },
+    ],
+  },
+  {
+    label: "VACANCES D'HIVER",
+    dates: '23 & 25 FÉV. 2027',
+    intro: 'Deux journées BMX pensées pour ceux qui veulent aller plus loin.',
+    stages: [
+      {
+        title: 'BIKE ADVENTURE',
+        type: 'BMX',
+        dates: '23 FÉV.',
+        hours: '8h - 16h30',
+        price: '72,80 €',
+        location: 'Départ Ollioules',
+        audience: 'Dès 8 ans, bases BMX',
+        text: 'Une journée de ride, de défis et de progression hors du quotidien.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-23-fevrier-2027',
+        registrationOpen: false,
+      },
+      {
+        title: 'BIKE ADVENTURE',
+        type: 'BMX',
+        dates: '25 FÉV.',
+        hours: '8h - 16h30',
+        price: '72,80 €',
+        location: 'Départ Ollioules',
+        audience: 'Dès 8 ans, bases BMX',
+        text: 'Une deuxième date pour rider, se dépasser et repartir avec de vrais souvenirs.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-jeudi-25-fevrier-2027',
+        registrationOpen: false,
+      },
+    ],
+  },
+  {
+    label: 'VACANCES DE PRINTEMPS',
+    dates: '19 > 30 AVR. 2027',
+    intro: 'Le retour des formats essentiels et un bootcamp de cinq jours pour finir en grand.',
+    stages: [
+      {
+        title: 'BMX NIVEAU 1',
+        type: 'BMX',
+        dates: '19 & 20 AVR.',
+        hours: '9h - 11h',
+        price: '45 €',
+        location: 'Toulon',
+        audience: 'Débutants dès 5 ans',
+        text: 'Deux matinées pour découvrir le BMX freestyle en sécurité et à son rythme.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-19-et-20-avril-2027',
+        registrationOpen: false,
+      },
+      {
+        title: 'STAGE VTT',
+        type: 'VTT',
+        dates: '19 & 20 AVR.',
+        hours: '14h - 16h',
+        price: '45 €',
+        location: 'Janas, La Seyne',
+        audience: 'Découverte & pilotage',
+        text: 'Deux après-midis dans la forêt pour progresser sur un terrain naturel et varié.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/stage-vtt-19-et-20-avril-2027',
+        registrationOpen: false,
+      },
+      {
+        title: 'BMX NIVEAU 2',
+        type: 'BMX',
+        dates: '22 & 23 AVR.',
+        hours: '9h - 11h',
+        price: '45 €',
+        location: 'Toulon & Six-Fours',
+        audience: 'Bases BMX requises',
+        text: 'Deux matinées pour affiner sa technique, gagner en fluidité et rouler sur de nouveaux modules.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-2-22-et-23-avril-2027',
+        registrationOpen: false,
+      },
+      {
+        title: 'TRAINING GLADIATORS',
+        type: 'BOOTCAMP',
+        dates: '26 > 30 AVR.',
+        hours: '8h30 - 16h30',
+        price: '279 €',
+        location: 'Départ Toulon',
+        audience: 'Dès 5 ans',
+        text: 'Cinq jours de road trip BMX, de progression, de défis et d\'esprit d\'équipe.',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/training-gladiators-bootcamp-26-au-30-avril-2027',
+        registrationOpen: false,
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Stages BMX & VTT à Toulon | Wild Bike"
+  description="Stages BMX, VTT freestyle, journées aventure et bootcamps pour enfants pendant les vacances autour de Toulon."
+>
+  <Nav page="stages" />
+  <main>
+    <header class="relative min-h-[780px] overflow-hidden bg-black text-white">
+      <img
+        src="/images/stage-famille-roue.jpg"
+        alt="Riders Wild Bike réunis dans un skatepark face à la mer"
+        class="absolute inset-0 h-full w-full object-cover object-[58%_center] grayscale contrast-125"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/25"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/35"></div>
+
+      <div class="relative z-10 mx-auto flex min-h-[780px] max-w-7xl flex-col justify-end px-6 pb-16 pt-36 md:px-12 md:pb-24">
+        <div class="max-w-4xl">
+          <div class="mb-7 flex items-center gap-4 fade-up">
+            <span class="font-display text-xs tracking-widest text-edit-teal">STAGES VACANCES 2026 / 2027</span>
+            <span class="h-px w-12 bg-edit-teal"></span>
+          </div>
+          <h1 class="font-display max-w-3xl text-6xl leading-[0.88] tracking-tighter md:text-8xl lg:text-9xl fade-up" style="animation-delay: 100ms;">
+            DES VACANCES QUI LES FONT GRANDIR
+          </h1>
+          <p class="mt-8 max-w-xl text-base font-medium leading-relaxed text-white/75 md:text-lg fade-up" style="animation-delay: 200ms;">
+            BMX, VTT freestyle, journées aventure et road trips : des stages pour bouger, oser, progresser et revenir fier de ce qu'on a réussi.
+          </p>
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row fade-up" style="animation-delay: 300ms;">
+            <a
+              href="#stages"
+              class="inline-flex items-center justify-center gap-3 bg-edit-teal px-8 py-5 font-display text-xs tracking-widest transition-colors hover:bg-white hover:text-black"
+            >
+              VOIR LES PROCHAINES DATES
+              <iconify-icon icon="solar:arrow-down-linear" width="16"></iconify-icon>
+            </a>
+            <a
+              href="#formats"
+              class="inline-flex items-center justify-center gap-3 border border-white/30 bg-white/10 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:border-white hover:bg-white hover:text-black"
+            >
+              CHOISIR LE BON FORMAT
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-16 grid max-w-3xl grid-cols-3 border-t border-white/25 pt-6 fade-up" style="animation-delay: 400ms;">
+          <div class="border-r border-white/20 pr-4">
+            <strong class="font-display block text-3xl text-edit-teal md:text-4xl">12</strong>
+            <span class="mt-1 block text-[10px] font-medium uppercase tracking-wider text-white/60">Prochains rendez-vous</span>
+          </div>
+          <div class="border-r border-white/20 px-4">
+            <strong class="font-display block text-3xl text-edit-teal md:text-4xl">OCT. &gt; AVR.</strong>
+            <span class="mt-1 block text-[10px] font-medium uppercase tracking-wider text-white/60">Calendrier 2026 / 2027</span>
+          </div>
+          <div class="pl-4">
+            <strong class="font-display block text-3xl text-edit-teal md:text-4xl">5 ANS</strong>
+            <span class="mt-1 block text-[10px] font-medium uppercase tracking-wider text-white/60">Premiers stages</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="formats" class="relative overflow-hidden bg-edit-dark py-24 text-white md:py-32">
+      <div
+        class="absolute inset-0 opacity-[0.035]"
+        style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px); background-size: 4rem 4rem;"
+      ></div>
+      <div class="relative mx-auto max-w-7xl px-6 md:px-12">
+        <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div class="fade-up">
+            <span class="font-display text-xs tracking-widest text-edit-teal">TROUVER SON STAGE</span>
+            <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">
+              PAS BESOIN D'ÊTRE DÉJÀ RIDER
+            </h2>
+          </div>
+          <p class="max-w-xl self-end text-base font-medium leading-relaxed text-white/70 md:text-lg fade-up">
+            Chaque format a son intention. Le niveau 1 ouvre la porte. Le niveau 2 fait progresser. Les journées aventure et les bootcamps transforment les vacances en souvenirs.
+          </p>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 gap-px overflow-hidden border border-white/15 bg-white/15 md:grid-cols-2 lg:grid-cols-4 fade-up">
+          {
+            formats.map((format) => (
+              <article class="min-h-72 bg-edit-dark p-7 transition-colors hover:bg-edit-teal">
+                <span class="font-display text-3xl text-edit-teal">{format.num}</span>
+                <h3 class="mt-12 font-display text-2xl tracking-tight">{format.title}</h3>
+                <p class="mt-4 text-sm font-medium leading-relaxed text-white/65">{format.text}</p>
+                <p class="mt-7 font-display text-xs tracking-widest text-white">{format.detail}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="stages" class="bg-white py-24 text-black md:py-32">
+      <div class="mx-auto max-w-7xl px-6 md:px-12">
+        <div class="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <div class="fade-up">
+            <span class="font-display text-xs tracking-widest text-edit-teal">LE CALENDRIER</span>
+            <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">
+              CHOISISSEZ VOTRE PROCHAINE AVENTURE
+            </h2>
+          </div>
+          <p class="max-w-2xl self-end text-base font-medium leading-relaxed text-black/65 md:text-lg fade-up">
+            Les inscriptions ouvrent progressivement. Chaque carte indique les dates, le format et les informations clés. Les places sont limitées pour garder un vrai accompagnement sur le terrain.
+          </p>
+        </div>
+
+        <div class="mt-20 space-y-20">
+          {
+            periods.map((period, periodIndex) => (
+              <section class="scroll-mt-24" aria-labelledby={`period-${periodIndex}`}>
+                <div class="grid gap-8 border-t-4 border-edit-teal pt-7 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+                  <div class="fade-up">
+                    <span class="font-display text-5xl leading-none text-black/15">{String(periodIndex + 1).padStart(2, '0')}</span>
+                    <p class="mt-6 font-display text-xs tracking-widest text-edit-teal">{period.dates}</p>
+                    <h3 id={`period-${periodIndex}`} class="mt-3 font-display text-4xl leading-none tracking-tighter md:text-5xl">
+                      {period.label}
+                    </h3>
+                    <p class="mt-5 max-w-sm text-sm font-medium leading-relaxed text-black/60">{period.intro}</p>
+                  </div>
+
+                  <div class="grid gap-4 md:grid-cols-2">
+                    {
+                      period.stages.map((stage) => (
+                        <article class="flex min-h-80 flex-col border border-black/15 bg-zinc-100 p-6 transition-colors hover:border-edit-teal hover:bg-white fade-up">
+                          <div class="flex items-start justify-between gap-4">
+                            <span class="font-display text-[10px] tracking-widest text-edit-teal">{stage.type}</span>
+                            <span class="font-display text-sm tracking-wide text-black/45">{stage.price}</span>
+                          </div>
+                          <h4 class="mt-7 font-display text-3xl leading-none tracking-tight">{stage.title}</h4>
+                          <p class="mt-4 text-sm font-medium leading-relaxed text-black/65">{stage.text}</p>
+
+                          <dl class="mt-7 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-black/10 pt-5 text-[11px] font-medium uppercase tracking-wide text-black/60">
+                            <div>
+                              <dt class="sr-only">Dates</dt>
+                              <dd class="flex items-center gap-2"><iconify-icon icon="solar:calendar-minimalistic-linear" width="15"></iconify-icon>{stage.dates}</dd>
+                            </div>
+                            <div>
+                              <dt class="sr-only">Horaires</dt>
+                              <dd class="flex items-center gap-2"><iconify-icon icon="solar:clock-circle-linear" width="15"></iconify-icon>{stage.hours}</dd>
+                            </div>
+                            <div>
+                              <dt class="sr-only">Lieu</dt>
+                              <dd class="flex items-center gap-2"><iconify-icon icon="solar:map-point-linear" width="15"></iconify-icon>{stage.location}</dd>
+                            </div>
+                            <div>
+                              <dt class="sr-only">Public</dt>
+                              <dd class="flex items-center gap-2"><iconify-icon icon="solar:users-group-rounded-linear" width="15"></iconify-icon>{stage.audience}</dd>
+                            </div>
+                          </dl>
+
+                          <div class="mt-auto pt-7">
+                            {
+                              stage.registrationOpen ? (
+                                <a
+                                  href={stage.registrationUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  class="inline-flex items-center gap-2 font-display text-xs tracking-widest text-edit-teal transition-colors hover:text-black"
+                                >
+                                  RÉSERVER SUR HELLOASSO
+                                  <iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon>
+                                </a>
+                              ) : (
+                                <span class="inline-flex items-center gap-2 font-display text-[10px] tracking-widest text-black/45">
+                                  <span class="h-2 w-2 bg-edit-teal"></span>
+                                  INSCRIPTIONS BIENTÔT OUVERTES
+                                </span>
+                              )
+                            }
+                          </div>
+                        </article>
+                      ))
+                    }
+                  </div>
+                </div>
+              </section>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="relative overflow-hidden bg-black py-28 text-white md:py-40">
+      <img
+        src="/images/vtt-freestyle-stage.jpg"
+        alt="Groupe Wild Bike pendant une sortie VTT sur les hauteurs de La Seyne-sur-Mer"
+        class="absolute inset-0 h-full w-full object-cover grayscale contrast-125"
+      />
+      <div class="absolute inset-0 bg-black/70"></div>
+      <div class="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
+        <div class="max-w-3xl fade-up">
+          <span class="font-display text-xs tracking-widest text-edit-teal">L'ESPRIT WILD BIKE</span>
+          <p class="mt-7 font-display text-4xl leading-[1.05] tracking-tight md:text-6xl">
+            UN STAGE, CE N'EST PAS JUSTE OCCUPER UNE JOURNÉE. C'EST DONNER ENVIE D'ESSAYER ENCORE.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="infos" class="bg-edit-dark py-24 text-white md:py-32">
+      <div class="mx-auto max-w-7xl px-6 md:px-12">
+        <div class="max-w-3xl fade-up">
+          <span class="font-display text-xs tracking-widest text-edit-teal">AVANT DE PARTIR</span>
+          <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">LES INFOS PRATIQUES</h2>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <article class="border-t-2 border-edit-teal bg-white/5 p-7 fade-up">
+            <iconify-icon icon="solar:medal-ribbons-star-linear" class="text-edit-teal text-3xl"></iconify-icon>
+            <h3 class="mt-8 font-display text-2xl">ENCADREMENT</h3>
+            <p class="mt-4 text-sm font-medium leading-relaxed text-white/65">Chaque stage est encadré par un moniteur diplômé, avec des groupes pensés pour que chacun avance à son rythme.</p>
+          </article>
+          <article class="border-t-2 border-edit-teal bg-white/5 p-7 fade-up">
+            <iconify-icon icon="solar:backpack-linear" class="text-edit-teal text-3xl"></iconify-icon>
+            <h3 class="mt-8 font-display text-2xl">MATÉRIEL</h3>
+            <p class="mt-4 text-sm font-medium leading-relaxed text-white/65">Vélo adapté, casque, protections et gourde sont indispensables. La location de BMX est possible selon les disponibilités.</p>
+          </article>
+          <article class="border-t-2 border-edit-teal bg-white/5 p-7 fade-up">
+            <iconify-icon icon="solar:map-point-linear" class="text-edit-teal text-3xl"></iconify-icon>
+            <h3 class="mt-8 font-display text-2xl">RENDEZ-VOUS</h3>
+            <p class="mt-4 text-sm font-medium leading-relaxed text-white/65">Le lieu et l'heure de rendez-vous sont précisés pour chaque stage, puis rappelés avant le départ aux familles inscrites.</p>
+          </article>
+          <article class="border-t-2 border-edit-teal bg-white/5 p-7 fade-up">
+            <iconify-icon icon="solar:shield-check-linear" class="text-edit-teal text-3xl"></iconify-icon>
+            <h3 class="mt-8 font-display text-2xl">SÉCURITÉ</h3>
+            <p class="mt-4 text-sm font-medium leading-relaxed text-white/65">Le cadre est clair, les consignes sont expliquées et la progression reste adaptée à l'âge comme au niveau de chaque rider.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-edit-teal py-24 text-white md:py-32">
+      <div class="mx-auto max-w-4xl px-6 text-center">
+        <span class="font-display text-xs tracking-widest text-white/70">UNE QUESTION AVANT L'OUVERTURE ?</span>
+        <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">ON TROUVE LE BON STAGE ENSEMBLE</h2>
+        <p class="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/85 md:text-lg">
+          Dites-nous l'âge, le niveau et les envies de votre enfant. Nous vous orienterons vers le format le plus adapté.
+        </p>
+        <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+          <a
+            href="tel:0750903677"
+            class="inline-flex items-center justify-center gap-3 bg-white px-8 py-5 font-display text-xs tracking-widest text-black transition-colors hover:bg-black hover:text-white"
+          >
+            APPELER WILD BIKE
+            <iconify-icon icon="solar:phone-linear" width="16"></iconify-icon>
+          </a>
+          <a
+            href="https://www.instagram.com/wildbike83/?hl=fr"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center justify-center gap-3 border border-white/40 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:bg-black hover:border-black"
+          >
+            SUIVRE LES OUVERTURES
+            <iconify-icon icon="solar:camera-linear" width="16"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
