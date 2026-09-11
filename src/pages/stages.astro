@@ -3,19 +3,30 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
+const thumbnail = (id: string, variant = 'maxresdefault') =>
+  `https://i.ytimg.com/vi/${id}/${variant}.jpg`;
+
+const visual = (src: string, position = 'center', scale = 1) => ({ src, position, scale });
+
 const stageImages = {
-  hero: '/images/stages-hero-bowl.jpeg',
-  bmxNiveau1: '/images/stages-bmx-sourire.jpg',
-  vtt: '/images/stages-vtt.jpg',
-  bmxNiveau2: '/images/stages-bmx-niveau-2.jpg',
-  action: '/images/stages-bmx-action.jpg',
-  bmxGroup: 'https://i.ytimg.com/vi/Ik135wOVf6s/hqdefault.jpg',
-  bmxClose: 'https://i.ytimg.com/vi/Q9LA1LoaTyk/hqdefault.jpg',
-  roadTrip: 'https://i.ytimg.com/vi/m_Qb5JwASUE/hqdefault.jpg',
-  bowl: 'https://i.ytimg.com/vi/u9-XTTKYUks/hqdefault.jpg',
-  flow: 'https://i.ytimg.com/vi/N7Jg1OJbjRM/hqdefault.jpg',
-  rider: 'https://i.ytimg.com/vi/RuXajQ19hAI/hqdefault.jpg',
-  indoor: 'https://i.ytimg.com/vi/j5PGqtmBYkw/hqdefault.jpg',
+  hero: thumbnail('JNNDjmnYBlE'),
+  formatBmxNiveau1: visual(thumbnail('V4fuo3SiJBU')),
+  formatVtt: visual('/images/stages-vtt.jpg', 'center 42%', 1.3),
+  formatBmxNiveau2: visual(thumbnail('lLm24SQ0_OM')),
+  formatAdventure: visual(thumbnail('abVeGJ98rkM'), 'center 44%', 1.7),
+  octoberBmxNiveau1: visual(thumbnail('_GK4c1j2Au4'), 'center 45%', 1.9),
+  octoberVtt: visual(thumbnail('lJF6l3jcok4'), 'center 48%', 1.9),
+  octoberBmxNiveau2: visual(thumbnail('C8eh1jEEr0E', 'hqdefault'), '38% 35%', 1.55),
+  roadTrip: visual(thumbnail('bRntcQCttnQ'), 'center 42%', 1.7),
+  decemberBmx: visual(thumbnail('0kX6ciVCMHs'), 'center 45%', 1.8),
+  decemberVtt: visual('/images/stages-bmx-sourire.jpg', 'center 42%', 1.55),
+  winterBmxOne: visual(thumbnail('3L7iUjz4Z1E'), 'center 45%', 1.8),
+  winterBmxTwo: visual(thumbnail('h3r1iKzrMmI'), 'center 45%', 1.8),
+  aprilBmxNiveau1: visual(thumbnail('qUronAMYsMY', 'hqdefault'), '65% 30%', 1.5),
+  aprilVtt: visual('/images/stages-bmx-niveau-2.jpg', 'center 42%', 1.55),
+  aprilBmxNiveau2: visual(thumbnail('luZj1muURpk'), 'center 45%', 1.8),
+  gladiators: visual(thumbnail('aI9OOamr6Ag'), 'center 45%', 1.8),
+  action: visual('/images/stages-bmx-action.jpg', 'center 45%', 1.35),
 };
 
 const formats = [
@@ -25,7 +36,7 @@ const formats = [
     text: 'Pour découvrir le skatepark, les courbes, l\'équilibre et les premiers jumps en confiance.',
     detail: 'Débutants dès 5 ans',
     href: '#bmx-niveau-1',
-    image: stageImages.bmxNiveau1,
+    image: stageImages.formatBmxNiveau1,
     alt: 'Jeune rider Wild Bike souriant sur son BMX',
   },
   {
@@ -34,7 +45,7 @@ const formats = [
     text: 'Pour rouler en terrain naturel, explorer Janas et apprendre à piloter sur les bosses.',
     detail: 'Découverte & pilotage',
     href: '#vtt-freestyle',
-    image: stageImages.vtt,
+    image: stageImages.formatVtt,
     alt: 'Rider Wild Bike en VTT sur un terrain naturel',
   },
   {
@@ -43,7 +54,7 @@ const formats = [
     text: 'Pour les riders qui ont déjà les bases et veulent gagner en fluidité, technique et confiance.',
     detail: 'Bases BMX requises',
     href: '#bmx-niveau-2',
-    image: stageImages.bmxNiveau2,
+    image: stageImages.formatBmxNiveau2,
     alt: 'Deux riders Wild Bike en plein saut au skatepark',
   },
   {
@@ -52,7 +63,7 @@ const formats = [
     text: 'Pour vivre une journée ou une semaine forte : nouveaux spots, défis, minibus et esprit d\'équipe.',
     detail: 'Journée ou semaine',
     href: '#aventure-bootcamp',
-    image: stageImages.roadTrip,
+    image: stageImages.formatAdventure,
     alt: 'Rider Wild Bike pendant un road trip BMX',
   },
 ];
@@ -79,7 +90,7 @@ const periods = [
         location: 'Toulon',
         audience: 'Débutants dès 5 ans',
         text: 'Deux demi-journées pour découvrir le skatepark, apprendre les bases et prendre confiance.',
-        image: stageImages.bmxNiveau1,
+        image: stageImages.octoberBmxNiveau1,
         alt: 'Jeune rider Wild Bike souriant sur son BMX',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-19-et-20-octobre-2026',
@@ -94,7 +105,7 @@ const periods = [
         location: 'Janas, La Seyne',
         audience: 'Découverte & pilotage',
         text: 'Deux après-midis pour rouler en forêt, découvrir les bosses et développer son pilotage.',
-        image: stageImages.vtt,
+        image: stageImages.octoberVtt,
         alt: 'Rider Wild Bike en VTT sur un terrain naturel',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-vtt-19-et-20-octobre-2026',
@@ -109,7 +120,7 @@ const periods = [
         location: 'Toulon & Six-Fours',
         audience: 'Bases BMX requises',
         text: 'Pour gagner en fluidité, explorer de nouveaux modules et passer un cap dans sa progression.',
-        image: stageImages.bmxNiveau2,
+        image: stageImages.octoberBmxNiveau2,
         alt: 'Deux riders Wild Bike en plein saut au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-2-22-et-23-octobre-2026',
@@ -146,7 +157,7 @@ const periods = [
         location: 'Départ Ollioules',
         audience: 'Dès 8 ans, bases BMX',
         text: 'Une journée entre skatepark, défis et esprit d\'équipe pour les riders déjà à l\'aise.',
-        image: stageImages.flow,
+        image: stageImages.decemberBmx,
         alt: 'Rider Wild Bike qui prend un virage au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-lundi-21-decembre-2026',
@@ -161,7 +172,7 @@ const periods = [
         location: 'Départ Ollioules',
         audience: 'Journée aventure',
         text: 'Une journée VTT pour rouler, explorer et partager une vraie expérience de groupe.',
-        image: stageImages.bmxGroup,
+        image: stageImages.decemberVtt,
         alt: 'Groupe de jeunes riders Wild Bike avec leurs vélos',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-22-decembre-2026',
@@ -183,7 +194,7 @@ const periods = [
         location: 'Départ Ollioules',
         audience: 'Dès 8 ans, bases BMX',
         text: 'Une journée de ride, de défis et de progression hors du quotidien.',
-        image: stageImages.rider,
+        image: stageImages.winterBmxOne,
         alt: 'Jeune rider Wild Bike sur un BMX jaune',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-23-fevrier-2027',
@@ -198,7 +209,7 @@ const periods = [
         location: 'Départ Ollioules',
         audience: 'Dès 8 ans, bases BMX',
         text: 'Une deuxième date pour rider, se dépasser et repartir avec de vrais souvenirs.',
-        image: stageImages.indoor,
+        image: stageImages.winterBmxTwo,
         alt: 'Jeune rider Wild Bike dans un skatepark couvert',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-jeudi-25-fevrier-2027',
@@ -220,7 +231,7 @@ const periods = [
         location: 'Toulon',
         audience: 'Débutants dès 5 ans',
         text: 'Deux matinées pour découvrir le BMX freestyle en sécurité et à son rythme.',
-        image: stageImages.bmxClose,
+        image: stageImages.aprilBmxNiveau1,
         alt: 'Jeune rider Wild Bike au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-19-et-20-avril-2027',
@@ -235,7 +246,7 @@ const periods = [
         location: 'Janas, La Seyne',
         audience: 'Découverte & pilotage',
         text: 'Deux après-midis dans la forêt pour progresser sur un terrain naturel et varié.',
-        image: stageImages.vtt,
+        image: stageImages.aprilVtt,
         alt: 'Rider Wild Bike en VTT sur un terrain naturel',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-vtt-19-et-20-avril-2027',
@@ -250,7 +261,7 @@ const periods = [
         location: 'Toulon & Six-Fours',
         audience: 'Bases BMX requises',
         text: 'Deux matinées pour affiner sa technique, gagner en fluidité et rouler sur de nouveaux modules.',
-        image: stageImages.bowl,
+        image: stageImages.aprilBmxNiveau2,
         alt: 'Jeune rider Wild Bike dans un bowl',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-2-22-et-23-avril-2027',
@@ -265,7 +276,7 @@ const periods = [
         location: 'Départ Toulon',
         audience: 'Dès 5 ans',
         text: 'Cinq jours de road trip BMX, de progression, de défis et d\'esprit d\'équipe.',
-        image: stageImages.action,
+        image: stageImages.gladiators,
         alt: 'Deux riders Wild Bike en plein saut au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/training-gladiators-bootcamp-26-au-30-avril-2027',
@@ -285,11 +296,11 @@ const periods = [
     <header class="relative min-h-[780px] overflow-hidden bg-black text-white">
       <img
         src={stageImages.hero}
-        alt="Groupe de riders Wild Bike au skatepark face à la mer"
-        class="absolute inset-0 h-full w-full object-cover object-[58%_center] saturate-125 contrast-110"
+        alt="Jeune rider Wild Bike en BMX au skatepark"
+        class="absolute inset-0 h-full w-full object-cover object-center saturate-110 contrast-105"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/25"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/35"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/35 to-black/5"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10"></div>
 
       <div class="relative z-10 mx-auto flex min-h-[780px] max-w-7xl flex-col justify-end px-6 pb-16 pt-36 md:px-12 md:pb-24">
         <div class="max-w-4xl">
@@ -364,12 +375,13 @@ const periods = [
                 class="group relative isolate flex min-h-80 flex-col justify-end overflow-hidden bg-black p-7 transition-transform duration-500 hover:-translate-y-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-edit-teal"
               >
                 <img
-                  src={format.image}
+                  src={format.image.src}
                   alt={format.alt}
                   loading="lazy"
-                  class="absolute inset-0 -z-20 h-full w-full object-cover saturate-125 transition-transform duration-700 group-hover:scale-110"
+                  style={`object-position: ${format.image.position}; transform: scale(${format.image.scale});`}
+                  class="absolute inset-0 -z-20 h-full w-full object-cover saturate-125 transition duration-700 group-hover:brightness-110"
                 />
-                <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/75 to-black/20 transition-colors duration-500 group-hover:via-black/55"></div>
+                <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/40 to-black/5 transition-colors duration-500 group-hover:via-black/25"></div>
                 <span class="font-display text-3xl text-edit-teal">{format.num}</span>
                 <h3 class="mt-12 font-display text-2xl tracking-tight">{format.title}</h3>
                 <p class="mt-4 text-sm font-medium leading-relaxed text-white/80">{format.text}</p>
@@ -417,61 +429,65 @@ const periods = [
                       period.stages.map((stage) => (
                         <article
                           id={periodIndex === 0 ? formatAnchorByStage[stage.title] : undefined}
-                          class="group scroll-mt-36 flex min-h-80 flex-col overflow-hidden border border-black/15 bg-zinc-100 p-6 transition-colors hover:border-edit-teal hover:bg-white fade-up"
+                          class="group relative isolate scroll-mt-36 flex min-h-[26rem] flex-col overflow-hidden border border-black/15 bg-black p-6 text-white transition-colors hover:border-edit-teal fade-up"
                         >
-                          <figure class="relative -mx-6 -mt-6 mb-6 h-36 overflow-hidden bg-black">
-                            <img
-                              src={stage.image}
-                              alt={stage.alt}
-                              loading="lazy"
-                              class="h-full w-full object-cover saturate-125 transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <figcaption class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-black/85 to-transparent p-4 pt-10">
-                              <span class="font-display text-[10px] tracking-widest text-edit-teal">{stage.type}</span>
-                              <span class="font-display text-sm tracking-wide text-white">{stage.price}</span>
-                            </figcaption>
-                          </figure>
-                          <h4 class="font-display text-3xl leading-none tracking-tight">{stage.title}</h4>
-                          <p class="mt-4 text-sm font-medium leading-relaxed text-black/65">{stage.text}</p>
+                          <img
+                            src={stage.image.src}
+                            alt={stage.alt}
+                            loading="lazy"
+                            style={`object-position: ${stage.image.position}; transform: scale(${stage.image.scale});`}
+                            class="absolute inset-0 -z-20 h-full w-full object-cover saturate-125 transition duration-700 group-hover:brightness-110"
+                          />
+                          <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/65 to-black/5"></div>
 
-                          <dl class="mt-7 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-black/10 pt-5 text-[11px] font-medium uppercase tracking-wide text-black/60">
-                            <div>
-                              <dt class="sr-only">Dates</dt>
-                              <dd class="flex items-center gap-2"><iconify-icon icon="solar:calendar-minimalistic-linear" width="15"></iconify-icon>{stage.dates}</dd>
-                            </div>
-                            <div>
-                              <dt class="sr-only">Horaires</dt>
-                              <dd class="flex items-center gap-2"><iconify-icon icon="solar:clock-circle-linear" width="15"></iconify-icon>{stage.hours}</dd>
-                            </div>
-                            <div>
-                              <dt class="sr-only">Lieu</dt>
-                              <dd class="flex items-center gap-2"><iconify-icon icon="solar:map-point-linear" width="15"></iconify-icon>{stage.location}</dd>
-                            </div>
-                            <div>
-                              <dt class="sr-only">Public</dt>
-                              <dd class="flex items-center gap-2"><iconify-icon icon="solar:users-group-rounded-linear" width="15"></iconify-icon>{stage.audience}</dd>
-                            </div>
-                          </dl>
+                          <div class="flex items-start justify-between gap-4">
+                            <span class="font-display text-[10px] tracking-widest text-edit-teal">{stage.type}</span>
+                            <span class="bg-black/35 px-3 py-2 font-display text-sm tracking-wide text-white backdrop-blur-sm">{stage.price}</span>
+                          </div>
 
-                          <div class="mt-auto pt-7">
-                            {
-                              stage.registrationOpen ? (
-                                <a
-                                  href={stage.registrationUrl}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  class="inline-flex items-center gap-2 font-display text-xs tracking-widest text-edit-teal transition-colors hover:text-black"
-                                >
-                                  RÉSERVER SUR HELLOASSO
-                                  <iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon>
-                                </a>
-                              ) : (
-                                <span class="inline-flex items-center gap-2 font-display text-[10px] tracking-widest text-black/45">
-                                  <span class="h-2 w-2 bg-edit-teal"></span>
-                                  INSCRIPTIONS BIENTÔT OUVERTES
-                                </span>
-                              )
-                            }
+                          <div class="mt-auto">
+                            <h4 class="font-display text-3xl leading-none tracking-tight">{stage.title}</h4>
+                            <p class="mt-4 text-sm font-medium leading-relaxed text-white/80">{stage.text}</p>
+
+                            <dl class="mt-7 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-white/25 pt-5 text-[11px] font-medium uppercase tracking-wide text-white/75">
+                              <div>
+                                <dt class="sr-only">Dates</dt>
+                                <dd class="flex items-center gap-2"><iconify-icon icon="solar:calendar-minimalistic-linear" width="15"></iconify-icon>{stage.dates}</dd>
+                              </div>
+                              <div>
+                                <dt class="sr-only">Horaires</dt>
+                                <dd class="flex items-center gap-2"><iconify-icon icon="solar:clock-circle-linear" width="15"></iconify-icon>{stage.hours}</dd>
+                              </div>
+                              <div>
+                                <dt class="sr-only">Lieu</dt>
+                                <dd class="flex items-center gap-2"><iconify-icon icon="solar:map-point-linear" width="15"></iconify-icon>{stage.location}</dd>
+                              </div>
+                              <div>
+                                <dt class="sr-only">Public</dt>
+                                <dd class="flex items-center gap-2"><iconify-icon icon="solar:users-group-rounded-linear" width="15"></iconify-icon>{stage.audience}</dd>
+                              </div>
+                            </dl>
+
+                            <div class="pt-7">
+                              {
+                                stage.registrationOpen ? (
+                                  <a
+                                    href={stage.registrationUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    class="inline-flex items-center gap-2 font-display text-xs tracking-widest text-edit-teal transition-colors hover:text-white"
+                                  >
+                                    RÉSERVER SUR HELLOASSO
+                                    <iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon>
+                                  </a>
+                                ) : (
+                                  <span class="inline-flex items-center gap-2 font-display text-[10px] tracking-widest text-white/65">
+                                    <span class="h-2 w-2 bg-edit-teal"></span>
+                                    INSCRIPTIONS BIENTÔT OUVERTES
+                                  </span>
+                                )
+                              }
+                            </div>
                           </div>
                         </article>
                       ))
@@ -487,8 +503,9 @@ const periods = [
 
     <section class="relative overflow-hidden bg-black py-28 text-white md:py-40">
       <img
-        src={stageImages.action}
+        src={stageImages.action.src}
         alt="Deux riders Wild Bike en plein saut au skatepark"
+        style={`object-position: ${stageImages.action.position}; transform: scale(${stageImages.action.scale});`}
         class="absolute inset-0 h-full w-full object-cover saturate-125 contrast-110"
       />
       <div class="absolute inset-0 bg-black/70"></div>
