@@ -3,6 +3,21 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
+const stageImages = {
+  hero: '/images/stages-hero-bowl.jpeg',
+  bmxNiveau1: '/images/stages-bmx-sourire.jpg',
+  vtt: '/images/stages-vtt.jpg',
+  bmxNiveau2: '/images/stages-bmx-niveau-2.jpg',
+  action: '/images/stages-bmx-action.jpg',
+  bmxGroup: 'https://i.ytimg.com/vi/Ik135wOVf6s/hqdefault.jpg',
+  bmxClose: 'https://i.ytimg.com/vi/Q9LA1LoaTyk/hqdefault.jpg',
+  roadTrip: 'https://i.ytimg.com/vi/m_Qb5JwASUE/hqdefault.jpg',
+  bowl: 'https://i.ytimg.com/vi/u9-XTTKYUks/hqdefault.jpg',
+  flow: 'https://i.ytimg.com/vi/N7Jg1OJbjRM/hqdefault.jpg',
+  rider: 'https://i.ytimg.com/vi/RuXajQ19hAI/hqdefault.jpg',
+  indoor: 'https://i.ytimg.com/vi/j5PGqtmBYkw/hqdefault.jpg',
+};
+
 const formats = [
   {
     num: '01',
@@ -10,8 +25,8 @@ const formats = [
     text: 'Pour découvrir le skatepark, les courbes, l\'équilibre et les premiers jumps en confiance.',
     detail: 'Débutants dès 5 ans',
     href: '#bmx-niveau-1',
-    image: '/images/bmx-stage-enfant.jpg',
-    alt: 'Jeune rider Wild Bike qui découvre le BMX au skatepark',
+    image: stageImages.bmxNiveau1,
+    alt: 'Jeune rider Wild Bike souriant sur son BMX',
   },
   {
     num: '02',
@@ -19,8 +34,8 @@ const formats = [
     text: 'Pour rouler en terrain naturel, explorer Janas et apprendre à piloter sur les bosses.',
     detail: 'Découverte & pilotage',
     href: '#vtt-freestyle',
-    image: '/images/vtt-freestyle-stage.jpg',
-    alt: 'Groupe Wild Bike pendant un stage VTT freestyle',
+    image: stageImages.vtt,
+    alt: 'Rider Wild Bike en VTT sur un terrain naturel',
   },
   {
     num: '03',
@@ -28,8 +43,8 @@ const formats = [
     text: 'Pour les riders qui ont déjà les bases et veulent gagner en fluidité, technique et confiance.',
     detail: 'Bases BMX requises',
     href: '#bmx-niveau-2',
-    image: '/images/bmx-toulon-skatepark.jpg',
-    alt: 'Rider Wild Bike au skatepark de Toulon',
+    image: stageImages.bmxNiveau2,
+    alt: 'Deux riders Wild Bike en plein saut au skatepark',
   },
   {
     num: '04',
@@ -37,8 +52,8 @@ const formats = [
     text: 'Pour vivre une journée ou une semaine forte : nouveaux spots, défis, minibus et esprit d\'équipe.',
     detail: 'Journée ou semaine',
     href: '#aventure-bootcamp',
-    image: '/images/airbag-stage.jpg',
-    alt: 'Rider Wild Bike pendant une session airbag',
+    image: stageImages.roadTrip,
+    alt: 'Rider Wild Bike pendant un road trip BMX',
   },
 ];
 
@@ -64,6 +79,8 @@ const periods = [
         location: 'Toulon',
         audience: 'Débutants dès 5 ans',
         text: 'Deux demi-journées pour découvrir le skatepark, apprendre les bases et prendre confiance.',
+        image: stageImages.bmxNiveau1,
+        alt: 'Jeune rider Wild Bike souriant sur son BMX',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-19-et-20-octobre-2026',
         registrationOpen: false,
@@ -77,6 +94,8 @@ const periods = [
         location: 'Janas, La Seyne',
         audience: 'Découverte & pilotage',
         text: 'Deux après-midis pour rouler en forêt, découvrir les bosses et développer son pilotage.',
+        image: stageImages.vtt,
+        alt: 'Rider Wild Bike en VTT sur un terrain naturel',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-vtt-19-et-20-octobre-2026',
         registrationOpen: false,
@@ -90,6 +109,8 @@ const periods = [
         location: 'Toulon & Six-Fours',
         audience: 'Bases BMX requises',
         text: 'Pour gagner en fluidité, explorer de nouveaux modules et passer un cap dans sa progression.',
+        image: stageImages.bmxNiveau2,
+        alt: 'Deux riders Wild Bike en plein saut au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-2-22-et-23-octobre-2026',
         registrationOpen: false,
@@ -103,6 +124,8 @@ const periods = [
         location: 'Départ Toulon',
         audience: 'Dès 5 ans',
         text: 'Cinq jours de BMX, de nouveaux spots, de défis et de souvenirs qui restent.',
+        image: stageImages.roadTrip,
+        alt: 'Rider Wild Bike en action pendant un road trip BMX',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bootcamp-wild-bike-26-au-30-octobre-2026',
         registrationOpen: false,
@@ -123,6 +146,8 @@ const periods = [
         location: 'Départ Ollioules',
         audience: 'Dès 8 ans, bases BMX',
         text: 'Une journée entre skatepark, défis et esprit d\'équipe pour les riders déjà à l\'aise.',
+        image: stageImages.flow,
+        alt: 'Rider Wild Bike qui prend un virage au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-lundi-21-decembre-2026',
         registrationOpen: false,
@@ -136,6 +161,8 @@ const periods = [
         location: 'Départ Ollioules',
         audience: 'Journée aventure',
         text: 'Une journée VTT pour rouler, explorer et partager une vraie expérience de groupe.',
+        image: stageImages.bmxGroup,
+        alt: 'Groupe de jeunes riders Wild Bike avec leurs vélos',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-22-decembre-2026',
         registrationOpen: false,
@@ -156,6 +183,8 @@ const periods = [
         location: 'Départ Ollioules',
         audience: 'Dès 8 ans, bases BMX',
         text: 'Une journée de ride, de défis et de progression hors du quotidien.',
+        image: stageImages.rider,
+        alt: 'Jeune rider Wild Bike sur un BMX jaune',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-23-fevrier-2027',
         registrationOpen: false,
@@ -169,6 +198,8 @@ const periods = [
         location: 'Départ Ollioules',
         audience: 'Dès 8 ans, bases BMX',
         text: 'Une deuxième date pour rider, se dépasser et repartir avec de vrais souvenirs.',
+        image: stageImages.indoor,
+        alt: 'Jeune rider Wild Bike dans un skatepark couvert',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-jeudi-25-fevrier-2027',
         registrationOpen: false,
@@ -189,6 +220,8 @@ const periods = [
         location: 'Toulon',
         audience: 'Débutants dès 5 ans',
         text: 'Deux matinées pour découvrir le BMX freestyle en sécurité et à son rythme.',
+        image: stageImages.bmxClose,
+        alt: 'Jeune rider Wild Bike au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-19-et-20-avril-2027',
         registrationOpen: false,
@@ -202,6 +235,8 @@ const periods = [
         location: 'Janas, La Seyne',
         audience: 'Découverte & pilotage',
         text: 'Deux après-midis dans la forêt pour progresser sur un terrain naturel et varié.',
+        image: stageImages.vtt,
+        alt: 'Rider Wild Bike en VTT sur un terrain naturel',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-vtt-19-et-20-avril-2027',
         registrationOpen: false,
@@ -215,6 +250,8 @@ const periods = [
         location: 'Toulon & Six-Fours',
         audience: 'Bases BMX requises',
         text: 'Deux matinées pour affiner sa technique, gagner en fluidité et rouler sur de nouveaux modules.',
+        image: stageImages.bowl,
+        alt: 'Jeune rider Wild Bike dans un bowl',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-2-22-et-23-avril-2027',
         registrationOpen: false,
@@ -228,6 +265,8 @@ const periods = [
         location: 'Départ Toulon',
         audience: 'Dès 5 ans',
         text: 'Cinq jours de road trip BMX, de progression, de défis et d\'esprit d\'équipe.',
+        image: stageImages.action,
+        alt: 'Deux riders Wild Bike en plein saut au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/training-gladiators-bootcamp-26-au-30-avril-2027',
         registrationOpen: false,
@@ -245,8 +284,8 @@ const periods = [
   <main>
     <header class="relative min-h-[780px] overflow-hidden bg-black text-white">
       <img
-        src="/images/stage-famille-roue.jpg"
-        alt="Riders Wild Bike réunis dans un skatepark face à la mer"
+        src={stageImages.hero}
+        alt="Groupe de riders Wild Bike au skatepark face à la mer"
         class="absolute inset-0 h-full w-full object-cover object-[58%_center] saturate-125 contrast-110"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/25"></div>
@@ -327,6 +366,7 @@ const periods = [
                 <img
                   src={format.image}
                   alt={format.alt}
+                  loading="lazy"
                   class="absolute inset-0 -z-20 h-full w-full object-cover saturate-125 transition-transform duration-700 group-hover:scale-110"
                 />
                 <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/75 to-black/20 transition-colors duration-500 group-hover:via-black/55"></div>
@@ -377,13 +417,21 @@ const periods = [
                       period.stages.map((stage) => (
                         <article
                           id={periodIndex === 0 ? formatAnchorByStage[stage.title] : undefined}
-                          class="scroll-mt-36 flex min-h-80 flex-col border border-black/15 bg-zinc-100 p-6 transition-colors hover:border-edit-teal hover:bg-white fade-up"
+                          class="group scroll-mt-36 flex min-h-80 flex-col overflow-hidden border border-black/15 bg-zinc-100 p-6 transition-colors hover:border-edit-teal hover:bg-white fade-up"
                         >
-                          <div class="flex items-start justify-between gap-4">
-                            <span class="font-display text-[10px] tracking-widest text-edit-teal">{stage.type}</span>
-                            <span class="font-display text-sm tracking-wide text-black/45">{stage.price}</span>
-                          </div>
-                          <h4 class="mt-7 font-display text-3xl leading-none tracking-tight">{stage.title}</h4>
+                          <figure class="relative -mx-6 -mt-6 mb-6 h-36 overflow-hidden bg-black">
+                            <img
+                              src={stage.image}
+                              alt={stage.alt}
+                              loading="lazy"
+                              class="h-full w-full object-cover saturate-125 transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <figcaption class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-black/85 to-transparent p-4 pt-10">
+                              <span class="font-display text-[10px] tracking-widest text-edit-teal">{stage.type}</span>
+                              <span class="font-display text-sm tracking-wide text-white">{stage.price}</span>
+                            </figcaption>
+                          </figure>
+                          <h4 class="font-display text-3xl leading-none tracking-tight">{stage.title}</h4>
                           <p class="mt-4 text-sm font-medium leading-relaxed text-black/65">{stage.text}</p>
 
                           <dl class="mt-7 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-black/10 pt-5 text-[11px] font-medium uppercase tracking-wide text-black/60">
@@ -439,8 +487,8 @@ const periods = [
 
     <section class="relative overflow-hidden bg-black py-28 text-white md:py-40">
       <img
-        src="/images/vtt-freestyle-stage.jpg"
-        alt="Groupe Wild Bike pendant une sortie VTT sur les hauteurs de La Seyne-sur-Mer"
+        src={stageImages.action}
+        alt="Deux riders Wild Bike en plein saut au skatepark"
         class="absolute inset-0 h-full w-full object-cover saturate-125 contrast-110"
       />
       <div class="absolute inset-0 bg-black/70"></div>

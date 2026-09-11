@@ -21,8 +21,8 @@ const offers = [
     text: 'Vous ou votre enfant voulez apprendre à faire du vélo, reprendre confiance ou être accompagné sur la mobilité douce.',
     href: 'https://wildbike.fr/veloecole/',
     label: 'Découvrir la vélo-école',
-    image: '/images/vtt-foret-enfant.jpg',
-    alt: 'Enfant à vélo dans la forêt avec Wild Bike',
+    image: '/images/velo-ecole.jpg',
+    alt: 'Apprentissage du vélo avec Wild Bike',
   },
   {
     title: 'Boutique',
@@ -30,7 +30,7 @@ const offers = [
     href: 'https://www.helloasso.com/associations/wild-bike/boutiques/catalogue-wb-2025',
     label: 'Voir la boutique',
     image: '/images/rider-wild-bike.jpg',
-    alt: 'Rider Wild Bike prêt à rouler',
+    alt: 'Gros plan sur une roue de vélo Wild Bike',
   },
 ];
 ---
@@ -72,6 +72,7 @@ const offers = [
             <img
               src={offer.image}
               alt={offer.alt}
+              loading="lazy"
               class="absolute inset-0 -z-20 h-full w-full object-cover saturate-125 transition-transform duration-700 group-hover:scale-110"
             />
             <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/75 to-black/20 transition-colors duration-500 group-hover:via-black/55"></div>
