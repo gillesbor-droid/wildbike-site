@@ -24,8 +24,8 @@ const stageImages = {
   winterBmxTwo: visual(thumbnail('h3r1iKzrMmI'), 'center 45%', 1.8),
   aprilBmxNiveau1: visual(thumbnail('qUronAMYsMY', 'hqdefault'), '65% 30%', 1.5),
   aprilVtt: visual('/images/stages-bmx-niveau-2.jpg', 'center 42%', 1.55),
-  aprilBmxNiveau2: visual(thumbnail('luZj1muURpk'), 'center 45%', 1.8),
-  gladiators: visual(thumbnail('aI9OOamr6Ag'), 'center 45%', 1.8),
+  aprilBmxNiveau2: visual(thumbnail('u9-XTTKYUks'), 'center 45%', 1.8),
+  gladiators: visual(thumbnail('cV0ubZaSz8A'), 'center 42%', 1.75),
   action: visual('/images/stages-bmx-action.jpg', 'center 45%', 1.35),
 };
 
@@ -506,9 +506,9 @@ const periods = [
         src={stageImages.action.src}
         alt="Deux riders Wild Bike en plein saut au skatepark"
         style={`object-position: ${stageImages.action.position}; transform: scale(${stageImages.action.scale});`}
-        class="absolute inset-0 h-full w-full object-cover saturate-125 contrast-110"
+        class="absolute inset-0 h-full w-full object-cover brightness-110 saturate-125 contrast-105"
       />
-      <div class="absolute inset-0 bg-black/70"></div>
+      <div class="absolute inset-0 bg-black/60"></div>
       <div class="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
         <div class="max-w-3xl fade-up">
           <span class="font-display text-xs tracking-widest text-edit-teal">L'ESPRIT WILD BIKE</span>
@@ -556,15 +556,17 @@ const periods = [
         <span class="font-display text-xs tracking-widest text-white/70">UN DOUTE SUR LE BON STAGE ?</span>
         <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">ON TROUVE LE BON STAGE ENSEMBLE</h2>
         <p class="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/85 md:text-lg">
-          Dites-nous l'âge, le niveau et les envies de votre enfant. Nous vous orienterons vers le format le plus adapté.
+          Écrivez-nous sur Instagram ou WhatsApp avec l'âge, le niveau et les envies de votre enfant. Nous vous orienterons vers le format le plus adapté.
         </p>
         <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
           <a
-            href="tel:0750903677"
+            href="https://www.instagram.com/wildbike83/?hl=fr"
+            target="_blank"
+            rel="noreferrer"
             class="inline-flex items-center justify-center gap-3 bg-white px-8 py-5 font-display text-xs tracking-widest text-black transition-colors hover:bg-black hover:text-white"
           >
-            APPELER WILD BIKE
-            <iconify-icon icon="solar:phone-linear" width="16"></iconify-icon>
+            ÉCRIRE SUR INSTAGRAM
+            <iconify-icon icon="solar:camera-linear" width="16"></iconify-icon>
           </a>
           <a
             href="https://wa.me/33750903677?text=Bonjour%20Wild%20Bike%2C%20j%27aimerais%20des%20informations%20sur%20un%20stage."
@@ -576,6 +578,13 @@ const periods = [
             <iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon>
           </a>
         </div>
+        <a
+          href="https://wildbike.fr/faq/"
+          class="mt-8 inline-flex items-center gap-2 font-display text-xs tracking-widest text-white/75 transition-colors hover:text-black"
+        >
+          UNE QUESTION PRATIQUE ? VOIR LA FAQ
+          <iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon>
+        </a>
       </div>
     </section>
   </main>
