@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Page introuvable | Wild Bike" description="Cette page n’existe pas ou a été déplacée." noindex>
+  <Nav page="none" />
+  <main id="main-content" class="flex min-h-screen items-center bg-edit-dark px-6 py-40 text-white md:px-12">
+    <div class="mx-auto w-full max-w-5xl">
+      <span class="font-display text-7xl text-edit-teal md:text-9xl">404</span>
+      <h1 class="mt-6 max-w-3xl font-display text-5xl leading-none tracking-tighter md:text-7xl">CETTE PISTE NE MÈNE NULLE PART.</h1>
+      <p class="mt-7 max-w-xl text-base font-medium leading-relaxed text-white/75">La page a peut-être été déplacée. Retrouvez les activités Wild Bike depuis les accès ci-dessous.</p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/club/" class="bg-edit-teal px-7 py-4 font-display text-xs tracking-widest">VOIR LE CLUB</a>
+        <a href="/stages/" class="border border-white/30 px-7 py-4 font-display text-xs tracking-widest">VOIR LES STAGES</a>
+        <a href="/veloecole/" class="border border-white/30 px-7 py-4 font-display text-xs tracking-widest">DÉCOUVRIR LA VÉLO-ÉCOLE</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

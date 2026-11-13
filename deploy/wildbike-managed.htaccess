@@ -1,0 +1,29 @@
+# À maintenir avant le bloc BEGIN WordPress du .htaccess de production.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^wildbike\.fr$ [NC]
+RewriteRule ^ https://wildbike.fr%{REQUEST_URI} [R=301,L]
+RewriteRule ^(?:inscriptions|skate-park-toulon)/?$ /club/ [R=301,L]
+RewriteRule ^6973-2/?$ /stages/ [R=301,L]
+RewriteRule ^category/uncategorized/?$ / [R=301,L]
+RewriteRule ^boutique/?$ https://www.helloasso.com/associations/wild-bike/boutiques/boutique-wild-bike-2027 [R=301,L]
+RewriteRule ^sitemap_index\.xml$ /sitemap.xml [R=301,L]
+</IfModule>
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+Header always set Strict-Transport-Security "max-age=31536000"
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+<FilesMatch \.html$>
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://code.iconify.design; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://api.iconify.design https://automate.gilles-borrego.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+</FilesMatch>
+</IfModule>
+
+<FilesMatch "^(readme\.html|license\.txt)$">
+Require all denied
+</FilesMatch>

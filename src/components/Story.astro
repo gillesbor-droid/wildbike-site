@@ -1,13 +1,15 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
 ---
 
 <section class="relative bg-white text-black" id="story">
   <div class="flex flex-col lg:flex-row relative">
     <!-- Sticky Image Half -->
     <div class="lg:w-1/2 lg:sticky top-0 h-[50vh] lg:h-screen overflow-hidden order-1 lg:order-none">
-      <img
+      <OptimizedImage
         src="/images/vtt-foret-enfant.jpg"
         alt="Enfant en VTT dans la forêt avec Wild Bike"
+        sizes="(min-width: 1024px) 50vw, 100vw"
         class="w-full h-full object-cover filter grayscale contrast-125"
       />
       <div class="absolute top-0 left-0 w-2 h-full bg-edit-teal"></div>

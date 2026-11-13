@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://wildbike-site.pages.dev',
+  site: 'https://wildbike.fr',
   vite: {
     plugins: [tailwindcss()],
   },

@@ -1,0 +1,17 @@
+{
+  "name": "Wild Bike Stage Control",
+  "short_name": "WB Stages",
+  "description": "Présences, votes et bilans des stages Wild Bike.",
+  "start_url": "/app-stage/",
+  "display": "standalone",
+  "background_color": "#07100f",
+  "theme_color": "#07100f",
+  "icons": [
+    {
+      "src": "/images/logo-wild-bike.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

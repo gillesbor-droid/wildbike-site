@@ -1,0 +1,242 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+
+const availabilityUrl = 'https://wa.me/33750903677?text=Bonjour%20Wild%20Bike%2C%20je%20souhaite%20savoir%20quel%20parcours%20est%20adapt%C3%A9%20%C3%A0%20mon%20enfant.';
+
+const categories = [
+  {
+    id: 'demarrer',
+    num: '01',
+    title: 'DÉMARRER',
+    icon: 'solar:flag-linear',
+    intro: 'Âge, niveau débutant et premier contact.',
+    questions: [
+      ['À partir de quel âge peut-on rejoindre Wild Bike ?', 'Wild Bike accueille les enfants dès 5 ans, avec des groupes adaptés à l’âge, au niveau et à l’aisance de chaque rider.'],
+      ['Mon enfant peut-il commencer s’il est débutant ?', 'Oui. Wild Bike propose des cours d’essai avant la rentrée et des stages découverte pendant les vacances. Selon la période et les places disponibles, nous vous orientons vers la bonne porte d’entrée.'],
+      ['Mon enfant n’a jamais fait de vélo, c’est possible ?', 'Oui. Wild Bike aide aussi les enfants à acquérir leurs premières bases : équilibre, freinage et pédalage. La <a href="/veloecole/">vélo-école</a> est faite pour cela, en séance individuelle ou en atelier, sur rendez-vous.'],
+      ['Comment se passe le premier contact ?', `Consultez d’abord la <a href="/club/">page Club</a>, puis <a href="${availabilityUrl}" target="_blank" rel="noreferrer">écrivez-nous sur WhatsApp</a> avec l’âge, le niveau et la discipline souhaitée. Gilles vous orientera vers le bon groupe, un essai ou un stage découverte selon la période.`],
+    ],
+  },
+  {
+    id: 'discipline',
+    num: '02',
+    title: 'CHOISIR LA DISCIPLINE',
+    icon: 'solar:bicycling-round-linear',
+    intro: 'BMX, VTT ou les deux.',
+    questions: [
+      ['Quelle est la différence entre BMX Freestyle et VTT ?', '<strong>BMX Freestyle :</strong> pratique principalement en skatepark, avec des modules, des courbes et des figures. Idéal pour la précision. Lieu principal : skatepark La Ferme des Romarins à Toulon.<br><br><strong>VTT Freestyle :</strong> pratique en extérieur, sur des terrains naturels ou aménagés. Idéal pour progresser en pilotage et en confiance. Lieu principal : Janas, dans le massif du Cap Sicié à La Seyne-sur-Mer.'],
+      ['Comment choisir entre BMX et VTT pour mon enfant ?', 'Si votre enfant aime la précision, les figures et le skatepark, choisissez le <strong>BMX</strong>. S’il préfère l’aventure, la nature et le pilotage en extérieur, choisissez le <strong>VTT</strong>. En cas de doute, un essai ou un stage découverte permet de tester selon la période.'],
+      ['Mon enfant peut-il faire les deux ?', 'Oui. La formule « 2 cours par semaine » permet de combiner BMX et VTT, ou deux séances de la même discipline.'],
+    ],
+  },
+  {
+    id: 'groupes',
+    num: '03',
+    title: 'CHOISIR LE GROUPE',
+    icon: 'solar:users-group-rounded-linear',
+    intro: 'Âges, niveaux et options de progression.',
+    questions: [
+      ['Comment sont formés les groupes ?', '<ul><li><strong>Aventuriers :</strong> 5-7 ans, découverte</li><li><strong>Explorateurs :</strong> 8-10 ans, progression</li><li><strong>Riders :</strong> 11 ans et plus, performance</li><li><strong>Confirmés :</strong> sur sélection, excellence</li></ul><p>S’y ajoutent les options <strong>Élite</strong> pour la progression avancée et <strong>Légendes</strong> pour le renforcement et le trampoline.</p>'],
+      ['Comment savoir quel groupe correspond à mon enfant ?', 'Le groupe dépend de l’âge, du niveau et de l’aisance à vélo. Lors d’un essai ou d’un stage découverte, Gilles observe l’enfant et propose le groupe le plus adapté pour qu’il progresse à son rythme.'],
+      ['Mon enfant peut-il changer de groupe en cours d’année ?', 'Oui, si sa progression le justifie. Les changements se font avec l’accord de Gilles et après échange avec les parents.'],
+      ['Qu’est-ce que le groupe Confirmés ?', 'Le groupe Confirmés est ouvert sur sélection aux riders motivés qui ont déjà un bon niveau et souhaitent aller plus loin. Il fonctionne avec deux séances par semaine.'],
+      ['Qu’est-ce que le groupe Élite ?', 'Le groupe Élite est un complément pour les riders investis qui veulent travailler plus sérieusement leur technique. Il inclut quatre sorties au skatepark indoor de Marseille et une sortie à Montpellier sur l’année.'],
+      ['Qu’est-ce que le groupe Légendes ?', 'Le groupe Légendes développe la coordination, la motricité, la tonicité, l’équilibre et la confiance grâce à des séances ludiques de renforcement et de trampoline. Le cours est hebdomadaire, principalement en extérieur, avec une solution en intérieur en cas de mauvaise météo.'],
+    ],
+  },
+  {
+    id: 'offres',
+    num: '04',
+    title: 'COMPRENDRE LES OFFRES',
+    icon: 'solar:layers-minimalistic-linear',
+    intro: 'Essai, stages, club et vélo-école.',
+    questions: [
+      ['Quelle est la différence entre cours d’essai, stage et inscription annuelle ?', '<ul><li><strong>Cours d’essai :</strong> une séance pour découvrir l’activité et le groupe avant de s’engager.</li><li><strong>Stage :</strong> un programme pendant les vacances scolaires pour découvrir ou progresser intensément sur quelques jours.</li><li><strong>Inscription annuelle :</strong> des cours hebdomadaires tout au long de l’année.</li></ul>'],
+      ['Par quoi commencer pour un enfant qui découvre ?', 'De juillet aux essais de septembre, commencez par un cours d’essai gratuit selon les places disponibles. Après les essais et jusqu’au 31 janvier, commencez par un stage découverte. À partir du 1er février, les stages restent accessibles, mais les nouvelles adhésions au club attendent la rentrée suivante.'],
+      ['Qu’est-ce que l’offre Superstar ?', 'L’offre Superstar regroupe deux cours par semaine, le groupe Élite et le groupe Légendes pour <strong>75 € par mois</strong>. Les frais d’inscription sont offerts, avec un sweat et une casquette inclus. L’offre est limitée à sept participants.'],
+      ['Que proposez-vous pour les adultes ?', 'La vélo-école accompagne les adultes qui souhaitent apprendre ou reprendre confiance à vélo, à leur rythme et sans jugement. Découvrez la <a href="/veloecole/">page Vélo-école</a> ou appelez le <a href="tel:0750903677">07 50 90 36 77</a>.'],
+    ],
+  },
+  {
+    id: 'logistique',
+    num: '05',
+    title: 'LOGISTIQUE',
+    icon: 'solar:map-point-linear',
+    intro: 'Lieux, horaires, matériel et météo.',
+    questions: [
+      ['Où ont lieu les cours de BMX ?', 'Les cours de BMX ont principalement lieu à Toulon, au skatepark du complexe sportif La Ferme des Romarins.'],
+      ['Où ont lieu les cours de VTT ?', 'Les cours de VTT ont principalement lieu à Janas, dans le massif du Cap Sicié à La Seyne-sur-Mer.'],
+      ['Quels sont les horaires 2026-2027 ?', `<div class="table-scroll"><table><thead><tr><th>Jour</th><th>Horaire</th><th>Activité</th><th>Groupe</th></tr></thead><tbody><tr><td>Lundi</td><td>18h15-19h15</td><td>BMX confirmé, Toulon</td><td>Confirmés</td></tr><tr><td>Mercredi</td><td>11h-12h</td><td>VTT 5-7 ans, Janas</td><td>Aventuriers</td></tr><tr><td>Mercredi</td><td>14h-15h</td><td>BMX 5-7 ans, Toulon</td><td>Aventuriers</td></tr><tr><td>Mercredi</td><td>15h-16h</td><td>BMX 8-10 ans, Toulon</td><td>Explorateurs</td></tr><tr><td>Mercredi</td><td>16h-17h</td><td>BMX 11 ans et plus</td><td>Riders</td></tr><tr><td>Mercredi</td><td>17h-18h</td><td>BMX confirmé</td><td>Confirmés</td></tr><tr><td>Jeudi</td><td>18h-19h</td><td>Renforcement et trampoline</td><td>Légendes</td></tr><tr><td>Samedi</td><td>9h-10h</td><td>BMX 5-7 ans, Toulon</td><td>Aventuriers</td></tr><tr><td>Samedi</td><td>10h-11h</td><td>BMX 8-10 ans, Toulon</td><td>Explorateurs</td></tr><tr><td>Samedi</td><td>11h-12h</td><td>BMX 11 ans et plus</td><td>Riders</td></tr><tr><td>Samedi</td><td>14h-15h</td><td>VTT 8-10 ans, Janas</td><td>Explorateurs</td></tr><tr><td>Samedi</td><td>15h-16h</td><td>VTT 11 ans et plus, Janas</td><td>Riders</td></tr></tbody></table></div>`],
+      ['Quel matériel faut-il prévoir à chaque séance ?', '<ul><li>Un vélo en bon état et adapté à la discipline</li><li>Un casque obligatoire</li><li>Des protections : genouillères, coudières et gants</li><li>Une gourde avec suffisamment d’eau</li><li>Une tenue adaptée au sport et à la météo</li></ul>'],
+      ['Quelles protections sont obligatoires ?', 'Le casque est obligatoire. Les genouillères, coudières et gants sont recommandés, et obligatoires pour certains groupes ou certaines figures. Les détails sont précisés lors de l’inscription.'],
+      ['Que se passe-t-il en cas de pluie ou de mauvaise météo ?', 'En cas de pluie, de vent ou de conditions dangereuses, les séances BMX et VTT sont annulées. L’information est communiquée sur le groupe WhatsApp du cours. <strong>Au-delà de trois annulations, la quatrième séance sera rattrapée.</strong>'],
+      ['Faut-il acheter un BMX pour commencer ?', 'Pas forcément. Wild Bike propose la location de BMX et de protections, à 125 € par an ou 20 € par mois pour le vélo. C’est une bonne solution avant d’investir dans du matériel personnel.'],
+    ],
+  },
+  {
+    id: 'tarifs',
+    num: '06',
+    title: 'TARIFS & INSCRIPTION',
+    icon: 'solar:wallet-money-linear',
+    intro: 'Formules, paiement et assurance.',
+    questions: [
+      ['Quels sont les tarifs 2026-2027 ?', '<div class="table-scroll"><table><thead><tr><th>Formule</th><th>Tarif</th></tr></thead><tbody><tr><td>1 cours par semaine</td><td>298 €</td></tr><tr><td>2 cours par semaine</td><td>465 €</td></tr><tr><td>Frais d’inscription</td><td>30 €</td></tr><tr><td>Groupe Élite, option</td><td>159,88 €</td></tr><tr><td>Groupe Légendes, option</td><td>360 €</td></tr><tr><td>Location BMX annuelle</td><td>125 €</td></tr><tr><td>Location BMX mensuelle</td><td>20 €</td></tr><tr><td>Offre Superstar</td><td>75 €/mois</td></tr></tbody></table></div>'],
+      ['Y a-t-il une formule famille pour les frères et sœurs ?', 'Oui. Pour le deuxième enfant, la formule famille est proposée au tarif « 2 cours par semaine », soit 465 €. Contactez Gilles pour confirmer les détails selon votre situation.'],
+      ['Comment s’inscrire ?', '<p>L’inscription se fait via HelloAsso :</p><ul><li><a href="https://www.helloasso.com/associations/wild-bike/adhesions/1-cours-semaine-vtt-la-seyne-sur-mer-2026-2027" target="_blank" rel="noreferrer">1 cours VTT</a></li><li><a href="https://www.helloasso.com/associations/wild-bike/adhesions/1-cours-semaine-bmx-toulon-2026-2027" target="_blank" rel="noreferrer">1 cours BMX</a></li><li><a href="https://www.helloasso.com/associations/wild-bike/adhesions/2-cours-semaine-bmx-bmx-ou-bmx-vtt-ou-vtt-vtt-2026-2027" target="_blank" rel="noreferrer">2 cours au choix</a></li><li><a href="https://www.helloasso.com/associations/wild-bike/adhesions/superstar" target="_blank" rel="noreferrer">Offre Superstar</a></li></ul>'],
+      ['Quels sont les moyens de paiement ?', 'Le paiement s’effectue via HelloAsso, en une fois ou jusqu’à <strong>trois échéances sans frais</strong>.'],
+      ['Faut-il une licence ou une assurance ?', 'Les frais d’inscription n’incluent pas de licence fédérale FFC. Chaque famille doit souscrire une <strong>assurance responsabilité civile individuelle</strong> auprès de son assureur.'],
+    ],
+  },
+  {
+    id: 'annee',
+    num: '07',
+    title: 'PENDANT L’ANNÉE',
+    icon: 'solar:calendar-minimalistic-linear',
+    intro: 'Communication, absences et progression.',
+    questions: [
+      ['Comment sont communiquées les informations ?', 'Le canal officiel est <strong>WhatsApp, par groupe</strong>. Chaque cours dispose de son groupe pour les informations météo, changements, rappels et annonces.'],
+      ['Que faire en cas d’absence ?', 'Prévenez Gilles sur le groupe WhatsApp du cours. <strong>Aucun rattrapage individuel n’est possible</strong>, car le nombre d’enfants et les places sont limités.'],
+      ['Comment suivre la progression de mon enfant ?', 'Des photos et vidéos de progression sont partagées régulièrement sur Instagram et Facebook. Un carnet de progression officiel avec badges, niveaux, défis et bilan trimestriel est en cours de développement.'],
+      ['Peut-on récupérer les photos des cours et des stages ?', 'Oui. Les photos et vidéos sont partagées après les stages via un lien. Pour les cours hebdomadaires, elles sont publiées sur les réseaux sociaux de Wild Bike.'],
+    ],
+  },
+  {
+    id: 'pratique',
+    num: '08',
+    title: 'EN PRATIQUE',
+    icon: 'solar:settings-linear',
+    intro: 'Location, remboursement, essai et cadeaux.',
+    questions: [
+      ['Peut-on louer un BMX et des protections ?', 'Oui. La location d’un BMX coûte 125 € par an ou 20 € par mois. Les protections se louent séparément. Wild Bike conseille d’acheter ses propres protections pour le confort, l’hygiène et l’autonomie.'],
+      ['Quelles sont les conditions de remboursement ?', '<strong>Aucun remboursement n’est possible</strong>, sauf en cas d’annulation de la part de Wild Bike.'],
+      ['Peut-on essayer avant de s’engager ?', 'Oui. Les essais gratuits sont organisés avant la rentrée de septembre. Ensuite, un stage découverte permet à l’enfant de tester Wild Bike et à Gilles d’évaluer son niveau avant une éventuelle intégration, possible jusqu’au 31 janvier selon les places.'],
+      ['Comment offrir un stage ou un cours à un enfant ?', 'C’est possible sur demande. Contactez Gilles pour mettre en place un bon cadeau pour un stage ou un cours.'],
+    ],
+  },
+];
+
+const plainText = (html: string) => html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: categories.flatMap((category) =>
+    category.questions.map(([question, answer]) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: plainText(answer),
+      },
+    })),
+  ),
+};
+---
+
+<Layout
+  title="FAQ Wild Bike | Club BMX, VTT, stages et vélo-école"
+  description="Cours d’essai, groupes, horaires, tarifs, matériel et inscriptions : retrouvez les réponses sur le club BMX/VTT, les stages et la vélo-école."
+  image="/images/stages-bmx-action.jpg"
+  imageAlt="Deux jeunes riders Wild Bike en BMX"
+  structuredData={faqSchema}
+>
+  <Nav page="faq" />
+  <main id="main-content">
+    <header class="relative min-h-[650px] overflow-hidden bg-black text-white">
+      <OptimizedImage src="/images/stages-bmx-action.jpg" alt="Deux jeunes riders Wild Bike en BMX" loading="eager" fetchpriority="high" class="absolute inset-0 h-full w-full object-cover object-center saturate-110 contrast-110" />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-black/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/15"></div>
+      <div class="relative z-10 mx-auto flex min-h-[650px] max-w-7xl flex-col justify-end px-6 pb-16 pt-36 md:px-12 md:pb-20">
+        <div class="max-w-4xl">
+          <div class="mb-7 flex items-center gap-4 fade-up">
+            <span class="font-display text-xs tracking-widest text-edit-teal">TOUT SAVOIR SUR WILD BIKE</span>
+            <span class="h-px w-12 bg-edit-teal"></span>
+          </div>
+          <h1 class="font-display text-6xl leading-[0.88] tracking-tighter md:text-8xl lg:text-9xl fade-up" style="animation-delay: 100ms;">LA RÉPONSE EST SÛREMENT ICI.</h1>
+          <p class="mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/75 md:text-lg fade-up" style="animation-delay: 200ms;">Club, stages, matériel, horaires ou inscription : retrouvez les réponses utiles avant de nous écrire.</p>
+        </div>
+        <dl class="mt-14 grid max-w-3xl grid-cols-3 border-t border-white/25 pt-6 fade-up" style="animation-delay: 300ms;">
+          <div class="border-r border-white/20 pr-4"><dt class="font-display text-3xl text-edit-teal md:text-4xl">37</dt><dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">Questions</dd></div>
+          <div class="border-r border-white/20 px-4"><dt class="font-display text-3xl text-edit-teal md:text-4xl">8</dt><dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">Thèmes</dd></div>
+          <div class="pl-4"><dt class="font-display text-3xl text-edit-teal md:text-4xl">1 MIN</dt><dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">Pour trouver</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <section id="categories" class="relative overflow-hidden bg-edit-dark py-20 text-white md:py-24">
+      <div class="absolute inset-0 opacity-[0.035]" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px); background-size: 4rem 4rem;"></div>
+      <div class="relative mx-auto max-w-7xl px-6 md:px-12">
+        <div class="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <div class="fade-up"><span class="font-display text-xs tracking-widest text-edit-teal">ACCÈS RAPIDE</span><h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">CHOISISSEZ VOTRE SUJET</h2></div>
+          <p class="max-w-xl self-end text-base font-medium leading-relaxed text-white/65 md:text-lg fade-up">Chaque thème regroupe les questions posées le plus souvent par les familles et les futurs riders.</p>
+        </div>
+        <nav aria-label="Thèmes de la FAQ" class="mt-14 grid gap-px overflow-hidden border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4 fade-up">
+          {categories.map((category) => (
+            <a href={`#${category.id}`} class="group bg-edit-dark p-6 transition-colors hover:bg-edit-teal">
+              <div class="flex items-center justify-between"><span class="font-display text-2xl text-edit-teal transition-colors group-hover:text-white">{category.num}</span><iconify-icon icon={category.icon} class="text-2xl text-white/50 group-hover:text-white"></iconify-icon></div>
+              <h3 class="mt-8 font-display text-lg tracking-tight">{category.title}</h3>
+              <p class="mt-2 text-xs font-medium leading-relaxed text-white/50 group-hover:text-white/75">{category.intro}</p>
+            </a>
+          ))}
+        </nav>
+      </div>
+    </section>
+
+    <div class="bg-white text-black">
+      {categories.map((category, categoryIndex) => (
+        <section id={category.id} class:list={['scroll-mt-20 py-20 md:py-28', { 'bg-zinc-100': categoryIndex % 2 === 1 }]}>
+          <div class="mx-auto grid max-w-7xl gap-10 px-6 md:px-12 lg:grid-cols-[0.42fr_1fr] lg:gap-20">
+            <div class="fade-up lg:sticky lg:top-28 lg:self-start">
+              <span class="font-display text-6xl text-black/10">{category.num}</span>
+              <div class="mt-5 flex items-center gap-3 text-edit-teal"><iconify-icon icon={category.icon} class="text-2xl"></iconify-icon><span class="font-display text-xs tracking-widest">{category.questions.length} QUESTIONS</span></div>
+              <h2 class="mt-5 font-display text-4xl leading-none tracking-tighter md:text-5xl">{category.title}</h2>
+              <p class="mt-5 max-w-xs text-sm font-medium leading-relaxed text-black/55">{category.intro}</p>
+            </div>
+            <div class="min-w-0 border-t border-black/15">
+              {category.questions.map((item, questionIndex) => (
+                <details class="group min-w-0 border-b border-black/15 fade-up" open={categoryIndex === 0 && questionIndex === 0}>
+                  <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-7 font-display text-xl leading-tight tracking-tight marker:content-none md:text-2xl">
+                    <span>{item[0]}</span>
+                    <span class="flex h-9 w-9 shrink-0 items-center justify-center border border-black/20 text-edit-teal transition-all group-open:rotate-45 group-open:bg-edit-teal group-open:text-white">+</span>
+                  </summary>
+                  <div class="faq-answer min-w-0 max-w-3xl pb-8 pr-2 text-sm font-medium leading-relaxed text-black/65 md:pr-12 md:text-base" set:html={item[1]} />
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <section class="bg-edit-teal py-24 text-white md:py-32">
+      <div class="mx-auto max-w-4xl px-6 text-center">
+        <span class="font-display text-xs tracking-widest text-white/70">VOUS N’AVEZ PAS TROUVÉ ?</span>
+        <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">PARLONS DE VOTRE RIDER</h2>
+        <p class="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/85 md:text-lg">Indiquez-nous son âge, son niveau et ce qu’il recherche. Nous vous orienterons vers le bon groupe ou le bon format.</p>
+        <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+          <a href={availabilityUrl} target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 bg-white px-8 py-5 font-display text-xs tracking-widest text-black transition-colors hover:bg-black hover:text-white">TROUVER LE BON PARCOURS<iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon></a>
+          <a href="https://wa.me/33750903677?text=Bonjour%20Wild%20Bike%2C%20j%27ai%20une%20question." target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 border border-white/40 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:border-black hover:bg-black">ÉCRIRE SUR WHATSAPP<iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .faq-answer :global(p + p),
+  .faq-answer :global(p + ul),
+  .faq-answer :global(ul + p) { margin-top: 0.75rem; }
+  .faq-answer :global(ul) { list-style: square; padding-left: 1.25rem; }
+  .faq-answer :global(li + li) { margin-top: 0.35rem; }
+  .faq-answer :global(a) { color: #007c7a; font-weight: 700; text-decoration: underline; text-underline-offset: 0.2rem; }
+  .faq-answer :global(strong) { color: #000; }
+  .faq-answer :global(.table-scroll) { display: block; max-width: 100%; overflow-x: auto; width: 100%; }
+  .faq-answer :global(table) { min-width: 42rem; width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  .faq-answer :global(th) { background: #007c7a; color: white; font-family: "Oswald", sans-serif; text-align: left; text-transform: uppercase; }
+  .faq-answer :global(th),
+  .faq-answer :global(td) { border: 1px solid rgb(0 0 0 / 0.15); padding: 0.7rem 0.8rem; }
+  .faq-answer :global(tr:nth-child(even) td) { background: rgb(0 0 0 / 0.035); }
+</style>

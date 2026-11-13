@@ -1,4 +1,6 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
+
 const offers = [
   {
     title: 'Club BMX & VTT',
@@ -27,7 +29,7 @@ const offers = [
   {
     title: 'Boutique',
     text: 'Vous voulez retrouver les textiles, accessoires, vélos, équipements et produits aux couleurs de Wild Bike.',
-    href: 'https://www.helloasso.com/associations/wild-bike/boutiques/catalogue-wb-2025',
+    href: 'https://www.helloasso.com/associations/wild-bike/boutiques/boutique-wild-bike-2027',
     label: 'Voir la boutique',
     image: 'https://i.ytimg.com/vi/Czt1bijOqUU/maxresdefault.jpg',
     alt: "Gros plan sur le cadre d'un BMX Wild Bike",
@@ -69,10 +71,10 @@ const offers = [
             aria-label={offer.label}
             class="group relative isolate flex min-h-80 flex-col justify-end overflow-hidden border border-white/15 bg-black p-6 transition-all duration-500 hover:-translate-y-2 hover:border-edit-teal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-edit-teal fade-up"
           >
-            <img
+            <OptimizedImage
               src={offer.image}
               alt={offer.alt}
-              loading="lazy"
+              sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
               class="absolute inset-0 -z-20 h-full w-full object-cover saturate-125 transition-transform duration-700 group-hover:scale-110"
             />
             <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/75 to-black/20 transition-colors duration-500 group-hover:via-black/55"></div>

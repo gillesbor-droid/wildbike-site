@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const apiUrl = 'https://automate.gilles-borrego.com/webhook/wb-stage-feedback';
+---
+
+<Layout title="Votre retour sur le stage | Wild Bike" description="Questionnaire de satisfaction après un stage Wild Bike." noindex={true}>
+  <main id="main-content" class="feedback-page" data-api={apiUrl}>
+    <header>
+      <img src="/images/logo-wild-bike.webp" alt="Wild Bike" />
+      <span>Votre avis compte</span>
+    </header>
+
+    <section class="feedback-card" id="feedback-card">
+      <p class="eyebrow">2 minutes maximum</p>
+      <h1 id="feedback-title">Comment s’est passé le stage ?</h1>
+      <p class="lead" id="feedback-intro">Votre retour nous aide à garder ce qui fonctionne et à améliorer les prochaines aventures.</p>
+
+      <form id="feedback-form">
+        <fieldset>
+          <legend>Votre enfant est-il revenu avec le sourire ?</legend>
+          <div class="choice-row">
+            <label><input type="radio" name="Retour_sourire" value="Oui" required /><span>🤩 Oui</span></label>
+            <label><input type="radio" name="Retour_sourire" value="Mitige" /><span>🙂 Mitigé</span></label>
+            <label><input type="radio" name="Retour_sourire" value="Non" /><span>☹️ Non</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>A-t-il reparlé positivement du stage ?</legend>
+          <div class="choice-row text-choices">
+            <label><input type="radio" name="En_parle_positivement" value="Spontanement" required /><span>Spontanément</span></label>
+            <label><input type="radio" name="En_parle_positivement" value="Apres question" /><span>Après lui avoir demandé</span></label>
+            <label><input type="radio" name="En_parle_positivement" value="Non" /><span>Non</span></label>
+          </div>
+        </fieldset>
+
+        <label>Qu’a-t-il préféré ?<textarea name="Prefere" rows="3" required></textarea></label>
+
+        <fieldset>
+          <legend>Avez-vous pu observer une progression ?</legend>
+          <select name="Progression_observee" required>
+            <option value="">Choisir</option><option>Oui</option><option>Un peu</option><option>Non</option><option>Non observable</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Que pourrions-nous améliorer ?</legend>
+          <div class="check-grid">
+            {['Informations', 'Inscription', 'Accueil', 'Ponctualité', 'Lieu', 'Encadrement', 'Programme', 'Difficulté', 'Matériel', 'Photos / vidéos', 'Autre'].map((item) => (
+              <label><input type="checkbox" name="Ameliorations" value={item.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(' / ', ' ')} /><span>{item}</span></label>
+            ))}
+          </div>
+          <textarea name="Amelioration_detail" rows="3" placeholder="Un détail ou une idée concrète ?"></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Recommanderiez-vous un stage Wild Bike ?</legend>
+          <div class="choice-row text-choices">
+            <label><input type="radio" name="Recommande" value="Oui" required /><span>Oui</span></label>
+            <label><input type="radio" name="Recommande" value="Peut-etre" /><span>Peut-être</span></label>
+            <label><input type="radio" name="Recommande" value="Non" /><span>Non</span></label>
+          </div>
+        </fieldset>
+
+        <label>Un témoignage à partager ?<textarea name="Temoignage" rows="4"></textarea></label>
+        <label class="consent"><input type="checkbox" name="Autorisation_temoignage" /><span>J’autorise Wild Bike à réutiliser anonymement ce témoignage.</span></label>
+
+        <fieldset>
+          <legend>Quelle note globale donnez-vous au stage ?</legend>
+          <div class="rating">
+            {[1, 2, 3, 4, 5].map((note) => <label><input type="radio" name="Note_globale" value={note} required /><span>{note}</span></label>)}
+          </div>
+        </fieldset>
+
+        <button type="submit">Envoyer mon retour</button>
+        <p id="feedback-message" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="thanks hidden" id="thanks">
+      <span>✓</span>
+      <h2>Merci pour votre retour</h2>
+      <p>Un dernier coup de pédale ? Votre avis public aide d’autres familles à découvrir Wild Bike.</p>
+      <div class="review-links">
+        <a id="google-review" href="#" rel="noreferrer">Donner un avis Google</a>
+        <a id="facebook-review" href="#" rel="noreferrer">Donner un avis Facebook</a>
+      </div>
+    </section>
+  </main>
+  <script src="/retour-stage.js?v=20261104-1" defer></script>
+</Layout>
+
+<style>
+  :global(body) { background: #f4f1e9; }
+  .feedback-page { min-height: 100vh; padding: 1rem; color: #10201e; background: linear-gradient(135deg, #e9f7f3 0%, #f4f1e9 45%, #f5e4d5 100%); }
+  header { width: min(100%, 44rem); margin: 0 auto 1rem; display: flex; align-items: center; gap: .8rem; font-family: Oswald, sans-serif; text-transform: uppercase; letter-spacing: .08em; }
+  header img { width: 3rem; height: 3rem; border-radius: 50%; object-fit: cover; }
+  .feedback-card, .thanks { width: min(100%, 44rem); margin: 0 auto; padding: clamp(1.2rem, 4vw, 2.5rem); border-radius: 1.6rem; background: rgba(255,255,255,.9); box-shadow: 0 2rem 5rem rgba(14,39,35,.12); }
+  .eyebrow { color: #007c7a; font-size: .75rem; font-weight: 900; text-transform: uppercase; letter-spacing: .14em; }
+  h1, h2 { margin: 0; font-family: Oswald, sans-serif; font-size: clamp(2.4rem, 9vw, 4.5rem); text-transform: uppercase; line-height: 1; }
+  .lead { margin: 1rem 0 2rem; color: #60736f; }
+  form { display: grid; gap: 1.2rem; }
+  fieldset { display: grid; gap: .8rem; padding: 1rem; border: 1px solid #d9e2df; border-radius: 1rem; }
+  legend, label { font-weight: 800; }
+  textarea, select { width: 100%; margin-top: .5rem; padding: .8rem; border: 1px solid #cbd8d4; border-radius: .75rem; background: #fff; font: inherit; }
+  .choice-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+  .choice-row label, .check-grid label, .rating label { cursor: pointer; }
+  .choice-row input, .check-grid input, .rating input { position: absolute; opacity: 0; }
+  .choice-row span, .check-grid span, .rating span { min-height: 3rem; display: grid; place-items: center; padding: .55rem; border: 1px solid #cbd8d4; border-radius: .7rem; text-align: center; background: #fff; }
+  .choice-row input:checked + span, .check-grid input:checked + span, .rating input:checked + span { border-color: #007c7a; color: #fff; background: #007c7a; }
+  .text-choices span { font-size: .78rem; }
+  .check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .45rem; }
+  .check-grid span { min-height: 2.6rem; font-size: .78rem; }
+  .consent { display: flex; align-items: start; gap: .7rem; font-size: .85rem; }
+  .consent input { margin-top: .2rem; }
+  .rating { display: grid; grid-template-columns: repeat(5, 1fr); gap: .5rem; }
+  .rating span { aspect-ratio: 1; min-height: 0; font-family: Oswald, sans-serif; font-size: 1.5rem; }
+  button { min-height: 3.5rem; border: 0; border-radius: .8rem; color: #fff; background: #007c7a; font-weight: 900; cursor: pointer; }
+  #feedback-message { min-height: 1.2rem; margin: 0; color: #c1232e; }
+  .thanks { min-height: 70vh; display: grid; place-items: center; align-content: center; text-align: center; }
+  .thanks > span { display: grid; place-items: center; width: 5rem; height: 5rem; border-radius: 50%; color: #fff; background: #007c7a; font-size: 2.4rem; }
+  .thanks p { max-width: 30rem; color: #60736f; }
+  .review-links { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+  .review-links a { padding: 1rem; border-radius: .8rem; color: #fff; background: #10201e; text-decoration: none; font-weight: 900; }
+  .hidden { display: none !important; }
+  @media (max-width: 560px) { .choice-row { grid-template-columns: 1fr; } .review-links { grid-template-columns: 1fr; } }
+</style>

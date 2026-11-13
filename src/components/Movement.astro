@@ -1,4 +1,6 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
+
 const steps = [
   {
     num: '01',
@@ -25,7 +27,7 @@ const steps = [
     num: '04',
     title: 'ÉVÉNEMENTS & BOUTIQUE',
     text: "Pour suivre les initiations, shows, animations, sorties et retrouver les textiles, accessoires et équipements Wild Bike.",
-    href: 'https://www.helloasso.com/associations/wild-bike/boutiques/catalogue-wb-2025',
+    href: 'https://www.helloasso.com/associations/wild-bike/boutiques/boutique-wild-bike-2027',
     label: 'Voir la boutique',
   },
 ];
@@ -33,7 +35,7 @@ const steps = [
 
 <section class="relative py-32 md:py-48 text-white text-center overflow-hidden" id="movement">
   <div class="absolute inset-0 w-full h-full">
-    <img
+    <OptimizedImage
       src="/images/stage-famille-roue.jpg"
       alt="Rider Wild Bike en BMX freestyle"
       class="w-full h-full object-cover filter grayscale contrast-150"

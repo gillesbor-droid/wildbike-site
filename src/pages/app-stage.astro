@@ -1,0 +1,322 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const apiUrl = 'https://automate.gilles-borrego.com/webhook/wb-stage-app';
+---
+
+<Layout
+  title="Application stages | Wild Bike"
+  description="Application interne de suivi des stages Wild Bike."
+  noindex={true}
+>
+  <main id="main-content" class="stage-app" data-api={apiUrl}>
+    <header class="app-header">
+      <a class="brand" href="/" aria-label="Retour au site Wild Bike">
+        <img src="/images/logo-wild-bike.webp" alt="" />
+        <span>Stage Control</span>
+      </a>
+      <div class="network-state" id="network-state" aria-live="polite">
+        <span></span>
+        <strong>Connexion</strong>
+      </div>
+    </header>
+
+    <section class="login-screen" id="login-screen">
+      <div class="login-card">
+        <p class="eyebrow">Wild Bike interne</p>
+        <h1>Prêt à rouler ?</h1>
+        <p class="intro">Entre ton code pour ouvrir les stages actifs.</p>
+
+        <div class="role-switch" aria-label="Choisir un espace">
+          <button class="role active" type="button" data-role="monitor">Moniteur</button>
+          <button class="role" type="button" data-role="admin">Administration</button>
+        </div>
+
+        <label for="pin">Code PIN</label>
+        <input id="pin" name="pin" type="password" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="••••••" />
+        <button class="primary" id="login-button" type="button">Ouvrir l’application</button>
+        <p class="form-message" id="login-message" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="workspace hidden" id="workspace">
+      <div class="stage-picker">
+        <div>
+          <p class="eyebrow">Session active</p>
+          <select id="stage-select" aria-label="Choisir le stage"></select>
+        </div>
+        <div>
+          <p class="eyebrow">Journée</p>
+          <select id="day-select" aria-label="Choisir la journée"></select>
+        </div>
+        <button class="icon-button" id="logout-button" type="button" aria-label="Se déconnecter">↗</button>
+      </div>
+
+      <nav class="app-tabs" id="monitor-tabs" aria-label="Navigation moniteur">
+        <button type="button" class="active" data-panel="attendance-panel">Présences</button>
+        <button type="button" data-panel="vote-panel">Vote enfants</button>
+        <button type="button" data-panel="debrief-panel">Débrief</button>
+      </nav>
+
+      <section class="panel" id="attendance-panel">
+        <div class="panel-heading">
+           <div>
+             <p class="eyebrow">Avant de commencer</p>
+             <h2>Qui roule aujourd’hui ?</h2>
+             <p class="panel-help">Coche les présents. Les autres seront enregistrés absents.</p>
+           </div>
+          <strong class="counter" id="attendance-counter">0 / 0</strong>
+        </div>
+        <div class="participant-list" id="participant-list"></div>
+        <button class="primary sticky-action" id="save-attendance" type="button">Enregistrer les présences</button>
+      </section>
+
+      <section class="panel hidden vote-panel" id="vote-panel">
+        <div class="vote-copy">
+          <p class="eyebrow">Un vote par enfant</p>
+          <h2>Comment s’est passée ta journée ?</h2>
+          <p>Touche un visage. Le vote s’enregistre immédiatement.</p>
+        </div>
+
+        <div class="smiley-grid" role="radiogroup" aria-label="Choisir une humeur">
+          <button class="smiley" type="button" data-smiley="Triste" role="radio" aria-checked="false">
+            <span aria-hidden="true">☹️</span>
+            <strong>Pas top</strong>
+          </button>
+          <button class="smiley" type="button" data-smiley="Bien" role="radio" aria-checked="false">
+            <span aria-hidden="true">🙂</span>
+            <strong>Bien</strong>
+          </button>
+          <button class="smiley" type="button" data-smiley="Tres heureux" role="radio" aria-checked="false">
+            <span aria-hidden="true">🤩</span>
+            <strong>Génial</strong>
+          </button>
+        </div>
+
+        <div class="vote-actions">
+          <button class="secondary" id="undo-vote" type="button">Annuler le dernier</button>
+        </div>
+        <p class="queue-note" id="queue-note" aria-live="polite"></p>
+        <div class="thank-you hidden" id="thank-you" aria-live="assertive">
+          <span>✓</span>
+          <strong>Vote enregistré</strong>
+        </div>
+      </section>
+
+      <section class="panel hidden" id="debrief-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">À chaud</p>
+            <h2>Débrief de la journée</h2>
+          </div>
+        </div>
+
+        <form class="debrief-form" id="debrief-form">
+          <fieldset>
+            <legend>Horaires et programme</legend>
+            <div class="timing-block">
+              <strong>Départ</strong>
+              <div class="timing-choices">
+                {['À l’heure', '+5 min', '+10 min', 'Autre'].map((choice) => (
+                  <label><input type="radio" name="Depart_ecart" value={choice.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace('’', ' ')} required /><span>{choice}</span></label>
+                ))}
+              </div>
+            </div>
+            <div class="timing-block">
+              <strong>Retour</strong>
+              <div class="timing-choices">
+                {['À l’heure', '+5 min', '+10 min', 'Autre'].map((choice) => (
+                  <label><input type="radio" name="Retour_ecart" value={choice.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace('’', ' ')} required /><span>{choice}</span></label>
+                ))}
+              </div>
+            </div>
+            <label id="timing-detail" class="hidden">Explication pour « Autre »<textarea name="Horaire_autre_detail" rows="2" placeholder="Précise l’écart ou ce qui s’est passé"></textarea></label>
+            <label>Programme réalisé
+              <select name="Programme_realise_pct" required>
+                <option value="">Choisir</option><option value="25">25 %</option><option value="50">50 %</option><option value="75">75 %</option><option value="100">100 %</option>
+              </select>
+            </label>
+            <label>Lien vers la fiche ou le dossier Drive<input name="Programme_URL" type="url" placeholder="https://drive.google.com/..." /></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Expérience du groupe</legend>
+            <div class="field-row three">
+              <label>Amusement /5<input name="Amusement_note" type="number" min="1" max="5" required /></label>
+              <label>Apprentissage /5<input name="Apprentissage_note" type="number" min="1" max="5" required /></label>
+              <label>Difficulté /5<input name="Difficulte_note" type="number" min="1" max="5" required /></label>
+            </div>
+            <div class="field-row">
+              <label>Aide nécessaire<select name="Aide_necessaire"><option>Aucune</option><option>Un peu</option><option>Beaucoup</option></select></label>
+              <label>Écart de niveau<select name="Ecart_niveau"><option>Faible</option><option>Moyen</option><option>Important</option></select></label>
+            </div>
+            <label>Cas particuliers<textarea name="Cas_particuliers" rows="3"></textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Sécurité et terrain</legend>
+            <div class="field-row">
+              <label>Nombre de chutes<input name="Chutes_nombre" type="number" min="0" value="0" /></label>
+              <label>Gravité maximale<select name="Chutes_gravite"><option>Aucune</option><option>Mineure</option><option>Pause ou soin</option><option>Medicale</option></select></label>
+            </div>
+            <label>Types de chutes<input name="Chutes_types" type="text" placeholder="À l’arrêt, collision, saut..." /></label>
+            <label>Incident ou prise en charge<textarea name="Incident" rows="3"></textarea></label>
+            <div class="field-row">
+              <label>Météo<select name="Meteo"><option value="">Non renseignée</option><option>Sec</option><option>Bruine</option><option>Pluie</option><option>Vent</option><option>Autre</option></select></label>
+              <label>État du lieu<select name="Etat_lieu"><option>Fonctionnel</option><option>Degrade</option><option>Dangereux</option></select></label>
+            </div>
+            <label>Fréquentation<select name="Frequentation_lieu"><option>Calme</option><option>Normale</option><option>Saturee</option></select></label>
+            <label>Adaptations mises en place<textarea name="Adaptations" rows="3"></textarea></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Apprentissage moniteur</legend>
+            <label>Erreur ou décision à corriger<textarea name="Erreur_moniteur" rows="3"></textarea></label>
+            <label>Axe d’amélioration<textarea name="Axe_amelioration" rows="3"></textarea></label>
+            <label>Commentaire libre<textarea name="Commentaire" rows="4"></textarea></label>
+          </fieldset>
+
+          <button class="primary" type="submit">Clôturer le débrief</button>
+          <p class="form-message" id="debrief-message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel hidden admin-panel" id="admin-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Administration Wild Bike</p>
+            <h2>Suivi du stage</h2>
+          </div>
+          <button class="secondary" id="refresh-admin" type="button">Actualiser</button>
+        </div>
+        <div class="metric-grid" id="metric-grid"></div>
+        <div class="admin-section">
+          <h3>Votes enfants</h3>
+          <div class="vote-results" id="vote-results"></div>
+        </div>
+        <div class="admin-section">
+          <h3>Retours parents</h3>
+          <div class="parent-overview" id="parent-overview"></div>
+          <div class="improvement-tags" id="improvement-tags"></div>
+        </div>
+        <div class="admin-section">
+          <h3>Bilan du stage</h3>
+          <div class="stage-bilan" id="stage-bilan"></div>
+        </div>
+        <div class="admin-section">
+          <h3>Alertes et actions</h3>
+          <div id="admin-alerts"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <link rel="manifest" href="/stage-app.webmanifest" />
+  <script src="/app-stage.js?v=20261104-1" defer></script>
+</Layout>
+
+<style>
+  :global(body) { background: #07100f; }
+  .stage-app { min-height: 100vh; color: #f7fff9; background: radial-gradient(circle at 80% 0%, rgba(0, 199, 178, .2), transparent 28rem), #07100f; }
+  .app-header { height: 4.5rem; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .brand { display: flex; align-items: center; gap: .7rem; color: inherit; text-decoration: none; font-family: Oswald, sans-serif; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .08em; }
+  .brand img { width: 2.5rem; height: 2.5rem; object-fit: cover; border-radius: 50%; }
+  .network-state { display: flex; align-items: center; gap: .45rem; color: #9cb1ad; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+  .network-state span { width: .55rem; height: .55rem; border-radius: 50%; background: #38d996; box-shadow: 0 0 1rem #38d996; }
+  .network-state.offline span { background: #ffbd4a; box-shadow: 0 0 1rem #ffbd4a; }
+  .login-screen { min-height: calc(100vh - 4.5rem); display: grid; place-items: center; padding: 1.5rem; }
+  .login-card { width: min(100%, 27rem); padding: 2rem; border: 1px solid rgba(255,255,255,.12); border-radius: 1.6rem; background: rgba(13, 29, 27, .86); box-shadow: 0 2rem 6rem rgba(0,0,0,.4); }
+  .eyebrow { margin: 0 0 .45rem; color: #43dbc6; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; }
+  h1, h2, h3 { margin: 0; font-family: Oswald, sans-serif; text-transform: uppercase; line-height: .98; }
+  h1 { font-size: clamp(2.5rem, 12vw, 4.8rem); }
+  h2 { font-size: clamp(2rem, 8vw, 3.4rem); }
+  h3 { font-size: 1.5rem; }
+  .intro { color: #a9bbb7; margin: 1rem 0 1.5rem; }
+  .role-switch { display: grid; grid-template-columns: 1fr 1fr; padding: .25rem; margin-bottom: 1.3rem; border-radius: 999px; background: #07100f; }
+  .role { padding: .8rem; border: 0; border-radius: 999px; color: #8fa29e; background: transparent; font-weight: 800; cursor: pointer; }
+  .role.active { color: #07100f; background: #43dbc6; }
+  label { display: grid; gap: .45rem; color: #c7d4d1; font-size: .83rem; font-weight: 700; }
+  input, select, textarea { width: 100%; min-height: 3rem; padding: .75rem .85rem; border: 1px solid rgba(255,255,255,.15); border-radius: .75rem; color: #fff; background: #0a1715; font: inherit; }
+  textarea { resize: vertical; }
+  #pin { margin-bottom: 1rem; text-align: center; font-size: 1.6rem; letter-spacing: .3em; }
+  button { font: inherit; }
+  .primary, .secondary { min-height: 3.25rem; padding: .75rem 1rem; border-radius: .8rem; font-weight: 900; cursor: pointer; }
+  .primary { width: 100%; border: 0; color: #06110f; background: #43dbc6; }
+  .secondary { border: 1px solid rgba(255,255,255,.18); color: #e9f4f1; background: transparent; }
+  .form-message { min-height: 1.2rem; margin: .75rem 0 0; color: #ffbd4a; font-size: .85rem; }
+  .hidden { display: none !important; }
+  .workspace { width: min(100%, 72rem); margin: 0 auto; padding: 1rem 1rem 7rem; }
+  .stage-picker { display: grid; grid-template-columns: 1fr 1fr auto; gap: .7rem; align-items: end; padding: 1rem 0 1.3rem; }
+  .stage-picker select { min-width: 0; }
+  .icon-button { width: 3rem; height: 3rem; border: 1px solid rgba(255,255,255,.15); border-radius: 50%; color: #fff; background: #10201e; cursor: pointer; }
+  .app-tabs { position: sticky; top: .5rem; z-index: 10; display: grid; grid-template-columns: repeat(3, 1fr); gap: .25rem; padding: .3rem; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,.12); border-radius: 1rem; background: rgba(7,16,15,.92); backdrop-filter: blur(12px); }
+  .app-tabs button { padding: .8rem .45rem; border: 0; border-radius: .75rem; color: #8fa29e; background: transparent; font-size: .78rem; font-weight: 800; cursor: pointer; }
+  .app-tabs button.active { color: #07100f; background: #fff; }
+  .panel { padding: clamp(1rem, 4vw, 2rem); border: 1px solid rgba(255,255,255,.1); border-radius: 1.5rem; background: rgba(11,25,23,.8); }
+  .panel-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+  .panel-help { margin: .65rem 0 0; color: #9fb1ad; font-size: .82rem; }
+  .counter { padding: .65rem .85rem; border-radius: 999px; color: #07100f; background: #43dbc6; white-space: nowrap; }
+  .participant-list { display: grid; gap: .65rem; margin-bottom: 1.2rem; }
+  .participant { display: grid; grid-template-columns: 1fr auto; gap: .8rem; align-items: center; min-height: 4.3rem; padding: .75rem; border-radius: 1rem; background: #0b1b19; }
+  .participant strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .attendance-toggle { display: flex; grid-template-columns: auto auto; align-items: center; gap: .6rem; cursor: pointer; }
+  .attendance-toggle input { width: 1.5rem; min-height: 1.5rem; accent-color: #43dbc6; }
+  .attendance-toggle span { min-width: 4.2rem; color: #9fb1ad; font-size: .78rem; text-align: right; }
+  .attendance-toggle input:checked + span { color: #43dbc6; }
+  .sticky-action { position: sticky; bottom: 1rem; box-shadow: 0 .8rem 2rem rgba(0,0,0,.45); }
+  .vote-panel { position: relative; min-height: calc(100vh - 14rem); overflow: hidden; }
+  .vote-copy { text-align: center; }
+  .vote-copy p:last-child { color: #9fb1ad; }
+  .smiley-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.5rem, 2vw, 1rem); margin: clamp(2rem, 8vh, 5rem) 0 2rem; }
+  .smiley { aspect-ratio: .9; display: grid; place-items: center; align-content: center; gap: .65rem; border: 2px solid rgba(255,255,255,.12); border-radius: clamp(1rem, 4vw, 2rem); color: #fff; background: #0a1715; cursor: pointer; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+  .smiley span { font-size: clamp(3.6rem, 15vw, 8rem); line-height: 1; filter: grayscale(.35); }
+  .smiley strong { font-size: clamp(.75rem, 2.5vw, 1.1rem); text-transform: uppercase; }
+  .smiley.selected { transform: translateY(-.4rem) scale(1.03); border-color: #43dbc6; background: #123a34; box-shadow: 0 1rem 3rem rgba(67,219,198,.15); }
+  .smiley.selected span { filter: none; }
+  .vote-actions { display: flex; justify-content: center; }
+  .queue-note { text-align: center; color: #ffbd4a; font-size: .78rem; }
+  .thank-you { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 1rem; background: #43dbc6; color: #06110f; }
+  .thank-you span { display: grid; place-items: center; width: 6rem; height: 6rem; border-radius: 50%; color: #43dbc6; background: #06110f; font-size: 3rem; }
+  .thank-you strong { font-family: Oswald, sans-serif; font-size: 2.4rem; text-transform: uppercase; }
+  .debrief-form { display: grid; gap: 1rem; }
+  .timing-block { display: grid; gap: .55rem; }
+  .timing-choices { display: grid; grid-template-columns: repeat(4, 1fr); gap: .45rem; }
+  .timing-choices label { cursor: pointer; }
+  .timing-choices input { position: absolute; opacity: 0; }
+  .timing-choices span { min-height: 2.8rem; display: grid; place-items: center; padding: .5rem; border: 1px solid rgba(255,255,255,.15); border-radius: .7rem; color: #adc0bc; background: #0a1715; text-align: center; }
+  .timing-choices input:checked + span { border-color: #43dbc6; color: #07100f; background: #43dbc6; }
+  fieldset { display: grid; gap: .85rem; padding: 1rem; border: 1px solid rgba(255,255,255,.1); border-radius: 1rem; }
+  legend { padding: 0 .5rem; color: #43dbc6; font-family: Oswald, sans-serif; text-transform: uppercase; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+  .field-row.three { grid-template-columns: repeat(3, 1fr); }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+  .metric { padding: 1rem; border-radius: 1rem; background: #0a1715; }
+  .metric span { display: block; color: #8fa29e; font-size: .72rem; text-transform: uppercase; }
+  .metric strong { display: block; margin-top: .35rem; font-family: Oswald, sans-serif; font-size: 2rem; }
+  .admin-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.1); }
+  .vote-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-top: 1rem; }
+  .vote-result { padding: 1rem; text-align: center; border-radius: 1rem; background: #0a1715; }
+  .vote-result span { display: block; font-size: 2.5rem; }
+  .vote-result strong { font-family: Oswald, sans-serif; font-size: 2rem; }
+  .parent-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-top: 1rem; }
+  .parent-stat, .stage-bilan { padding: 1rem; border-radius: 1rem; background: #0a1715; }
+  .parent-stat span { display: block; color: #8fa29e; font-size: .72rem; text-transform: uppercase; }
+  .parent-stat strong { display: block; margin-top: .35rem; font-family: Oswald, sans-serif; font-size: 1.8rem; }
+  .improvement-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+  .improvement-tag { padding: .5rem .7rem; border: 1px solid rgba(67,219,198,.35); border-radius: 999px; color: #baf3ea; background: rgba(67,219,198,.08); font-size: .75rem; }
+  .stage-bilan { display: grid; gap: .8rem; margin-top: 1rem; }
+  .decision { width: fit-content; padding: .45rem .7rem; border-radius: 999px; color: #07100f; background: #43dbc6; font-weight: 900; }
+  .stage-bilan p { margin: 0; color: #b9c9c6; line-height: 1.55; }
+  .stage-bilan strong { color: #fff; }
+  .alert { margin-top: .7rem; padding: .85rem 1rem; border-left: 3px solid #ffbd4a; background: #0a1715; }
+  @media (max-width: 680px) {
+    .stage-picker { grid-template-columns: 1fr auto; }
+    .stage-picker > div:first-child { grid-column: 1 / -1; }
+    .timing-choices { grid-template-columns: repeat(2, 1fr); }
+    .field-row, .field-row.three { grid-template-columns: 1fr; }
+    .metric-grid { grid-template-columns: 1fr 1fr; }
+    .parent-overview { grid-template-columns: 1fr; }
+    .smiley-grid { gap: .35rem; }
+    .vote-actions .secondary { max-width: 8rem; font-size: .75rem; }
+  }
+</style>

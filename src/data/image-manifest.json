@@ -1,0 +1,236 @@
+{
+  "/images/airbag-stage.jpg": {
+    "src": "/images/airbag-stage.webp",
+    "srcset": "/images/airbag-stage-800.webp 800w, /images/airbag-stage.webp 1600w",
+    "width": 1600,
+    "height": 900
+  },
+  "/images/association-groupe.jpg": {
+    "src": "/images/association-groupe.webp",
+    "srcset": "/images/association-groupe-800.webp 800w, /images/association-groupe.webp 1600w",
+    "width": 1600,
+    "height": 900
+  },
+  "/images/bmx-stage-enfant.jpg": {
+    "src": "/images/bmx-stage-enfant.webp",
+    "srcset": "/images/bmx-stage-enfant-800.webp 800w, /images/bmx-stage-enfant.webp 1600w",
+    "width": 1600,
+    "height": 900
+  },
+  "/images/bmx-toulon-skatepark.jpg": {
+    "src": "/images/bmx-toulon-skatepark.webp",
+    "srcset": "/images/bmx-toulon-skatepark-800.webp 800w, /images/bmx-toulon-skatepark.webp 1600w",
+    "width": 1600,
+    "height": 981
+  },
+  "/images/club-bmx-groupe.jpg": {
+    "src": "/images/club-bmx-groupe.webp",
+    "srcset": "/images/club-bmx-groupe-800.webp 800w, /images/club-bmx-groupe.webp 1179w",
+    "width": 1179,
+    "height": 1603
+  },
+  "/images/club-hero-session.jpg": {
+    "src": "/images/club-hero-session.webp",
+    "srcset": "/images/club-hero-session-800.webp 800w, /images/club-hero-session.webp 1600w",
+    "width": 1600,
+    "height": 1200
+  },
+  "/images/club-vtt-riders.jpg": {
+    "src": "/images/club-vtt-riders.webp",
+    "srcset": "/images/club-vtt-riders-800.webp 800w, /images/club-vtt-riders.webp 1600w",
+    "width": 1600,
+    "height": 900
+  },
+  "/images/hero-bowl-mer.jpg": {
+    "src": "/images/hero-bowl-mer.webp",
+    "srcset": "/images/hero-bowl-mer-800.webp 800w, /images/hero-bowl-mer.webp 1521w",
+    "width": 1521,
+    "height": 856
+  },
+  "/images/logo-wild-bike.jpg": {
+    "src": "/images/logo-wild-bike.webp",
+    "srcset": "/images/logo-wild-bike-800.webp 270w, /images/logo-wild-bike.webp 270w",
+    "width": 270,
+    "height": 270
+  },
+  "/images/rider-wild-bike.jpg": {
+    "src": "/images/rider-wild-bike.webp",
+    "srcset": "/images/rider-wild-bike-800.webp 800w, /images/rider-wild-bike.webp 1600w",
+    "width": 1600,
+    "height": 900
+  },
+  "/images/skatepark-la-beaucaire.jpg": {
+    "src": "/images/skatepark-la-beaucaire.webp",
+    "srcset": "/images/skatepark-la-beaucaire-800.webp 800w, /images/skatepark-la-beaucaire.webp 1600w",
+    "width": 1600,
+    "height": 1200
+  },
+  "/images/stage-famille-roue.jpg": {
+    "src": "/images/stage-famille-roue.webp",
+    "srcset": "/images/stage-famille-roue-800.webp 800w, /images/stage-famille-roue.webp 1600w",
+    "width": 1600,
+    "height": 900
+  },
+  "/images/stages-bmx-action.jpg": {
+    "src": "/images/stages-bmx-action.webp",
+    "srcset": "/images/stages-bmx-action-800.webp 800w, /images/stages-bmx-action.webp 1179w",
+    "width": 1179,
+    "height": 1507
+  },
+  "/images/stages-bmx-niveau-2.jpg": {
+    "src": "/images/stages-bmx-niveau-2.webp",
+    "srcset": "/images/stages-bmx-niveau-2-800.webp 800w, /images/stages-bmx-niveau-2.webp 1179w",
+    "width": 1179,
+    "height": 2095
+  },
+  "/images/stages-bmx-sourire.jpg": {
+    "src": "/images/stages-bmx-sourire.webp",
+    "srcset": "/images/stages-bmx-sourire-800.webp 800w, /images/stages-bmx-sourire.webp 1179w",
+    "width": 1179,
+    "height": 2067
+  },
+  "/images/stages-hero-bowl.jpeg": {
+    "src": "/images/stages-hero-bowl.webp",
+    "srcset": "/images/stages-hero-bowl-800.webp 800w, /images/stages-hero-bowl.webp 1488w",
+    "width": 1488,
+    "height": 2640
+  },
+  "/images/stages-vtt.jpg": {
+    "src": "/images/stages-vtt.webp",
+    "srcset": "/images/stages-vtt-800.webp 800w, /images/stages-vtt.webp 1179w",
+    "width": 1179,
+    "height": 1067
+  },
+  "/images/velo-ecole-collectivites.png": {
+    "src": "/images/velo-ecole-collectivites.webp",
+    "srcset": "/images/velo-ecole-collectivites-800.webp 800w, /images/velo-ecole-collectivites.webp 1536w",
+    "width": 1536,
+    "height": 1024
+  },
+  "/images/velo-ecole-entreprises.png": {
+    "src": "/images/velo-ecole-entreprises.webp",
+    "srcset": "/images/velo-ecole-entreprises-800.webp 800w, /images/velo-ecole-entreprises.webp 1536w",
+    "width": 1536,
+    "height": 1024
+  },
+  "/images/velo-ecole-hero.jpg": {
+    "src": "/images/velo-ecole-hero.webp",
+    "srcset": "/images/velo-ecole-hero-800.webp 800w, /images/velo-ecole-hero.webp 1600w",
+    "width": 1600,
+    "height": 900
+  },
+  "/images/velo-ecole-particuliers.png": {
+    "src": "/images/velo-ecole-particuliers.webp",
+    "srcset": "/images/velo-ecole-particuliers-800.webp 800w, /images/velo-ecole-particuliers.webp 1536w",
+    "width": 1536,
+    "height": 1024
+  },
+  "/images/velo-ecole.jpg": {
+    "src": "/images/velo-ecole.webp",
+    "srcset": "/images/velo-ecole-800.webp 800w, /images/velo-ecole.webp 1179w",
+    "width": 1179,
+    "height": 1570
+  },
+  "/images/vtt-foret-enfant.jpg": {
+    "src": "/images/vtt-foret-enfant.webp",
+    "srcset": "/images/vtt-foret-enfant-800.webp 800w, /images/vtt-foret-enfant.webp 1179w",
+    "width": 1179,
+    "height": 2058
+  },
+  "/images/vtt-freestyle-stage.jpg": {
+    "src": "/images/vtt-freestyle-stage.webp",
+    "srcset": "/images/vtt-freestyle-stage-800.webp 800w, /images/vtt-freestyle-stage.webp 1600w",
+    "width": 1600,
+    "height": 900
+  },
+  "https://i.ytimg.com/vi/JNNDjmnYBlE/maxresdefault.jpg": {
+    "src": "/images/youtube-JNNDjmnYBlE.webp",
+    "srcset": "/images/youtube-JNNDjmnYBlE-800.webp 800w, /images/youtube-JNNDjmnYBlE.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/V4fuo3SiJBU/maxresdefault.jpg": {
+    "src": "/images/youtube-V4fuo3SiJBU.webp",
+    "srcset": "/images/youtube-V4fuo3SiJBU-800.webp 800w, /images/youtube-V4fuo3SiJBU.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/lLm24SQ0_OM/maxresdefault.jpg": {
+    "src": "/images/youtube-lLm24SQ0_OM.webp",
+    "srcset": "/images/youtube-lLm24SQ0_OM-800.webp 800w, /images/youtube-lLm24SQ0_OM.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/abVeGJ98rkM/maxresdefault.jpg": {
+    "src": "/images/youtube-abVeGJ98rkM.webp",
+    "srcset": "/images/youtube-abVeGJ98rkM-800.webp 800w, /images/youtube-abVeGJ98rkM.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/_GK4c1j2Au4/maxresdefault.jpg": {
+    "src": "/images/youtube-_GK4c1j2Au4.webp",
+    "srcset": "/images/youtube-_GK4c1j2Au4-800.webp 800w, /images/youtube-_GK4c1j2Au4.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/lJF6l3jcok4/maxresdefault.jpg": {
+    "src": "/images/youtube-lJF6l3jcok4.webp",
+    "srcset": "/images/youtube-lJF6l3jcok4-800.webp 800w, /images/youtube-lJF6l3jcok4.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/C8eh1jEEr0E/hqdefault.jpg": {
+    "src": "/images/youtube-C8eh1jEEr0E.webp",
+    "srcset": "/images/youtube-C8eh1jEEr0E-800.webp 480w, /images/youtube-C8eh1jEEr0E.webp 480w",
+    "width": 480,
+    "height": 360
+  },
+  "https://i.ytimg.com/vi/bRntcQCttnQ/maxresdefault.jpg": {
+    "src": "/images/youtube-bRntcQCttnQ.webp",
+    "srcset": "/images/youtube-bRntcQCttnQ-800.webp 800w, /images/youtube-bRntcQCttnQ.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/0kX6ciVCMHs/maxresdefault.jpg": {
+    "src": "/images/youtube-0kX6ciVCMHs.webp",
+    "srcset": "/images/youtube-0kX6ciVCMHs-800.webp 800w, /images/youtube-0kX6ciVCMHs.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/3L7iUjz4Z1E/maxresdefault.jpg": {
+    "src": "/images/youtube-3L7iUjz4Z1E.webp",
+    "srcset": "/images/youtube-3L7iUjz4Z1E-800.webp 800w, /images/youtube-3L7iUjz4Z1E.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/h3r1iKzrMmI/maxresdefault.jpg": {
+    "src": "/images/youtube-h3r1iKzrMmI.webp",
+    "srcset": "/images/youtube-h3r1iKzrMmI-800.webp 800w, /images/youtube-h3r1iKzrMmI.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/qUronAMYsMY/hqdefault.jpg": {
+    "src": "/images/youtube-qUronAMYsMY.webp",
+    "srcset": "/images/youtube-qUronAMYsMY-800.webp 480w, /images/youtube-qUronAMYsMY.webp 480w",
+    "width": 480,
+    "height": 360
+  },
+  "https://i.ytimg.com/vi/u9-XTTKYUks/maxresdefault.jpg": {
+    "src": "/images/youtube-u9-XTTKYUks.webp",
+    "srcset": "/images/youtube-u9-XTTKYUks-800.webp 800w, /images/youtube-u9-XTTKYUks.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/cV0ubZaSz8A/maxresdefault.jpg": {
+    "src": "/images/youtube-cV0ubZaSz8A.webp",
+    "srcset": "/images/youtube-cV0ubZaSz8A-800.webp 800w, /images/youtube-cV0ubZaSz8A.webp 1280w",
+    "width": 1280,
+    "height": 720
+  },
+  "https://i.ytimg.com/vi/Czt1bijOqUU/maxresdefault.jpg": {
+    "src": "/images/youtube-Czt1bijOqUU.webp",
+    "srcset": "/images/youtube-Czt1bijOqUU-800.webp 800w, /images/youtube-Czt1bijOqUU.webp 1280w",
+    "width": 1280,
+    "height": 720
+  }
+}

@@ -4,13 +4,40 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  imageAlt?: string;
+  structuredData?: object | object[];
+  noindex?: boolean;
 }
 
 const {
-  title = 'Wild Bike | BMX, VTT freestyle, stages et vélo-école dans le Var',
+  title = 'Wild Bike | Club BMX, VTT, stages et vélo-école à Toulon',
   description =
-    "Club BMX et VTT Freestyle dès 5 ans autour de Toulon, La Seyne-sur-Mer, Six-Fours et Ollioules. Cours à l'année, stages et vélo-école.",
+    'Club BMX et VTT dès 5 ans à Toulon et La Seyne-sur-Mer. Découvrez nos cours, stages vacances et séances de vélo-école dans le Var.',
+  image = '/images/hero-bowl-mer.jpg',
+  imageAlt = "Groupe d'enfants Wild Bike dans un bowl en bord de mer",
+  structuredData = [],
+  noindex = false,
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const socialImageUrl = new URL(image, Astro.site);
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsOrganization',
+  '@id': new URL('/#organization', Astro.site).href,
+  name: 'Wild Bike',
+  url: new URL('/', Astro.site).href,
+  logo: new URL('/images/logo-wild-bike.jpg', Astro.site).href,
+  telephone: '+33750903677',
+  email: 'contact@wildbike.fr',
+  areaServed: ['Toulon', 'La Seyne-sur-Mer', 'Six-Fours-les-Plages', 'Ollioules', 'Var'],
+  sameAs: [
+    'https://www.facebook.com/wildbike83/',
+    'https://www.instagram.com/wildbike83/',
+  ],
+};
+const schemas = [organizationSchema, ...(Array.isArray(structuredData) ? structuredData : [structuredData])];
 ---
 
 <!DOCTYPE html>
@@ -20,32 +47,42 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="icon" href="/images/logo-wild-bike.jpg" />
+    <link rel="canonical" href={canonicalUrl.href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/hero-bowl-mer.jpg" />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:site_name" content="Wild Bike" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:image" content={socialImageUrl.href} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl.href} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    {schemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
 
     <!-- Iconify web component -->
     <script
       is:inline
+      defer
       src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"
     ></script>
 
-    <!-- Google Fonts: Oswald (display) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="/fonts/oswald-latin.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body class="overflow-x-hidden bg-black selection:bg-edit-teal selection:text-white">
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
     <slot />
 
     <!-- Scroll reveal animations -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
         const observerOptions = {
           root: null,
           rootMargin: '0px',
@@ -61,6 +98,7 @@ const {
           });
         }, observerOptions);
 
+        document.documentElement.classList.add('motion-ready');
         document.querySelectorAll('.fade-up, .fade-in').forEach((elem) => {
           observer.observe(elem);
         });

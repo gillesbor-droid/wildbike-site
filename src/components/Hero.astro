@@ -1,4 +1,5 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
 ---
 
 <header
@@ -6,9 +7,11 @@
   id="prologue"
 >
   <div class="absolute inset-0 w-full h-full">
-    <img
+    <OptimizedImage
       src="/images/hero-bowl-mer.jpg"
       alt="Groupe d'enfants Wild Bike dans un bowl en bord de mer"
+      loading="eager"
+      fetchpriority="high"
       class="w-full h-full object-cover object-center contrast-110 scale-105 transform origin-center animate-[pulse_20s_ease-in-out_infinite]"
     />
     <div class="absolute inset-0 solid-overlay z-10"></div>
@@ -50,7 +53,7 @@
         href="#reservation"
         class="bg-white/10 text-white border border-white/30 hover:bg-white hover:text-black transition-colors duration-300 font-display text-xs tracking-widest px-10 py-5 flex items-center justify-center gap-3 w-fit mx-auto"
       >
-        RÉSERVER UN ESSAI
+        CHOISIR SON PARCOURS
       </a>
     </div>
     <div class="fade-up" style="animation-delay: 300ms;">

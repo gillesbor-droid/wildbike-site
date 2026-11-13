@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Footer from '../components/Footer.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+
+const availabilityUrl = 'https://wa.me/33750903677?text=Bonjour%20Wild%20Bike%2C%20je%20souhaite%20savoir%20s%27il%20reste%20une%20place%20au%20club%20pour%20mon%20enfant.';
+
+const disciplines = [
+  {
+    label: 'BMX FREESTYLE',
+    place: 'Skatepark de Toulon',
+    image: '/images/club-bmx-groupe.jpg',
+    alt: 'Groupe de riders Wild Bike pendant un cours au skatepark de Toulon',
+    text: 'Courbes, trajectoires, manuals, bunny-up et premières figures : le BMX développe la précision, l’équilibre et l’engagement.',
+    points: ['5-7 · 8-10 · 11+', 'Skatepark', 'Technique & figures'],
+  },
+  {
+    label: 'VTT FREESTYLE',
+    place: 'Forêt de Janas, La Seyne-sur-Mer',
+    image: '/images/club-vtt-riders.jpg',
+    alt: 'Groupe de jeunes riders Wild Bike en VTT dans la forêt de Janas',
+    text: 'Pilotage, franchissements, trajectoires et bosses : le VTT développe l’autonomie, la lecture du terrain et la confiance.',
+    points: ['5-7 · 8-10 · 11+', 'Pleine nature', 'Pilotage & aventure'],
+  },
+];
+
+const groups = [
+  { num: '01', name: 'AVENTURIERS', age: '5-7 ANS', level: 'DÉCOUVERTE', text: 'Apprendre les bases, respecter les consignes et prendre confiance avec plaisir.' },
+  { num: '02', name: 'EXPLORATEURS', age: '8-10 ANS', level: 'PROGRESSION', text: 'Améliorer les trajectoires, l’équilibre, la fluidité et les premières figures.' },
+  { num: '03', name: 'RIDERS', age: '11 ANS ET +', level: 'PERFORMANCE', text: 'Consolider la technique, gagner en style, en autonomie et en maîtrise.' },
+  { num: '04', name: 'CONFIRMÉS', age: 'SUR SÉLECTION', level: 'EXCELLENCE', text: 'Deux séances par semaine pour les riders motivés qui veulent aller plus loin.' },
+];
+
+const schedule = [
+  { day: 'LUNDI', slots: [{ time: '18h15 - 19h15', activity: 'BMX Confirmés', place: 'Toulon', group: 'Confirmés' }] },
+  { day: 'MERCREDI', slots: [
+    { time: '11h - 12h', activity: 'VTT 5-7 ans', place: 'Janas', group: 'Aventuriers' },
+    { time: '14h - 15h', activity: 'BMX 5-7 ans', place: 'Toulon', group: 'Aventuriers' },
+    { time: '15h - 16h', activity: 'BMX 8-10 ans', place: 'Toulon', group: 'Explorateurs' },
+    { time: '16h - 17h', activity: 'BMX 11 ans et +', place: 'Toulon', group: 'Riders' },
+    { time: '17h - 18h', activity: 'BMX Confirmés', place: 'Toulon', group: 'Confirmés' },
+  ]},
+  { day: 'JEUDI', slots: [{ time: '18h - 19h', activity: 'Renforcement & trampoline', place: 'Toulon Ouest', group: 'Légendes' }] },
+  { day: 'SAMEDI', slots: [
+    { time: '9h - 10h', activity: 'BMX 5-7 ans', place: 'Toulon', group: 'Aventuriers' },
+    { time: '10h - 11h', activity: 'BMX 8-10 ans', place: 'Toulon', group: 'Explorateurs' },
+    { time: '11h - 12h', activity: 'BMX 11 ans et +', place: 'Toulon', group: 'Riders' },
+    { time: '14h - 15h', activity: 'VTT 8-10 ans', place: 'Janas', group: 'Explorateurs' },
+    { time: '15h - 16h', activity: 'VTT 11 ans et +', place: 'Janas', group: 'Riders' },
+  ]},
+];
+
+const plans = [
+  {
+    name: '1 COURS / SEMAINE',
+    price: '298 €',
+    note: 'SAISON 2026-2027',
+    text: 'Le rythme essentiel pour progresser régulièrement dans son groupe.',
+    features: ['1 séance hebdomadaire', 'BMX ou VTT', 'Groupe adapté au niveau'],
+    href: '#inscription',
+  },
+  {
+    name: '2 COURS / SEMAINE',
+    price: '465 €',
+    note: 'SAISON 2026-2027',
+    text: 'Pour pratiquer davantage et combiner BMX, VTT ou deux séances identiques.',
+    features: ['2 séances hebdomadaires', 'Disciplines au choix', 'Progression accélérée'],
+    href: '#inscription',
+  },
+  {
+    name: 'SUPERSTAR',
+    price: '75 €',
+    note: 'PAR MOIS · 7 PLACES',
+    text: 'La formule complète pour les riders très motivés qui veulent aller plus loin.',
+    features: ['2 cours par semaine', 'Élite + Légendes', 'Frais, sweat et casquette inclus'],
+    href: 'https://www.helloasso.com/associations/wild-bike/adhesions/superstar',
+    featured: true,
+  },
+];
+
+const registrations = [
+  { label: '1 COURS BMX', href: 'https://www.helloasso.com/associations/wild-bike/adhesions/1-cours-semaine-bmx-toulon-2026-2027' },
+  { label: '1 COURS VTT', href: 'https://www.helloasso.com/associations/wild-bike/adhesions/1-cours-semaine-vtt-la-seyne-sur-mer-2026-2027' },
+  { label: '2 COURS AU CHOIX', href: 'https://www.helloasso.com/associations/wild-bike/adhesions/2-cours-semaine-bmx-bmx-ou-bmx-vtt-ou-vtt-vtt-2026-2027' },
+];
+---
+
+<Layout
+  title="Club BMX et VTT enfant à Toulon | Wild Bike"
+  description="Club BMX et VTT pour enfants dès 5 ans à Toulon et La Seyne-sur-Mer : cours par âge et niveau, encadrement diplômé et places disponibles."
+  image="/images/club-hero-session.jpg"
+  imageAlt="Jeunes riders Wild Bike pendant un cours de BMX au skatepark"
+>
+  <Nav page="club" />
+  <main id="main-content">
+    <header class="relative min-h-[780px] overflow-hidden bg-black text-white">
+      <OptimizedImage src="/images/club-hero-session.jpg" alt="Jeunes riders Wild Bike pendant un cours de BMX au skatepark" loading="eager" fetchpriority="high" class="absolute inset-0 h-full w-full object-cover object-center saturate-110 contrast-105" />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-black/10"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/15"></div>
+      <div class="relative z-10 mx-auto flex min-h-[780px] max-w-7xl flex-col justify-end px-6 pb-16 pt-36 md:px-12 md:pb-24">
+        <div class="max-w-5xl">
+          <div class="mb-7 flex items-center gap-4 fade-up"><span class="font-display text-xs tracking-widest text-edit-teal">CLUB BMX & VTT · SAISON 2026-2027</span><span class="h-px w-12 bg-edit-teal"></span></div>
+          <h1 class="font-display max-w-4xl text-6xl leading-[0.88] tracking-tighter md:text-8xl lg:text-9xl fade-up" style="animation-delay: 100ms;">BIEN PLUS QU’UN COURS DE VÉLO.</h1>
+          <p class="mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/80 md:text-lg fade-up" style="animation-delay: 200ms;">Dès 5 ans, les enfants progressent en BMX ou en VTT, prennent confiance, gagnent en autonomie et rejoignent une vraie équipe.</p>
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row fade-up" style="animation-delay: 300ms;">
+            <a href={availabilityUrl} target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 bg-edit-teal px-8 py-5 font-display text-xs tracking-widest transition-colors hover:bg-white hover:text-black">VÉRIFIER LES PLACES DISPONIBLES<iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon></a>
+            <a href="#horaires" class="inline-flex items-center justify-center gap-3 border border-white/30 bg-white/10 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:border-white hover:bg-white hover:text-black">VOIR LES HORAIRES</a>
+          </div>
+        </div>
+        <dl class="mt-14 grid max-w-3xl grid-cols-3 border-t border-white/25 pt-6 fade-up" style="animation-delay: 400ms;">
+          <div class="border-r border-white/20 pr-4"><dt class="font-display text-3xl text-edit-teal md:text-4xl">DEPUIS 2018</dt><dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">L’aventure Wild Bike</dd></div>
+          <div class="border-r border-white/20 px-4"><dt class="font-display text-3xl text-edit-teal md:text-4xl">OLYMPIQUE</dt><dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">BMX Freestyle</dd></div>
+          <div class="pl-4"><dt class="font-display text-3xl text-edit-teal md:text-4xl">BMX + VTT</dt><dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">Deux disciplines</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <section class="relative overflow-hidden bg-edit-dark py-24 text-white md:py-32">
+      <div class="absolute inset-0 opacity-[0.035]" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px); background-size: 4rem 4rem;"></div>
+      <div class="relative mx-auto max-w-7xl px-6 md:px-12">
+        <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div class="fade-up"><span class="font-display text-xs tracking-widest text-edit-teal">L’EXPÉRIENCE WILD BIKE</span><h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">IL PROGRESSE SUR LE VÉLO. ET DANS SA TÊTE.</h2></div>
+          <p class="max-w-xl self-end text-base font-medium leading-relaxed text-white/70 md:text-lg fade-up">À chaque séance, votre enfant apprend à essayer, tomber, recommencer, écouter les consignes et dépasser ses peurs dans un cadre positif.</p>
+        </div>
+        <div class="mt-16 grid gap-px border border-white/15 bg-white/15 md:grid-cols-3">
+          <article class="bg-edit-dark p-8 fade-up"><iconify-icon icon="solar:medal-ribbons-star-linear" class="text-4xl text-edit-teal"></iconify-icon><h3 class="mt-12 font-display text-3xl">CONFIANCE</h3><p class="mt-4 text-sm font-medium leading-relaxed text-white/60">Chaque progrès compte : mieux tourner, mieux freiner, oser une bosse et gérer ses émotions.</p></article>
+          <article class="bg-edit-dark p-8 fade-up"><iconify-icon icon="solar:chart-2-linear" class="text-4xl text-edit-teal"></iconify-icon><h3 class="mt-12 font-display text-3xl">PROGRESSION</h3><p class="mt-4 text-sm font-medium leading-relaxed text-white/60">Des groupes par âge et niveau pour avancer étape par étape, sans brûler les étapes.</p></article>
+          <article class="bg-edit-dark p-8 fade-up"><iconify-icon icon="solar:compass-big-linear" class="text-4xl text-edit-teal"></iconify-icon><h3 class="mt-12 font-display text-3xl">AVENTURE</h3><p class="mt-4 text-sm font-medium leading-relaxed text-white/60">Une activité sportive et collective pour bouger dehors, sortir des écrans et se faire des amis.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="disciplines" class="bg-white py-24 text-black md:py-32">
+      <div class="mx-auto max-w-7xl px-6 md:px-12">
+        <div class="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20"><div class="fade-up"><span class="font-display text-xs tracking-widest text-edit-teal">QUELLE DISCIPLINE CHOISIR ?</span><h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">DEUX TERRAINS. LA MÊME ENVIE D’AVANCER.</h2></div><p class="max-w-xl self-end text-base font-medium leading-relaxed text-black/60 md:text-lg fade-up">BMX et VTT développent l’équilibre, la technique, l’autonomie et le plaisir de se dépasser. Le meilleur choix dépend surtout de ce qui attire votre enfant.</p></div>
+        <div class="mt-16 grid gap-5 lg:grid-cols-2">
+          {disciplines.map((discipline) => (
+            <article class="group relative isolate flex min-h-[36rem] flex-col justify-end overflow-hidden bg-black p-8 text-white fade-up">
+              <OptimizedImage src={discipline.image} alt={discipline.alt} sizes="(min-width: 1024px) 50vw, 100vw" class="absolute inset-0 -z-20 h-full w-full object-cover saturate-110 transition duration-700 group-hover:scale-105" />
+              <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/55 to-black/5"></div>
+              <span class="font-display text-xs tracking-widest text-edit-teal">{discipline.place}</span>
+              <h3 class="mt-4 font-display text-4xl tracking-tight md:text-5xl">{discipline.label}</h3>
+              <p class="mt-5 max-w-lg text-sm font-medium leading-relaxed text-white/75">{discipline.text}</p>
+              <ul class="mt-7 flex flex-wrap gap-2">{discipline.points.map((point) => <li class="border border-white/25 bg-black/20 px-3 py-2 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm">{point}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="groupes" class="bg-edit-dark py-24 text-white md:py-32">
+      <div class="mx-auto max-w-7xl px-6 md:px-12">
+        <div class="max-w-4xl fade-up"><span class="font-display text-xs tracking-widest text-edit-teal">UN GROUPE POUR CHAQUE RIDER</span><h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">À SON ÂGE. À SON NIVEAU. À SON RYTHME.</h2></div>
+        <div class="mt-16 grid gap-px overflow-hidden border border-white/15 bg-white/15 md:grid-cols-2 lg:grid-cols-4">
+          {groups.map((group) => (
+            <article class="bg-edit-dark p-7 fade-up"><span class="font-display text-4xl text-edit-teal">{group.num}</span><p class="mt-12 font-display text-[10px] tracking-widest text-white/45">{group.age} · {group.level}</p><h3 class="mt-3 font-display text-2xl tracking-tight">{group.name}</h3><p class="mt-5 text-sm font-medium leading-relaxed text-white/60">{group.text}</p></article>
+          ))}
+        </div>
+        <div class="mt-6 grid gap-5 lg:grid-cols-2">
+          <article class="border-t-2 border-edit-teal bg-white/5 p-8 fade-up"><div class="flex items-start justify-between gap-6"><div><span class="font-display text-xs tracking-widest text-edit-teal">OPTION PROGRESSION</span><h3 class="mt-4 font-display text-3xl">ÉLITE</h3></div><span class="font-display text-2xl">159,88 €</span></div><p class="mt-5 text-sm font-medium leading-relaxed text-white/60">Pour les riders investis : travail technique avancé, quatre sorties indoor à Marseille et une sortie à Montpellier.</p></article>
+          <article class="border-t-2 border-edit-teal bg-white/5 p-8 fade-up"><div class="flex items-start justify-between gap-6"><div><span class="font-display text-xs tracking-widest text-edit-teal">OPTION MOTRICITÉ</span><h3 class="mt-4 font-display text-3xl">LÉGENDES</h3></div><span class="font-display text-2xl">360 €</span></div><p class="mt-5 text-sm font-medium leading-relaxed text-white/60">Renforcement et trampoline pour développer coordination, tonicité, équilibre et maîtrise du corps.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="horaires" class="bg-white py-24 text-black md:py-32">
+      <div class="mx-auto max-w-7xl px-6 md:px-12">
+        <div class="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20"><div class="fade-up"><span class="font-display text-xs tracking-widest text-edit-teal">PLANNING 2026-2027</span><h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">TROUVEZ SON CRÉNEAU</h2></div><p class="max-w-xl self-end text-base font-medium leading-relaxed text-black/60 md:text-lg fade-up">Les groupes sont limités à quinze places pour conserver un accompagnement de qualité. L’affectation définitive dépend du niveau et des places disponibles.</p></div>
+        <div class="mt-16 space-y-5">
+          {schedule.map((day) => (
+            <section class="grid border-t-2 border-black pt-5 md:grid-cols-[0.28fr_1fr] fade-up">
+              <h3 class="font-display text-3xl tracking-tight text-edit-teal">{day.day}</h3>
+              <div class="mt-5 divide-y divide-black/10 border-y border-black/10 md:mt-0">
+                {day.slots.map((slot) => (
+                  <div class="grid gap-2 py-4 text-sm font-medium sm:grid-cols-[0.55fr_1fr_0.75fr_0.75fr] sm:items-center sm:gap-5">
+                    <strong class="font-display text-base">{slot.time}</strong><span>{slot.activity}</span><span class="text-black/50">{slot.place}</span><span class="font-display text-xs tracking-wider text-edit-teal">{slot.group}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="formules" class="relative overflow-hidden bg-edit-dark py-24 text-white md:py-32">
+      <div class="absolute inset-0 opacity-[0.035]" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px); background-size: 4rem 4rem;"></div>
+      <div class="relative mx-auto max-w-7xl px-6 md:px-12">
+        <div class="max-w-4xl fade-up"><span class="font-display text-xs tracking-widest text-edit-teal">FORMULES CLUB</span><h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">LE BON RYTHME POUR PROGRESSER</h2></div>
+        <div class="mt-16 grid gap-5 lg:grid-cols-3">
+          {plans.map((plan) => (
+            <article class:list={['relative flex flex-col border p-8 fade-up', plan.featured ? 'border-edit-teal bg-edit-teal' : 'border-white/15 bg-white/5']}>
+              {plan.featured && <span class="absolute right-0 top-0 bg-white px-4 py-2 font-display text-[10px] tracking-widest text-black">OFFRE COMPLÈTE</span>}
+              <span class:list={['font-display text-[10px] tracking-widest', plan.featured ? 'text-white/70' : 'text-edit-teal']}>{plan.note}</span>
+              <h3 class="mt-5 font-display text-3xl leading-none">{plan.name}</h3>
+              <p class="mt-7 font-display text-5xl">{plan.price}</p>
+              <p class="mt-6 text-sm font-medium leading-relaxed text-white/65">{plan.text}</p>
+              <ul class="mt-8 space-y-3 border-t border-white/20 pt-6 text-xs font-bold uppercase tracking-wide text-white/75">{plan.features.map((feature) => <li class="flex items-center gap-3"><span class="text-edit-teal">■</span>{feature}</li>)}</ul>
+              <a href={plan.href} target={plan.featured ? '_blank' : undefined} rel={plan.featured ? 'noreferrer' : undefined} class:list={['mt-9 inline-flex items-center gap-2 font-display text-xs tracking-widest transition-colors', plan.featured ? 'text-white hover:text-black' : 'text-edit-teal hover:text-white']}>CHOISIR CETTE FORMULE<iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon></a>
+            </article>
+          ))}
+        </div>
+        <div class="mt-6 grid gap-4 sm:grid-cols-3 fade-up">
+          <div class="border border-white/15 p-5"><span class="font-display text-xl">30 €</span><p class="mt-1 text-xs font-medium text-white/50">Frais d’inscription</p></div>
+          <div class="border border-white/15 p-5"><span class="font-display text-xl">125 € / AN</span><p class="mt-1 text-xs font-medium text-white/50">Location BMX annuelle</p></div>
+          <div class="border border-white/15 p-5"><span class="font-display text-xl">20 € / MOIS</span><p class="mt-1 text-xs font-medium text-white/50">Location BMX mensuelle</p></div>
+        </div>
+      </div>
+    </section>
+
+    <Testimonials />
+
+    <section id="inscription" class="bg-edit-teal py-24 text-white md:py-32">
+      <div class="mx-auto max-w-5xl px-6 text-center">
+        <span class="font-display text-xs tracking-widest text-white/70">PRÊT À REJOINDRE L’ÉQUIPE ?</span>
+        <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">CHOISISSEZ SA FORMULE</h2>
+        <p class="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/85 md:text-lg">Les essais de septembre sont terminés. Vérifiez avec nous les places disponibles : selon la période et le niveau, nous vous orienterons d’abord vers un stage découverte.</p>
+        <div class="mt-10 grid gap-3 sm:grid-cols-3">
+          {registrations.map((registration) => (
+            <a href={registration.href} target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 bg-white px-6 py-5 font-display text-xs tracking-widest text-black transition-colors hover:bg-black hover:text-white">{registration.label}<iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon></a>
+          ))}
+        </div>
+        <div class="mt-6 flex flex-col justify-center gap-4 sm:flex-row">
+          <a href={availabilityUrl} target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 border border-white/40 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:border-black hover:bg-black">VÉRIFIER LES PLACES DISPONIBLES<iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon></a>
+          <a href="/stages/" class="inline-flex items-center justify-center gap-3 px-8 py-5 font-display text-xs tracking-widest text-white/75 transition-colors hover:text-black">VOIR LES STAGES DÉCOUVERTE<iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

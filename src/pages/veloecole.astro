@@ -1,0 +1,437 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+
+const forms = {
+  particuliers:
+    'https://docs.google.com/forms/d/e/1FAIpQLSdBFy9gYevH-t_nvTAH47f7H2sP6Yz3NEH7rHvD6fgTSEoDvA/viewform?usp=dialog',
+  entreprises:
+    'https://docs.google.com/forms/d/e/1FAIpQLSf8z8ZNri3bQzxILOODxr2vPe9qSRYwnby3fJ9AB1fSQF3y1A/viewform?usp=publish-editor',
+  collectivites:
+    'https://docs.google.com/forms/d/e/1FAIpQLSeCKIE8O81I0_FO-_ArUun05Bj81N7fyUcy6h7HCp-eXOBspA/viewform?usp=publish-editor',
+};
+
+const audiences = [
+  {
+    num: '01',
+    label: 'PARTICULIERS',
+    title: 'APPRENDRE OU REPRENDRE CONFIANCE',
+    text: 'Enfant ou adulte, débutant ou en reprise : avancez à votre rythme, sans jugement, avec un moniteur diplômé.',
+    image: '/images/velo-ecole-particuliers.png',
+    alt: 'Une adulte apprend à rouler à vélo avec un moniteur Wild Bike',
+    href: '#particuliers',
+    action: 'DÉCOUVRIR LES SÉANCES',
+  },
+  {
+    num: '02',
+    label: 'ENTREPRISES',
+    title: 'FAIRE DU VÉLO UN OUTIL DU QUOTIDIEN',
+    text: 'Ateliers vélo-taf, sécurité, cohésion d’équipe et accompagnement mobilité pour vos collaborateurs.',
+    image: '/images/velo-ecole-entreprises.png',
+    alt: 'Un collaborateur se déplace à vélo en ville',
+    href: '#professionnels',
+    action: 'VOIR LES FORMATS',
+  },
+  {
+    num: '03',
+    label: 'COLLECTIVITÉS',
+    title: 'FORMER LES JEUNES À ROULER EN SÉCURITÉ',
+    text: 'Interventions scolaires, ateliers de sécurité routière et programme Savoir Rouler À Vélo.',
+    image: '/images/velo-ecole-collectivites.png',
+    alt: 'Un moniteur encadre un groupe d’enfants à vélo',
+    href: '#professionnels',
+    action: 'DÉCOUVRIR LE SRAV',
+  },
+];
+
+const steps = [
+  {
+    num: '01',
+    title: 'ON FAIT LE POINT',
+    text: 'Votre expérience, vos blocages et votre objectif nous permettent de construire une séance vraiment adaptée.',
+  },
+  {
+    num: '02',
+    title: 'ON RETROUVE L’ÉQUILIBRE',
+    text: 'Des exercices simples et progressifs, sur un terrain plat et protégé, pour avancer sans pression.',
+  },
+  {
+    num: '03',
+    title: 'ON DEVIENT AUTONOME',
+    text: 'Démarrer, freiner, tourner, anticiper : chaque compétence est travaillée jusqu’à devenir naturelle.',
+  },
+  {
+    num: '04',
+    title: 'ON ROULE POUR DE VRAI',
+    text: 'Quand vous êtes prêt, nous passons progressivement des espaces sécurisés aux situations du quotidien.',
+  },
+];
+
+const questions = [
+  {
+    question: 'Est-ce que je suis trop âgé pour apprendre à faire du vélo ?',
+    answer:
+      'Il n’y a pas d’âge pour apprendre. Wild Bike accompagne les enfants comme les adultes, avec des exercices adaptés à l’équilibre, au rythme et à l’objectif de chacun.',
+  },
+  {
+    question: 'Tout le monde sait rouler sauf moi. Est-ce gênant ?',
+    answer:
+      'Pas du tout. Apprendre à l’âge adulte est plus courant qu’on ne le pense. Les séances sont bienveillantes, confidentielles et sans jugement.',
+  },
+  {
+    question: 'J’ai peur de tomber ou de me faire mal.',
+    answer:
+      'Les premières séances se déroulent sur des terrains plats, ouverts et protégés. Le moniteur reste à vos côtés et adapte chaque exercice pour progresser en sécurité.',
+  },
+  {
+    question: 'Mes proches ont essayé de m’apprendre, sans succès.',
+    answer:
+      'C’est fréquent. Un moniteur apporte une méthode progressive, un regard extérieur et un cadre calme qui permettent de dépasser les blocages sans pression affective.',
+  },
+  {
+    question: 'Combien de séances faut-il pour savoir rouler ?',
+    answer:
+      'La plupart des élèves deviennent autonomes en 2 à 5 séances. La durée dépend de votre point de départ, de votre aisance et de votre objectif.',
+  },
+  {
+    question: 'Dois-je acheter un vélo avant de commencer ?',
+    answer:
+      'Non. Le matériel adapté peut être prêté pour débuter dans de bonnes conditions. Nous pouvons ensuite vous conseiller un vélo adapté à votre taille et à votre usage.',
+  },
+  {
+    question: 'Comment apprendre à rouler dans la circulation ?',
+    answer:
+      'L’apprentissage commence à l’écart des voitures. Une fois les bases acquises, le moniteur vous apprend progressivement à lire la route, anticiper et circuler avec confiance.',
+  },
+];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: questions.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<Layout
+  title="Vélo-école à Toulon et dans le Var | Wild Bike"
+  description="Vélo-école à Toulon et dans le Var : cours pour enfants et adultes, remise en selle, ateliers en entreprise et programme Savoir Rouler à Vélo."
+  image="/images/velo-ecole-hero.jpg"
+  imageAlt="Une adulte accompagnée par un moniteur Wild Bike pendant une séance de vélo-école"
+  structuredData={faqSchema}
+>
+  <Nav page="veloecole" />
+  <main id="main-content">
+    <header class="relative min-h-[760px] overflow-hidden bg-black text-white">
+      <OptimizedImage
+        src="/images/velo-ecole-hero.jpg"
+        alt="Une adulte accompagnée par un moniteur Wild Bike pendant une séance de vélo-école"
+        loading="eager"
+        fetchpriority="high"
+        class="absolute inset-0 h-full w-full object-cover object-[58%_center] saturate-110 contrast-105"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/45 to-black/10"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15"></div>
+
+      <div class="relative z-10 mx-auto flex min-h-[760px] max-w-7xl flex-col justify-end px-6 pb-16 pt-36 md:px-12 md:pb-24">
+        <div class="max-w-4xl">
+          <div class="mb-7 flex items-center gap-4 fade-up">
+            <span class="font-display text-xs tracking-widest text-edit-teal">VÉLO-ÉCOLE · TOULON & RÉGION PACA</span>
+            <span class="h-px w-12 bg-edit-teal"></span>
+          </div>
+          <h1 class="font-display max-w-4xl text-6xl leading-[0.88] tracking-tighter md:text-8xl lg:text-9xl fade-up" style="animation-delay: 100ms;">
+            LA LIBERTÉ COMMENCE AU PREMIER COUP DE PÉDALE.
+          </h1>
+          <p class="mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/80 md:text-lg fade-up" style="animation-delay: 200ms;">
+            Apprendre, reprendre confiance ou rouler plus sereinement : enfants et adultes avancent à leur rythme, dans un cadre sécurisant et sans jugement.
+          </p>
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row fade-up" style="animation-delay: 300ms;">
+            <a
+              href={forms.particuliers}
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center justify-center gap-3 bg-edit-teal px-8 py-5 font-display text-xs tracking-widest transition-colors hover:bg-white hover:text-black"
+            >
+              RÉSERVER UNE SÉANCE DÉCOUVERTE
+              <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+            </a>
+            <a
+              href="#publics"
+              class="inline-flex items-center justify-center gap-3 border border-white/30 bg-white/10 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:border-white hover:bg-white hover:text-black"
+            >
+              DÉCOUVRIR NOS OFFRES
+            </a>
+          </div>
+        </div>
+
+        <dl class="mt-14 grid max-w-3xl grid-cols-3 border-t border-white/25 pt-6 fade-up" style="animation-delay: 400ms;">
+          <div class="border-r border-white/20 pr-4">
+            <dt class="font-display text-3xl text-edit-teal md:text-4xl">2 À 5</dt>
+            <dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">Séances en moyenne</dd>
+          </div>
+          <div class="border-r border-white/20 px-4">
+            <dt class="font-display text-3xl text-edit-teal md:text-4xl">2 À 78 ANS</dt>
+            <dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">Déjà accompagnés</dd>
+          </div>
+          <div class="pl-4">
+            <dt class="font-display text-3xl text-edit-teal md:text-4xl">VAR</dt>
+            <dd class="mt-1 text-[10px] font-medium uppercase tracking-wider text-white/60">Zone d’intervention</dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <section id="publics" class="relative overflow-hidden bg-edit-dark py-24 text-white md:py-32">
+      <div
+        class="absolute inset-0 opacity-[0.035]"
+        style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(to right, #ffffff 1px, transparent 1px); background-size: 4rem 4rem;"
+      ></div>
+      <div class="relative mx-auto max-w-7xl px-6 md:px-12">
+        <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div class="fade-up">
+            <span class="font-display text-xs tracking-widest text-edit-teal">UNE ÉCOLE, TROIS PUBLICS</span>
+            <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">LE VÉLO S’APPREND À TOUT ÂGE</h2>
+          </div>
+          <p class="max-w-xl self-end text-base font-medium leading-relaxed text-white/70 md:text-lg fade-up">
+            De la première mise en selle aux déplacements du quotidien, Wild Bike adapte sa pédagogie aux particuliers, aux entreprises et aux collectivités.
+          </p>
+        </div>
+
+        <div class="mt-16 grid gap-px overflow-hidden border border-white/15 bg-white/15 lg:grid-cols-3 fade-up">
+          {
+            audiences.map((audience) => (
+              <a href={audience.href} class="group relative isolate flex min-h-[31rem] flex-col justify-end overflow-hidden bg-black p-7 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-edit-teal">
+                <OptimizedImage
+                  src={audience.image}
+                  alt={audience.alt}
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  class="absolute inset-0 -z-20 h-full w-full object-cover saturate-110 transition duration-700 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 -z-10 bg-gradient-to-t from-black via-black/55 to-black/5 transition-colors duration-500 group-hover:via-black/40"></div>
+                <div class="flex items-center justify-between">
+                  <span class="font-display text-3xl text-edit-teal">{audience.num}</span>
+                  <span class="font-display text-[10px] tracking-widest text-white/65">{audience.label}</span>
+                </div>
+                <h3 class="mt-16 font-display text-3xl leading-none tracking-tight">{audience.title}</h3>
+                <p class="mt-5 text-sm font-medium leading-relaxed text-white/75">{audience.text}</p>
+                <span class="mt-7 inline-flex items-center gap-2 font-display text-xs tracking-widest text-white">
+                  {audience.action}
+                  <iconify-icon icon="solar:arrow-right-linear" class="transition-transform duration-300 group-hover:translate-x-1" width="15"></iconify-icon>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="particuliers" class="bg-white text-black">
+      <div class="grid lg:grid-cols-2">
+        <div class="relative min-h-[32rem] overflow-hidden lg:min-h-[52rem]">
+          <OptimizedImage
+            src="/images/velo-ecole-particuliers.png"
+            alt="Cours particulier de vélo dans un environnement naturel"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            class="absolute inset-0 h-full w-full object-cover object-center"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 bg-edit-teal px-5 py-4 text-white md:bottom-10 md:left-10">
+            <p class="font-display text-2xl">ENFANTS & ADULTES</p>
+            <p class="mt-1 text-xs font-medium uppercase tracking-wider text-white/70">Individuel ou petit groupe</p>
+          </div>
+        </div>
+
+        <div class="flex items-center px-6 py-20 md:px-12 lg:px-20 lg:py-28">
+          <div class="max-w-xl fade-up">
+            <span class="font-display text-xs tracking-widest text-edit-teal">COURS POUR PARTICULIERS</span>
+            <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">VOTRE RYTHME. VOTRE DÉCLIC.</h2>
+            <p class="mt-8 text-base font-medium leading-relaxed text-black/65 md:text-lg">
+              Vous n’avez jamais appris, vous manquez d’équilibre ou une chute vous a fait perdre confiance ? Un moniteur diplômé vous accompagne avec une méthode progressive et des objectifs simples.
+            </p>
+
+            <ul class="mt-10 space-y-5 border-t border-black/15 pt-8">
+              <li class="flex items-start gap-4">
+                <iconify-icon icon="solar:check-circle-linear" class="mt-0.5 shrink-0 text-2xl text-edit-teal"></iconify-icon>
+                <div><strong class="font-display text-lg">APPRENTISSAGE</strong><p class="mt-1 text-sm font-medium leading-relaxed text-black/60">Trouver l’équilibre, démarrer, freiner et tourner en confiance.</p></div>
+              </li>
+              <li class="flex items-start gap-4">
+                <iconify-icon icon="solar:check-circle-linear" class="mt-0.5 shrink-0 text-2xl text-edit-teal"></iconify-icon>
+                <div><strong class="font-display text-lg">REMISE EN SELLE</strong><p class="mt-1 text-sm font-medium leading-relaxed text-black/60">Retrouver ses sensations après une longue pause, une peur ou un accident.</p></div>
+              </li>
+              <li class="flex items-start gap-4">
+                <iconify-icon icon="solar:check-circle-linear" class="mt-0.5 shrink-0 text-2xl text-edit-teal"></iconify-icon>
+                <div><strong class="font-display text-lg">AUTONOMIE AU QUOTIDIEN</strong><p class="mt-1 text-sm font-medium leading-relaxed text-black/60">Apprendre à anticiper et à circuler progressivement dans des situations réelles.</p></div>
+              </li>
+            </ul>
+
+            <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href={forms.particuliers} target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 bg-edit-teal px-8 py-5 font-display text-xs tracking-widest text-white transition-colors hover:bg-black">
+                RÉSERVER MA SÉANCE
+                <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+              </a>
+              <a href="tel:0750903677" class="inline-flex items-center justify-center gap-3 border border-black/20 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:border-black hover:bg-black hover:text-white">
+                07 50 90 36 77
+                <iconify-icon icon="solar:phone-linear" width="16"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="methode" class="relative overflow-hidden bg-edit-dark py-24 text-white md:py-32">
+      <div class="mx-auto max-w-7xl px-6 md:px-12">
+        <div class="max-w-4xl fade-up">
+          <span class="font-display text-xs tracking-widest text-edit-teal">LA MÉTHODE WILD BIKE</span>
+          <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">DE LA PEUR À L’AUTONOMIE, ÉTAPE PAR ÉTAPE</h2>
+        </div>
+
+        <div class="mt-16 grid gap-px overflow-hidden border border-white/15 bg-white/15 md:grid-cols-2 lg:grid-cols-4">
+          {
+            steps.map((step) => (
+              <article class="bg-edit-dark p-8 fade-up">
+                <span class="font-display text-4xl text-edit-teal">{step.num}</span>
+                <h3 class="mt-14 font-display text-2xl leading-tight tracking-tight">{step.title}</h3>
+                <p class="mt-5 text-sm font-medium leading-relaxed text-white/65">{step.text}</p>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="mt-14 grid gap-4 md:grid-cols-3">
+          <div class="border-t-2 border-edit-teal bg-white/5 p-7 fade-up">
+            <iconify-icon icon="solar:shield-check-linear" class="text-3xl text-edit-teal"></iconify-icon>
+            <h3 class="mt-7 font-display text-xl">ESPACES SÉCURISÉS</h3>
+            <p class="mt-3 text-sm font-medium leading-relaxed text-white/60">Les bases sont acquises sur des terrains plats et protégés, à l’écart de la circulation.</p>
+          </div>
+          <div class="border-t-2 border-edit-teal bg-white/5 p-7 fade-up">
+            <iconify-icon icon="solar:bicycling-round-linear" class="text-3xl text-edit-teal"></iconify-icon>
+            <h3 class="mt-7 font-display text-xl">MATÉRIEL DISPONIBLE</h3>
+            <p class="mt-3 text-sm font-medium leading-relaxed text-white/60">Un vélo adapté peut être prêté pour commencer avant d’investir dans votre propre matériel.</p>
+          </div>
+          <div class="border-t-2 border-edit-teal bg-white/5 p-7 fade-up">
+            <iconify-icon icon="solar:map-point-linear" class="text-3xl text-edit-teal"></iconify-icon>
+            <h3 class="mt-7 font-display text-xl">PRÈS DE CHEZ VOUS</h3>
+            <p class="mt-3 text-sm font-medium leading-relaxed text-white/60">Toulon, La Seyne-sur-Mer, Ollioules, Hyères, Sanary et plus largement dans le Var.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="professionnels" class="bg-white py-24 text-black md:py-32">
+      <div class="mx-auto max-w-7xl px-6 md:px-12">
+        <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div class="fade-up">
+            <span class="font-display text-xs tracking-widest text-edit-teal">ENTREPRISES & COLLECTIVITÉS</span>
+            <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">FAIRE ROULER TOUT UN TERRITOIRE</h2>
+          </div>
+          <p class="max-w-xl self-end text-base font-medium leading-relaxed text-black/65 md:text-lg fade-up">
+            Wild Bike conçoit des interventions sur mesure pour développer la mobilité durable, la sécurité et le plaisir de rouler ensemble.
+          </p>
+        </div>
+
+        <div class="mt-16 grid gap-6 lg:grid-cols-2">
+          <article class="border border-black/15 p-8 md:p-10 fade-up">
+            <div class="flex items-center justify-between gap-6 border-b border-black/15 pb-7">
+              <span class="font-display text-xs tracking-widest text-edit-teal">POUR LES ENTREPRISES</span>
+              <iconify-icon icon="solar:buildings-2-linear" class="text-4xl text-edit-teal"></iconify-icon>
+            </div>
+            <h3 class="mt-8 font-display text-3xl leading-none tracking-tight md:text-4xl">MOBILITÉ, SÉCURITÉ & COHÉSION</h3>
+            <p class="mt-5 text-sm font-medium leading-relaxed text-black/60">Aidez vos collaborateurs à intégrer le vélo dans leur quotidien et créez un temps collectif utile, concret et fédérateur.</p>
+            <ul class="mt-8 space-y-4 text-sm font-medium text-black/70">
+              <li class="flex gap-3"><span class="text-edit-teal">■</span> Ateliers « vélo au quotidien » et vélo-taf</li>
+              <li class="flex gap-3"><span class="text-edit-teal">■</span> Séminaires, cohésion et défis collectifs</li>
+              <li class="flex gap-3"><span class="text-edit-teal">■</span> Conseil mobilité pour les collaborateurs</li>
+            </ul>
+            <a href={forms.entreprises} target="_blank" rel="noreferrer" class="mt-10 inline-flex items-center gap-2 font-display text-xs tracking-widest text-edit-teal transition-colors hover:text-black">
+              CONSTRUIRE UN PROGRAMME SUR MESURE
+              <iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon>
+            </a>
+          </article>
+
+          <article class="border border-black/15 bg-black p-8 text-white md:p-10 fade-up">
+            <div class="flex items-center justify-between gap-6 border-b border-white/20 pb-7">
+              <span class="font-display text-xs tracking-widest text-edit-teal">POUR LES COLLECTIVITÉS</span>
+              <iconify-icon icon="solar:city-linear" class="text-4xl text-edit-teal"></iconify-icon>
+            </div>
+            <h3 class="mt-8 font-display text-3xl leading-none tracking-tight md:text-4xl">SAVOIR ROULER À VÉLO</h3>
+            <p class="mt-5 text-sm font-medium leading-relaxed text-white/65">Des interventions pédagogiques pour transmettre aux jeunes les bases nécessaires afin de circuler à vélo en autonomie et en sécurité.</p>
+            <ul class="mt-8 space-y-4 text-sm font-medium text-white/75">
+              <li class="flex gap-3"><span class="text-edit-teal">■</span> Interventions scolaires et périscolaires</li>
+              <li class="flex gap-3"><span class="text-edit-teal">■</span> Ateliers de sécurité routière</li>
+              <li class="flex gap-3"><span class="text-edit-teal">■</span> Animations ludiques et pédagogiques</li>
+            </ul>
+            <a href={forms.collectivites} target="_blank" rel="noreferrer" class="mt-10 inline-flex items-center gap-2 font-display text-xs tracking-widest text-edit-teal transition-colors hover:text-white">
+              PARLER DE VOTRE PROJET
+              <iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative overflow-hidden bg-black py-28 text-white md:py-40">
+      <OptimizedImage src="/images/velo-ecole-hero.jpg" alt="" class="absolute inset-0 h-full w-full object-cover object-[58%_center] saturate-110" />
+      <div class="absolute inset-0 bg-black/65"></div>
+      <div class="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
+        <div class="max-w-4xl fade-up">
+          <span class="font-display text-xs tracking-widest text-edit-teal">POURQUOI WILD BIKE</span>
+          <p class="mt-7 font-display text-4xl leading-[1.05] tracking-tight md:text-6xl">
+            UN MONITEUR DIPLÔMÉ. UNE MÉTHODE BIENVEILLANTE. AUCUN JUGEMENT. JUSTE LA FIERTÉ D’Y ARRIVER.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="questions" class="bg-edit-dark py-24 text-white md:py-32">
+      <div class="mx-auto max-w-5xl px-6 md:px-12">
+        <div class="text-center fade-up">
+          <span class="font-display text-xs tracking-widest text-edit-teal">AVANT DE VOUS LANCER</span>
+          <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">VOS QUESTIONS, SANS DÉTOUR</h2>
+        </div>
+
+        <div class="mt-16 border-t border-white/20">
+          {
+            questions.map((item, index) => (
+              <details class="group border-b border-white/20 fade-up" open={index === 0}>
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-7 font-display text-xl leading-tight tracking-tight marker:content-none md:text-2xl">
+                  <span>{item.question}</span>
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center border border-white/25 text-edit-teal transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p class="max-w-3xl pb-8 pr-12 text-sm font-medium leading-relaxed text-white/65 md:text-base">{item.answer}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-edit-teal py-24 text-white md:py-32">
+      <div class="mx-auto max-w-4xl px-6 text-center">
+        <span class="font-display text-xs tracking-widest text-white/70">ET SI C’ÉTAIT VOTRE TOUR ?</span>
+        <h2 class="mt-6 font-display text-5xl leading-none tracking-tighter md:text-7xl">RETROUVEZ LA LIBERTÉ DE ROULER</h2>
+        <p class="mx-auto mt-8 max-w-2xl text-base font-medium leading-relaxed text-white/85 md:text-lg">
+          Dites-nous où vous en êtes et ce que vous voulez réussir. Nous vous proposerons une première séance adaptée à votre niveau.
+        </p>
+        <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+          <a href={forms.particuliers} target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 bg-white px-8 py-5 font-display text-xs tracking-widest text-black transition-colors hover:bg-black hover:text-white">
+            RÉSERVER UNE SÉANCE DÉCOUVERTE
+            <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+          </a>
+          <a href="https://wa.me/33750903677?text=Bonjour%20Wild%20Bike%2C%20j%27aimerais%20des%20informations%20sur%20la%20v%C3%A9lo-%C3%A9cole." target="_blank" rel="noreferrer" class="inline-flex items-center justify-center gap-3 border border-white/40 px-8 py-5 font-display text-xs tracking-widest transition-colors hover:border-black hover:bg-black">
+            ÉCRIRE SUR WHATSAPP
+            <iconify-icon icon="solar:chat-round-dots-linear" width="16"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

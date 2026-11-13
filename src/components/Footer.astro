@@ -1,18 +1,19 @@
 ---
 const footerLinks = {
   pratique: {
-    title: 'PRATIQUE',
+    title: 'NAVIGATION',
     links: [
-      { label: 'Club BMX & VTT', href: 'https://wildbike.fr/club/' },
+      { label: 'Accueil', href: '/' },
+      { label: 'Club BMX & VTT', href: '/club/' },
       { label: 'Stages vacances', href: '/stages/' },
-      { label: 'Vélo école', href: 'https://wildbike.fr/veloecole/' },
-      { label: 'FAQ', href: 'https://wildbike.fr/faq/' },
+      { label: 'Vélo école', href: '/veloecole/' },
+      { label: 'FAQ', href: '/faq/' },
     ],
   },
   contact: {
     title: 'CONTACT',
     links: [
-      { label: 'Cours d’essai', href: 'https://docs.google.com/forms/d/e/1FAIpQLSd3iMWrb7wpacYt7c5cc9xX0y1GVrfiwts5CNG1ru8F5ZE09g/viewform?usp=dialog' },
+      { label: 'Vérifier les places', href: 'https://wa.me/33750903677?text=Bonjour%20Wild%20Bike%2C%20je%20souhaite%20savoir%20quel%20parcours%20est%20adapt%C3%A9%20%C3%A0%20mon%20enfant.' },
       { label: 'Téléphone', href: 'tel:0750903677' },
       { label: 'Instagram', href: 'https://www.instagram.com/wildbike83/?hl=fr' },
       { label: 'Facebook', href: 'https://www.facebook.com/wildbike83/' },
@@ -41,12 +42,14 @@ const footerLinks = {
       <div class="flex gap-3">
         <a
           href="https://www.instagram.com/wildbike83/?hl=fr"
+          aria-label="Instagram Wild Bike"
           class="w-10 h-10 border border-white/10 hover:border-edit-teal hover:bg-edit-teal transition-all duration-300 flex items-center justify-center"
         >
           <iconify-icon icon="solar:camera-linear" width="18"></iconify-icon>
         </a>
         <a
           href="mailto:contact@wildbike.fr"
+          aria-label="Envoyer un e-mail à Wild Bike"
           class="w-10 h-10 border border-white/10 hover:border-edit-teal hover:bg-edit-teal transition-all duration-300 flex items-center justify-center"
         >
           <iconify-icon icon="solar:letter-linear" width="18"></iconify-icon>
@@ -75,12 +78,15 @@ const footerLinks = {
   </div>
 
   <div
-    class="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40 font-medium fade-up"
+    class="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/70 font-medium fade-up"
   >
     <p>© 2026 Wild Bike. Tous droits réservés.</p>
-    <div class="flex gap-6">
-      <a href="https://wildbike.fr/contact/" class="hover:text-white transition-colors">Contact</a>
-      <a href="https://wildbike.fr/faq/" class="hover:text-white transition-colors">FAQ</a>
+    <div class="flex flex-wrap justify-center gap-x-6 gap-y-3">
+      <a href="/contact/" class="hover:text-white transition-colors">Contact</a>
+      <a href="/faq/" class="hover:text-white transition-colors">FAQ</a>
+      <a href="/mentions-legal-du-site-wildbike-fr/" class="hover:text-white transition-colors">Mentions légales</a>
+      <a href="/confidentialite/" class="hover:text-white transition-colors">Confidentialité</a>
+      <a href="/cgv/" class="hover:text-white transition-colors">CGV</a>
     </div>
   </div>
 </footer>

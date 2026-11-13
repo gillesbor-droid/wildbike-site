@@ -6,14 +6,17 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "verify:production": "node scripts/verify-production.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.7.0"
+    "astro": "^7.3.8"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.0",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.1.0"
   }
 }

@@ -1,0 +1,82 @@
+name: Deploy to o2switch
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: o2switch-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Allow runner through o2switch firewall
+        env:
+          CPANEL_TOKEN: ${{ secrets.O2SWITCH_CPANEL_TOKEN }}
+          REMOTE_HOST: ${{ secrets.O2SWITCH_HOST }}
+          REMOTE_USER: ${{ secrets.O2SWITCH_USER }}
+        run: |
+          RUNNER_IP=$(curl -4 -fsS --retry 3 --max-time 30 https://api.ipify.org)
+          echo "RUNNER_IP=$RUNNER_IP" >> "$GITHUB_ENV"
+          RESPONSE=$(curl -fsS --max-time 45 \
+            -H "Authorization: cpanel ${REMOTE_USER}:${CPANEL_TOKEN}" \
+            "https://${REMOTE_HOST}:2083/execute/SshWhitelist/add?address=${RUNNER_IP}&port=22")
+          echo "$RESPONSE" | jq -e '.status == 1' > /dev/null
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.O2SWITCH_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo 'reload.o2switch.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKr+J1/4usX6YVFM65qDHUtMUdF90bWuIU6FK9AuZwMT' > ~/.ssh/known_hosts
+
+      - name: Deploy static build
+        env:
+          REMOTE_HOST: ${{ secrets.O2SWITCH_HOST }}
+          REMOTE_USER: ${{ secrets.O2SWITCH_USER }}
+        run: |
+          rsync -az --checksum --delay-updates --chmod=D755,F644 \
+            --backup --backup-dir="/home/${REMOTE_USER}/deploy-backups/${GITHUB_RUN_ID}" \
+            --exclude='.htaccess' \
+            dist/ "${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/public_html/"
+
+      - name: Verify production
+        run: npm run verify:production
+
+      - name: Remove runner from o2switch firewall
+        if: always() && env.RUNNER_IP != ''
+        env:
+          CPANEL_TOKEN: ${{ secrets.O2SWITCH_CPANEL_TOKEN }}
+          REMOTE_HOST: ${{ secrets.O2SWITCH_HOST }}
+          REMOTE_USER: ${{ secrets.O2SWITCH_USER }}
+        run: |
+          for DIRECTION in in out; do
+            RESPONSE=$(curl -fsS --retry 3 --max-time 45 \
+              -H "Authorization: cpanel ${REMOTE_USER}:${CPANEL_TOKEN}" \
+              "https://${REMOTE_HOST}:2083/execute/SshWhitelist/remove?address=${RUNNER_IP}&port=22&direction=${DIRECTION}")
+            echo "$RESPONSE" | jq -e '.status == 1' > /dev/null
+          done

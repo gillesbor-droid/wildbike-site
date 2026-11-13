@@ -1,4 +1,6 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
+
 const photos = [
   {
     src: '/images/bmx-toulon-skatepark.jpg',
@@ -44,9 +46,10 @@ const photos = [
       {
         photos.map((photo) => (
           <figure class="relative h-72 md:h-96 overflow-hidden bg-white/5 fade-up group">
-            <img
+            <OptimizedImage
               src={photo.src}
               alt={photo.alt}
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
               class="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
             />
             <figcaption class="absolute left-0 right-0 bottom-0 p-5 bg-gradient-to-t from-black/80 to-transparent">

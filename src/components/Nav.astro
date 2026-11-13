@@ -1,31 +1,20 @@
 ---
 interface Props {
-  page?: 'home' | 'stages';
+  page?: 'home' | 'club' | 'stages' | 'veloecole' | 'faq' | 'none';
 }
 
 const { page = 'home' } = Astro.props;
 const isStagesPage = page === 'stages';
-const navLinks = isStagesPage
-  ? [
-      { href: '/', label: 'ACCUEIL' },
-      { href: '#formats', label: 'FORMATS' },
-      { href: '#stages', label: 'DATES' },
-      { href: '#infos', label: 'INFOS' },
-      { href: 'https://wildbike.fr/faq/', label: 'FAQ' },
-    ]
-  : [
-      { href: '#ethos', label: 'ACTIVITÉS' },
-      { href: '/stages/', label: 'STAGES' },
-      { href: '#story', label: 'POURQUOI' },
-      { href: '#terrain', label: 'TERRAIN' },
-      { href: 'https://wildbike.fr/faq/', label: 'FAQ' },
-      { href: '#reservation', label: 'ESSAI' },
-    ];
+const isVeloEcolePage = page === 'veloecole';
+const navLinks = [
+  { href: '/', label: 'ACCUEIL', active: page === 'home' },
+  { href: '/club/', label: 'CLUB', active: page === 'club' },
+  { href: '/stages/', label: 'STAGES', active: isStagesPage },
+  { href: '/veloecole/', label: 'VÉLO-ÉCOLE', active: isVeloEcolePage },
+  { href: '/faq/', label: 'FAQ', active: page === 'faq' },
+];
 
-const logoHref = isStagesPage ? '/' : '#';
-const mobileCta = isStagesPage
-  ? { href: '#stages', label: 'DATES' }
-  : { href: '#reservation', label: 'ESSAI' };
+const logoHref = page === 'home' ? '#' : '/';
 ---
 
 <nav
@@ -49,7 +38,11 @@ const mobileCta = isStagesPage
       navLinks.map((link) => (
         <a
           href={link.href}
-          class="font-display text-xs tracking-widest hover:text-edit-teal transition-colors duration-300"
+          aria-current={link.active ? 'page' : undefined}
+          class:list={[
+            'font-display text-xs tracking-widest transition-colors duration-300 hover:text-edit-teal',
+            { 'text-edit-teal': link.active },
+          ]}
         >
           {link.label}
         </a>
@@ -57,10 +50,25 @@ const mobileCta = isStagesPage
     }
   </div>
 
-  <a
-    href={mobileCta.href}
-    class="md:hidden font-display text-xs tracking-widest border border-white/40 px-4 py-3"
-  >
-    {mobileCta.label}
-  </a>
+  <details class="group relative md:hidden">
+    <summary class="cursor-pointer list-none border border-white/40 px-4 py-3 font-display text-xs tracking-widest marker:content-none">
+      MENU
+    </summary>
+    <div class="absolute right-0 top-[calc(100%+0.75rem)] flex min-w-52 flex-col border border-white/20 bg-black p-2 text-white shadow-2xl">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            aria-current={link.active ? 'page' : undefined}
+            class:list={[
+              'px-4 py-3 font-display text-xs tracking-widest transition-colors hover:bg-edit-teal hover:text-white',
+              { 'text-edit-teal': link.active },
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </details>
 </nav>
