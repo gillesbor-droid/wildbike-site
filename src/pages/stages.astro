@@ -98,7 +98,8 @@ const periods = [
         alt: 'Rider Wild Bike qui prend un virage au skatepark',
         registrationUrl:
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-lundi-21-decembre-2026',
-        registrationOpen: true,
+        registrationOpen: false,
+        registrationClosedLabel: 'STAGE ANNULÉ',
         registrationOpensOn: '21 OCT. 2026',
       },
       {
@@ -259,7 +260,9 @@ const eventSchema = {
       startDate: stage.startDate,
       endDate: stage.endDate,
       eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-      eventStatus: 'https://schema.org/EventScheduled',
+      eventStatus: stage.registrationClosedLabel
+        ? 'https://schema.org/EventCancelled'
+        : 'https://schema.org/EventScheduled',
       image: localImageUrl(stage.image.src),
       location: {
         '@type': 'Place',
@@ -274,15 +277,19 @@ const eventSchema = {
       organizer: {
         '@id': new URL('/#organization', Astro.site).href,
       },
-      offers: {
-        '@type': 'Offer',
-        url: stage.registrationUrl,
-        price: stage.price.replace(' €', '').replace(',', '.'),
-        priceCurrency: 'EUR',
-        availability: stage.registrationOpen
-          ? 'https://schema.org/InStock'
-          : 'https://schema.org/PreOrder',
-      },
+      ...(stage.registrationClosedLabel
+        ? {}
+        : {
+            offers: {
+              '@type': 'Offer',
+              url: stage.registrationUrl,
+              price: stage.price.replace(' €', '').replace(',', '.'),
+              priceCurrency: 'EUR',
+              availability: stage.registrationOpen
+                ? 'https://schema.org/InStock'
+                : 'https://schema.org/PreOrder',
+            },
+          }),
     })),
   ),
 };
@@ -486,6 +493,11 @@ const eventSchema = {
                                     RÉSERVER SUR HELLOASSO
                                     <iconify-icon icon="solar:arrow-right-linear" width="15"></iconify-icon>
                                   </a>
+                                ) : stage.registrationClosedLabel ? (
+                                  <span class="inline-flex items-center gap-2 font-display text-[10px] tracking-widest text-white/65">
+                                    <span class="h-2 w-2 bg-white/45"></span>
+                                    {stage.registrationClosedLabel}
+                                  </span>
                                 ) : (
                                   <span class="inline-flex items-center gap-2 font-display text-[10px] tracking-widest text-white/65">
                                     <span class="h-2 w-2 bg-edit-teal"></span>
