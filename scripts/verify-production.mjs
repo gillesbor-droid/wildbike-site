@@ -9,7 +9,8 @@ const revision = process.env.GITHUB_SHA || Date.now().toString();
 
 async function request(path, options = {}) {
   const url = new URL(path, origin);
-  url.searchParams.set('deploy-check', revision);
+  if (options.cacheBust) url.searchParams.set('deploy-check', revision);
+  delete options.cacheBust;
   const response = await fetch(url, { ...options, signal: AbortSignal.timeout(30000) });
   assert.equal(response.status, 200, `${path}: HTTP ${response.status}`);
   return response;
@@ -37,6 +38,6 @@ for (const route of routes) {
   console.log(`OK ${route}`);
 }
 
-for (const asset of assets) await request(asset, { method: 'HEAD' });
+for (const asset of assets) await request(asset, { method: 'HEAD', cacheBust: true });
 await request('/contact/');
 console.log(`OK ${assets.size} assets, boutique redirect and WordPress contact page`);

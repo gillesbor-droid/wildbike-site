@@ -35,7 +35,8 @@ Le workflow `.github/workflows/deploy-o2switch.yml` déploie `dist/` à chaque p
 - Le jeton cPanel `github-actions-wildbike-deploy` expire le 4 novembre 2027 et devra être renouvelé avant cette date.
 - Les fichiers remplacés sont sauvegardés hors de la racine publique dans `/home/bogi5130/deploy-backups/<identifiant-exécution-GitHub>/`.
 - Les permissions publiées sont `0755` pour les dossiers et `0644` pour les fichiers ; les fichiers sont transférés avec `--delay-updates`.
-- `npm run verify:production` compare les huit pages principales au build, vérifie leurs ressources, la redirection boutique, la CSP Stage Control et la page Contact WordPress.
+- Le cache de pages LiteSpeed d'o2switch est purgé par WP-CLI après chaque transfert.
+- `npm run verify:production` compare les huit URL publiques, sans paramètre anti-cache, au build puis vérifie leurs ressources, la redirection boutique, la CSP Stage Control et la page Contact WordPress.
 
 ### Utilisation courante
 
