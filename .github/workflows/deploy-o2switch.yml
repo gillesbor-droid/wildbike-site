@@ -64,13 +64,13 @@ jobs:
             --exclude='.htaccess' \
             dist/ "${REMOTE_USER}@${REMOTE_HOST}:/home/${REMOTE_USER}/public_html/"
 
-      - name: Purge o2switch page cache
+      - name: Invalidate o2switch page cache
         env:
           REMOTE_HOST: ${{ secrets.O2SWITCH_HOST }}
           REMOTE_USER: ${{ secrets.O2SWITCH_USER }}
         run: |
           ssh "${REMOTE_USER}@${REMOTE_HOST}" \
-            "cd /home/${REMOTE_USER}/public_html && wp litespeed-purge all"
+            "touch /home/${REMOTE_USER}/public_html/.htaccess"
 
       - name: Verify production
         run: npm run verify:production
