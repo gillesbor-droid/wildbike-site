@@ -80,8 +80,8 @@ const formatAnchorByStage: Record<string, string> = {
 const periods = [
   {
     label: 'VACANCES DE NOËL',
-    dates: '21 & 22 DÉC. 2026',
-    intro: 'Deux journées pour sortir du quotidien et vivre une aventure à vélo.',
+    dates: '22, 28 & 29 DÉC. 2026',
+    intro: 'Une journée VTT à Carcès et deux matinées pour débuter en BMX à Toulon.',
     stages: [
       {
         title: 'BMX MARSEILLE FREESTYLE QUEST',
@@ -119,6 +119,26 @@ const periods = [
           'https://www.helloasso.com/associations/wild-bike/evenements/bike-adventure-mardi-22-decembre-2026',
         registrationOpen: true,
         registrationOpensOn: '22 OCT. 2026',
+      },
+      {
+        title: 'BMX NIVEAU 1',
+        anchor: 'bmx-niveau-1',
+        type: 'BMX',
+        dates: '28 & 29 DÉC.',
+        startDate: '2026-12-28T10:00:00+01:00',
+        endDate: '2026-12-29T12:00:00+01:00',
+        hours: '10h - 12h chaque jour',
+        price: '49 €',
+        location: 'Toulon',
+        audience: 'Dès 5 ans · 6 à 12 enfants',
+        text: 'Deux matinées pour découvrir le BMX avec Gilles et Esteban, en sachant déjà pédaler et freiner. 49 € les deux matinées ; location BMX, casque et protections +10 €.',
+        meetingPoint: 'Rendez-vous à 9h50 au parking de la Ferme des Romarins, avenue Albert Camus, 83200 Toulon, pour le skatepark de la Beaucaire. Les familles viennent directement sur place et récupèrent leur enfant à 12h chaque jour.',
+        image: stageImages.aprilBmxNiveau1,
+        alt: 'Jeune rider équipé au stage BMX niveau 1 Wild Bike au skatepark',
+        registrationUrl:
+          'https://www.helloasso.com/associations/wild-bike/evenements/stage-bmx-niveau-1-28-et-29-decembre-2026',
+        registrationOpen: true,
+        registrationOpensOn: '28 NOV. 2026',
       },
     ],
   },
@@ -172,6 +192,7 @@ const periods = [
     stages: [
       {
         title: 'BMX NIVEAU 1',
+        anchor: 'bmx-niveau-1-printemps-2027',
         type: 'BMX',
         dates: '19 & 20 AVR.',
         startDate: '2027-04-19T09:00:00+02:00',
@@ -441,7 +462,7 @@ const eventSchema = {
                     {
                       period.stages.map((stage) => (
                         <article
-                            id={formatAnchorByStage[stage.title]}
+                            id={stage.anchor ?? formatAnchorByStage[stage.title]}
                           class="group relative isolate scroll-mt-36 flex min-h-[26rem] flex-col overflow-hidden border border-black/15 bg-black p-6 text-white transition-colors hover:border-edit-teal fade-up"
                         >
                           <OptimizedImage
@@ -480,6 +501,12 @@ const eventSchema = {
                                 <dd class="flex items-center gap-2"><iconify-icon icon="solar:users-group-rounded-linear" width="15"></iconify-icon>{stage.audience}</dd>
                               </div>
                             </dl>
+
+                            {stage.meetingPoint && (
+                              <p class="mt-5 text-xs font-medium leading-relaxed text-white/75">
+                                {stage.meetingPoint}
+                              </p>
+                            )}
 
                             <div class="pt-7">
                               {
